@@ -10,6 +10,7 @@ using Domain.Models.Product;
 using Domain.Models.Tickets;
 using Domain.Models.Common;
 using Domain.Models.Role;
+using Domain.Models.FAQ;
 
 namespace DataLayer.DbContext
 {
@@ -43,6 +44,7 @@ namespace DataLayer.DbContext
         public DbSet<RolePermission> RolePermissions { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<FAQ> FAQs { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -116,6 +118,9 @@ namespace DataLayer.DbContext
                 .HasQueryFilter(c => !c.IsDelete);
 
             modelBuilder.Entity<UserRoles>()
+                .HasQueryFilter(c => !c.IsDelete);
+
+            modelBuilder.Entity<FAQ>()
                 .HasQueryFilter(c => !c.IsDelete);
         }
 

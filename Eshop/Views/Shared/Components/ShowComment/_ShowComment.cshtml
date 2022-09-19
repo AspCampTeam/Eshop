@@ -1,0 +1,55 @@
+﻿@using Application.Interface
+@model  List<Domain.Models.Product.ProductComment>
+@inject IUserService _UserService
+@{
+    ViewData["Title"] = "ShowComment";
+    Layout = null;
+    
+}
+
+@foreach (var item in  Model.Where(c=>c.ParentId==null))
+{
+    var user = _UserService.GetUserById(item.SenderId);
+    <div class="comments">
+        <!-- start of comment -->
+        <div class="comment">
+            <div class="comment-header">
+                <span>@item.CreatDate</span>
+                <span>@user.FirstName @user.LastName</span>
+                <a asp-action="AddComment" asp-route-id="@item.ProductId" asp-route-parentId="@item.Id" class="btn btn-info shiny btn-sm " >پاسخ</a>
+            </div>
+            <div class="comment-body">
+                <p>
+                    @item.Comment
+                </p>
+          
+            </div>
+           
+            @if (Model.Any(c => c.ParentId == item.Id))
+            {
+                foreach (var reply in Model.Where(c=>c.ParentId==item.Id))
+                {
+                    <p></p>
+                    <div style="margin-right: 35px; padding: 10px 30px;" class=" ui-box col-md-4">
+                        <div class="comment-header">
+                            <span>@reply.User.FirstName @reply.User.LastName</span>
+                            <span>@reply.CreatDate</span>
+                        </div>
+                                @reply.Comment
+                    </div>
+                }
+   
+
+            }
+            <div class="comment-footer">
+                <span class="me-2">آیا این دیدگاه برایتان مفید بود؟</span>
+                <button class="comment-like">۷</button>
+                <button class="comment-dislike">۲</button>
+            </div>
+        </div>
+        <!-- end of comment -->
+        <!-- end of comment -->
+    </div>
+   
+
+}

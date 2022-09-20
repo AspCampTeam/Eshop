@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using DataLayer.DbContext;
 using Domain.Interfaces;
 using Domain.Models.Common;
+using Domain.ViewModels.DynamicPage;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
-    public class DynamicPageRepository:IDynamicPageRepository
+    public class DynamicPageRepository : IDynamicPageRepository
     {
         private ApplicationDbContext _context;
 
@@ -31,12 +32,14 @@ namespace DataLayer.Repositories
             return model.Id;
         }
 
+
         public async Task<int> AddDynamicLink(DynamicLink link)
         {
            await _context.AddAsync(link);
            await _context.SaveChangesAsync();
            return link.Id;
         }
+
 
         public async Task<bool> DeleteDynamicPage(int id)
         {
@@ -46,6 +49,34 @@ namespace DataLayer.Repositories
             {
                 return false;
             }
+
+
+            page.IsDelete=true;
+            _context.Update(page);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<FilterDynamicPageViewModel> GetAllPagesForAdmin(FilterDynamicPageViewModel filter)
+        {
+            var query = _context.DynamicPages
+                .OrderByDescending(p => p.CreatDate)
+                .AsQueryable();
+
+            #region Filter
+
+            if (!string.IsNullOrEmpty(filter.Title))
+            {
+                query = query.Where(p => p.Title.Contains(filter.Title));
+            }
+
+
+            #endregion
+
+            await filter.Paging(query);
+            return filter;
+        }
+
             
             page.IsDelete=true;
             page.DynamicLink.IsDelete = true;
@@ -54,5 +85,6 @@ namespace DataLayer.Repositories
             await _context.SaveChangesAsync();
             return true;
         }
+
     }
 }

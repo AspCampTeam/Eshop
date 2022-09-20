@@ -20,6 +20,21 @@ namespace Application.Services
             _dynamicPageRepository = dynamicPageRepository;
         }
 
+
+        public Task<int> AddDynamicPage(DynamicViewModelAdmin model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteDynamicPage(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<FilterDynamicPageViewModel> GetAllPagesForAdmin(FilterDynamicPageViewModel filter)
+        {
+            return _dynamicPageRepository.GetAllPagesForAdmin(filter);
+        }
         public async Task<int> AddDynamicPage(DynamicPageViewModelAdmin model)
         {
             var addLink = new DynamicLink()
@@ -54,6 +69,7 @@ namespace Application.Services
         public async Task<bool> DeleteDynamicPage(int id)
         {
             return await _dynamicPageRepository.DeleteDynamicPage(id);
+
         }
     }
 }

@@ -17,7 +17,9 @@ namespace Domain.Models.Common
 
         public int LinkId { get; set; }
 
+
         #region Relation
+
         [ForeignKey("LinkId")]
         public DynamicLink DynamicLink { get; set; }
 

@@ -14,7 +14,6 @@ namespace Domain.Models.Common
         public PositionLinks Position { get; set; }
         public DateTime? ExpirationDate { get; set; }
 
-
         #region Relations
 
         public DynamicPage? DynamicPage { get; set; }

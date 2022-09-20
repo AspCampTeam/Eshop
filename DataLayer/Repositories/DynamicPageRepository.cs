@@ -78,13 +78,8 @@ namespace DataLayer.Repositories
         }
 
             
-            page.IsDelete=true;
-            page.DynamicLink.IsDelete = true;
-            _context.Update(page);
-            
-            await _context.SaveChangesAsync();
-            return true;
-        }
+       
+        
 
     }
 }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Interface;
 using Domain.Interfaces;
+using Domain.Models.Common;
+using Domain.Models.Enums;
 using Domain.ViewModels.DynamicPage;
 
 namespace Application.Services
@@ -17,6 +19,7 @@ namespace Application.Services
         {
             _dynamicPageRepository = dynamicPageRepository;
         }
+
 
         public Task<int> AddDynamicPage(DynamicViewModelAdmin model)
         {
@@ -31,6 +34,42 @@ namespace Application.Services
         public Task<FilterDynamicPageViewModel> GetAllPagesForAdmin(FilterDynamicPageViewModel filter)
         {
             return _dynamicPageRepository.GetAllPagesForAdmin(filter);
+        }
+        public async Task<int> AddDynamicPage(DynamicPageViewModelAdmin model)
+        {
+            var addLink = new DynamicLink()
+            {
+                IsDelete = false,
+                Title = model.Title,
+                CreatDate = DateTime.Now,
+                ExpirationDate = null,
+                LinkUrl = model.UrlLink,
+                Position = PositionLinks.Footer,
+
+            };
+
+            var linkId = await _dynamicPageRepository.AddDynamicLink(addLink);
+            var addPage = new DynamicPage()
+            {
+                Content = model.Content,
+                CreatDate = DateTime.Now,
+                IsDelete = false,
+                Title = model.Title,
+                LinkId = linkId
+                
+            };
+            var id= await _dynamicPageRepository.AddDynamicPage(addPage);
+
+           
+            return id;
+        }
+
+       
+
+        public async Task<bool> DeleteDynamicPage(int id)
+        {
+            return await _dynamicPageRepository.DeleteDynamicPage(id);
+
         }
     }
 }

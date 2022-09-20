@@ -32,6 +32,15 @@ namespace DataLayer.Repositories
             return model.Id;
         }
 
+
+        public async Task<int> AddDynamicLink(DynamicLink link)
+        {
+           await _context.AddAsync(link);
+           await _context.SaveChangesAsync();
+           return link.Id;
+        }
+
+
         public async Task<bool> DeleteDynamicPage(int id)
         {
             var page = await _context.DynamicPages.FindAsync(id);
@@ -40,6 +49,7 @@ namespace DataLayer.Repositories
             {
                 return false;
             }
+
 
             page.IsDelete=true;
             _context.Update(page);
@@ -66,5 +76,15 @@ namespace DataLayer.Repositories
             await filter.Paging(query);
             return filter;
         }
+
+            
+            page.IsDelete=true;
+            page.DynamicLink.IsDelete = true;
+            _context.Update(page);
+            
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
     }
 }

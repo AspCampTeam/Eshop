@@ -96,7 +96,10 @@ namespace Eshop.Controllers
         public async Task<IActionResult> Page(string title)
         {
             var link = await _pageService.GetPageByTitle(title);
-            return View();
+            return View(link);
+
+           
+        }
 
         [HttpPost]
         [Route("file-upload")]

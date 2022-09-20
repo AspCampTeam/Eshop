@@ -34,13 +34,13 @@ namespace Eshop.ViewComponents
 
 
 
-            if (order != null)
+            if (User.Identity.IsAuthenticated)
             {
 
                 return await Task.FromResult((IViewComponentResult)View("OrderViewComponent", order));
             }
 
-            return await Task.FromResult((IViewComponentResult)View("OrderViewComponent"));
+            return null;
         }
     }
 }

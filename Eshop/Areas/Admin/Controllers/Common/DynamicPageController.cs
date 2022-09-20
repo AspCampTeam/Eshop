@@ -46,5 +46,17 @@ namespace Eshop.Areas.Admin.Controllers.Common
             return Redirect("/Admin/Pages");
         }
 
+        [Route("DeletePage/{id}")]
+        public async Task<IActionResult> DeletePages(int id)
+        {
+            var res = await _dynamicPageService.DeleteDynamicPage(id);
+            if (res != true)
+            {
+                return BadRequest();
+            }
+
+            return Redirect("/Admin/Pages");
+        }
+
     }
 }

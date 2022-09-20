@@ -5,6 +5,7 @@ using Application.Interface;
 using Eshop.Controllers.Shared;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Application.Services;
+using Domain.ViewModels.DynamicPage;
 
 namespace Eshop.Controllers
 {
@@ -15,14 +16,16 @@ namespace Eshop.Controllers
         private IOrderService _orderService;
         private IDynamicLinkService _dynamicLinkService;
         private IFaqService _faqService;
+        private IDynamicPageService _pageService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService, IFaqService faqService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService, IFaqService faqService, IDynamicPageService pageService)
         {
             _logger = logger;
             _productService = productService;
             _orderService = orderService;
             _dynamicLinkService = dynamicLinkService;
             _faqService = faqService;
+            _pageService = pageService;
         }
 
         public async Task<IActionResult> Index()
@@ -85,6 +88,14 @@ namespace Eshop.Controllers
         public async Task<IActionResult> FAQ()
         {
             return View(await _faqService.GetFaqListAsync());
+        }
+
+
+        [Route("Page/{title}")]
+        public async Task<IActionResult> Page(string title)
+        {
+            var link = await _pageService.GetPageByTitle(title);
+            return View();
         }
     }
 }

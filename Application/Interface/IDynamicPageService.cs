@@ -16,7 +16,7 @@ namespace Application.Interface
 
         Task<int> AddDynamicPage(DynamicPageViewModelAdmin model);
       
-
+        Task<DynamicPage> GetPageByTitle(string title);
         Task<bool> DeleteDynamicPage(int id);
 
     }

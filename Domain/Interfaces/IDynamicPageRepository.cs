@@ -16,7 +16,7 @@ namespace Domain.Interfaces
 
         Task<int> AddDynamicLink(DynamicLink link);
 
-
+        Task<DynamicPage> GetPageByTitle(string title);
         Task<bool> DeleteDynamicPage(int id);
     }
 }

@@ -9,5 +9,8 @@ namespace Domain.Interfaces
     public interface IDynamicPageRepository
     {
 
+        Task<int> AddDynamicLink(DynamicLink link);
+
+        Task<bool> DeleteDynamicPage(int id);
     }
 }

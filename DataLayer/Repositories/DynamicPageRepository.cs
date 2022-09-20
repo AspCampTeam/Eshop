@@ -16,5 +16,37 @@ namespace DataLayer.Repositories
         {
             _context = context;
         }
+
+        public async Task<int> AddDynamicPage(DynamicPage model)
+        {
+            if (await _context.DynamicPages.AnyAsync(c => c.Title == model.Title))
+            {
+                return 0;
+            }
+
+            await _context.AddAsync(model);
+            await _context.SaveChangesAsync();
+            return model.Id;
+        }
+
+        public Task<int> AddDynamicLink(DynamicLink link)
+        {
+            
+        }
+
+        public async Task<bool> DeleteDynamicPage(int id)
+        {
+            var page = await _context.DynamicPages.FindAsync(id);
+
+            if (page == null)
+            {
+                return false;
+            }
+
+            page.IsDelete=true;
+            _context.Update(page);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

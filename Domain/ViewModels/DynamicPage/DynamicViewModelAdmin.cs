@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModels.DynamicPage
 {
-    internal class DynamicViewModelAdmin
+    public class DynamicPageViewModelAdmin
     {
+        public string Title { get; set; }
+
+        public string Content { get; set; }
+
+        public string UrlLink { get; set; }
     }
 }

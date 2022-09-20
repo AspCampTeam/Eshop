@@ -13,5 +13,12 @@ namespace Domain.Models.Common
         public string LinkUrl { get; set; }
         public PositionLinks Position { get; set; }
         public DateTime? ExpirationDate { get; set; }
+
+
+        #region Relations
+
+        public DynamicPage? DynamicPage { get; set; }
+
+        #endregion
     }
 }

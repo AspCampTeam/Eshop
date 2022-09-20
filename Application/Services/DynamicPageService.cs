@@ -22,16 +22,6 @@ namespace Application.Services
 
         public async Task<int> AddDynamicPage(DynamicPageViewModelAdmin model)
         {
-            var addPage = new DynamicPage()
-            {
-                Content = model.Content,
-                CreatDate = DateTime.Now,
-                IsDelete = false,
-                Title = model.Title,
-                
-            };
-            var id= await _dynamicPageRepository.AddDynamicPage(addPage);
-
             var addLink = new DynamicLink()
             {
                 IsDelete = false,
@@ -43,18 +33,27 @@ namespace Application.Services
 
             };
 
-            var linkId = _dynamicPageRepository.AddDynamicLink(addLink);
+            var linkId = await _dynamicPageRepository.AddDynamicLink(addLink);
+            var addPage = new DynamicPage()
+            {
+                Content = model.Content,
+                CreatDate = DateTime.Now,
+                IsDelete = false,
+                Title = model.Title,
+                LinkId = linkId
+                
+            };
+            var id= await _dynamicPageRepository.AddDynamicPage(addPage);
+
+           
             return id;
         }
 
-        public Task<int> AddDynamicLink(DynamicPageViewModelAdmin link)
-        {
-            throw new NotImplementedException();
-        }
+       
 
-        public Task<bool> DeleteDynamicPage(int id)
+        public async Task<bool> DeleteDynamicPage(int id)
         {
-            throw new NotImplementedException();
+            return await _dynamicPageRepository.DeleteDynamicPage(id);
         }
     }
 }

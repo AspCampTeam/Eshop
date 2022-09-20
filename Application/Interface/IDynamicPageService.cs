@@ -11,7 +11,7 @@ namespace Application.Interface
     public interface IDynamicPageService
     {
         Task<int> AddDynamicPage(DynamicPageViewModelAdmin model);
-        Task<int> AddDynamicLink(DynamicPageViewModelAdmin link);
+      
 
         Task<bool> DeleteDynamicPage(int id);
     }

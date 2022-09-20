@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Interface;
 using Domain.Interfaces;
+using Domain.ViewModels.DynamicPage;
 
 namespace Application.Services
 {
@@ -15,6 +16,16 @@ namespace Application.Services
         public DynamicPageService(IDynamicPageRepository dynamicPageRepository)
         {
             _dynamicPageRepository = dynamicPageRepository;
+        }
+
+        public Task<int> AddDynamicPage(DynamicViewModelAdmin model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteDynamicPage(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

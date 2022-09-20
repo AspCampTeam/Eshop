@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataLayer.DbContext;
 using Domain.Interfaces;
 using Domain.Models.Common;
+using Domain.ViewModels.DynamicPage;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
@@ -44,6 +45,26 @@ namespace DataLayer.Repositories
             _context.Update(page);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<FilterDynamicPageViewModel> GetAllPagesForAdmin(FilterDynamicPageViewModel filter)
+        {
+            var query = _context.DynamicPages
+                .OrderByDescending(p => p.CreatDate)
+                .AsQueryable();
+
+            #region Filter
+
+            if (!string.IsNullOrEmpty(filter.Title))
+            {
+                query = query.Where(p => p.Title.Contains(filter.Title));
+            }
+
+
+            #endregion
+
+            await filter.Paging(query);
+            return filter;
         }
     }
 }

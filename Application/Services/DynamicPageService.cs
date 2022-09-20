@@ -27,5 +27,10 @@ namespace Application.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<FilterDynamicPageViewModel> GetAllPagesForAdmin(FilterDynamicPageViewModel filter)
+        {
+            return _dynamicPageRepository.GetAllPagesForAdmin(filter);
+        }
     }
 }

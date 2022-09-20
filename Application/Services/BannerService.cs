@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.Banner;
 
 namespace Application.Services
 {
@@ -18,5 +19,10 @@ namespace Application.Services
             _bannerRepository = bannerRepository;
         }
         #endregion
+
+        public Task<List<Banner>> GetBannerListAsync()
+        {
+            return _bannerRepository.GetBannerListAsync();
+        }
     }
 }

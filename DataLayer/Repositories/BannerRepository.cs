@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.Banner;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
@@ -18,5 +20,10 @@ namespace DataLayer.Repositories
             _context = context;
         }
         #endregion
+
+        public async Task<List<Banner>> GetBannerListAsync()
+        {
+           return await _context.Banners.ToListAsync();
+        }
     }
 }

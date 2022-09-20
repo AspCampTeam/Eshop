@@ -63,5 +63,10 @@ namespace Application.Services
             return await _dynamicPageRepository.DeleteDynamicPage(id);
 
         }
+
+        public async Task<DynamicPage> GetPageByTitle(string title)
+        {
+            return await _dynamicPageRepository.GetPageById(title);
+        }
     }
 }

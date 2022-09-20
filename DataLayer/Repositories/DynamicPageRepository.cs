@@ -35,9 +35,9 @@ namespace DataLayer.Repositories
 
         public async Task<int> AddDynamicLink(DynamicLink link)
         {
-           await _context.AddAsync(link);
-           await _context.SaveChangesAsync();
-           return link.Id;
+            await _context.AddAsync(link);
+            await _context.SaveChangesAsync();
+            return link.Id;
         }
 
 
@@ -51,7 +51,7 @@ namespace DataLayer.Repositories
             }
 
 
-            page.IsDelete=true;
+            page.IsDelete = true;
             _context.Update(page);
             await _context.SaveChangesAsync();
             return true;
@@ -77,9 +77,12 @@ namespace DataLayer.Repositories
             return filter;
         }
 
-            
-       
-        
 
+
+        public async Task<DynamicPage> GetPageByTitle(string title)
+        {
+            return await _context.DynamicPages.Include(p=>p.DynamicLink).FirstOrDefaultAsync(p => p.Title == title);
+        }
     }
+
 }

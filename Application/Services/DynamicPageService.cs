@@ -21,15 +21,7 @@ namespace Application.Services
         }
 
 
-        public Task<int> AddDynamicPage(DynamicViewModelAdmin model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> DeleteDynamicPage(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Task<FilterDynamicPageViewModel> GetAllPagesForAdmin(FilterDynamicPageViewModel filter)
         {

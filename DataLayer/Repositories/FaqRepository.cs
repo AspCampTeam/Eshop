@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.FAQ;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
@@ -20,5 +22,10 @@ namespace DataLayer.Repositories
         }
 
         #endregion
+
+        public async Task<List<FAQ>> GetAllFAQsAsync()
+        {
+            return await _context.FAQs.ToListAsync();
+        }
     }
 }

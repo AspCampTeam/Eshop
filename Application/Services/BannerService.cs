@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.Banner;
 using TopLearn.Core.Generator;
 
 namespace Application.Services
@@ -26,6 +27,12 @@ namespace Application.Services
 
 
         #endregion
+
+
+        public Task<List<Banner>> GetBannerListAsync()
+        {
+            return _bannerRepository.GetBannerListAsync();
+        }
 
         public async Task<bool> AddBannerFromAdmin(AddOrEditBannerViewModel model)
         {
@@ -104,6 +111,7 @@ namespace Application.Services
             return await _bannerRepository.GetAllBanners(filter);
 
         }
+
 
 
     }

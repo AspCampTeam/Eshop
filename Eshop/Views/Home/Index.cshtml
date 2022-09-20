@@ -1,6 +1,8 @@
 ﻿@using Domain.ViewModels.Product
+@using Domain.Models.Banner
 @{
     var products = ViewData["Products"] as List<ProductCartViewModel>;
+    var banners = ViewData["Banners"] as List<Banner>;
 }
 
 <main  class="page-content">

@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.Banner;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
@@ -22,6 +24,11 @@ namespace DataLayer.Repositories
         }
 
         #endregion
+
+
+        public async Task<List<Banner>> GetBannerListAsync()
+        {
+           return await _context.Banners.ToListAsync();
 
 
         public async Task<bool> AddBanner(Banner banner)
@@ -109,6 +116,7 @@ namespace DataLayer.Repositories
             _context.Update(banner);
             await Save();
             return banner;
+
 
         }
     }

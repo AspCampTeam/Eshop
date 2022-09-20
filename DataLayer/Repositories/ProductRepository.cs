@@ -685,7 +685,7 @@ namespace DataLayer.Repositories
                 .ThenInclude(p => p.ProductCategory)
                 .Include(p => p.ProductGalleries)
                 .Include(p => p.productPrices)
-                .ThenInclude(p => p.productSelectedFeatures)
+                .ThenInclude(p => p.productSelectedFeatures).ThenInclude(c=>c.Feature).ThenInclude(c=>c.FeatureValues)
                 .FirstOrDefaultAsync(p => p.Id == productId);
         }
 

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Interface;
 using Domain.Interfaces;
+using Domain.Models.Common;
+using Domain.Models.Enums;
 using Domain.ViewModels.DynamicPage;
 
 namespace Application.Services
@@ -18,14 +20,58 @@ namespace Application.Services
             _dynamicPageRepository = dynamicPageRepository;
         }
 
-        public Task<int> AddDynamicPage(DynamicViewModelAdmin model)
+
+       
+
+        public Task<FilterDynamicPageViewModel> GetAllPagesForAdmin(FilterDynamicPageViewModel filter)
         {
-            throw new NotImplementedException();
+            return _dynamicPageRepository.GetAllPagesForAdmin(filter);
+        }
+        public async Task<int> AddDynamicPage(DynamicPageViewModelAdmin model)
+        {
+            var addLink = new DynamicLink()
+            {
+                IsDelete = false,
+                Title = model.Title,
+                CreatDate = DateTime.Now,
+                ExpirationDate = null,
+                LinkUrl = model.UrlLink,
+                Position = PositionLinks.Footer,
+
+            };
+
+            var linkId = await _dynamicPageRepository.AddDynamicLink(addLink);
+            var addPage = new DynamicPage()
+            {
+                Content = model.Content,
+                CreatDate = DateTime.Now,
+                IsDelete = false,
+                Title = model.Title,
+                LinkId = linkId
+                
+            };
+            var id= await _dynamicPageRepository.AddDynamicPage(addPage);
+
+           
+            return id;
         }
 
-        public Task<bool> DeleteDynamicPage(int id)
+       
+
+        public async Task<bool> DeleteDynamicPage(int id)
         {
-            throw new NotImplementedException();
+            return await _dynamicPageRepository.DeleteDynamicPage(id);
+
+        }
+
+        public async Task<DynamicPage> GetPageByTitle(string title)
+        {
+            return await _dynamicPageRepository.GetPageByTitle(title);
+        }
+
+        public async Task<List<DynamicPage>> GetAllPagesForSite()
+        {
+            return await _dynamicPageRepository.GetAllPagesForSite();
         }
     }
 }

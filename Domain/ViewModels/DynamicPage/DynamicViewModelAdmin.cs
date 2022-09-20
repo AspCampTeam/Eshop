@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModels.DynamicPage
 {
-    public class DynamicViewModelAdmin
+
+
+    public class DynamicPageViewModelAdmin
     {
-        [Display(Name = "عنوان")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Title { get; set; }
-        [Display(Name = "صفحه")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength]
+
         public string Content { get; set; }
 
-       
+        public string UrlLink { get; set; }
+
     }
 }

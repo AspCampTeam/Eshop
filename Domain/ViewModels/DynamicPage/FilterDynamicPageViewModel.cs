@@ -10,6 +10,6 @@ namespace Domain.ViewModels.DynamicPage
 {
     public class FilterDynamicPageViewModel:BasePaging<Models.Common.DynamicPage>
     {
-
+        public string Title { get; set; }
     }
 }

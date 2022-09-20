@@ -122,6 +122,9 @@ namespace DataLayer.DbContext
 
             modelBuilder.Entity<FAQ>()
                 .HasQueryFilter(c => !c.IsDelete);
+
+            modelBuilder.Entity<DynamicPage>()
+                .HasQueryFilter(c => !c.IsDelete);
         }
 
     }

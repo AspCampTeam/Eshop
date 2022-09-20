@@ -18,5 +18,6 @@ namespace Domain.Interfaces
 
         Task<DynamicPage> GetPageByTitle(string title);
         Task<bool> DeleteDynamicPage(int id);
+        Task<List<DynamicPage>> GetAllPagesForSite();
     }
 }

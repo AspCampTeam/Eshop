@@ -50,10 +50,10 @@
                         <a class="nav-link" href="#">وبلاگ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">پرسش های متداول</a>
+                        <a class="nav-link" href="/faq">پرسش های متداول</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/AddContactUss">تماس با ما</a>
+                        <a class="nav-link" href="/ContactUss">تماس با ما</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">درباره ما</a>
@@ -192,7 +192,18 @@
             }
             else
             {
-                <div class="auth-title mb-3"><a href="/Login">ورود</a> / <a href="/Register">ثبت نام</a></div>
+              <ul class="nav nav-pills nav-tabs align-items-center mb-4" id="sort-tab" role="tablist">
+                                 
+                  <li class="nav-item" role="presentation">
+                      <a href="/Register" class="nav-link " id="most-visited-tab"  aria-controls="most-visited" aria-selected="true">ثبت نام</a>
+                  </li>
+                  /
+                                    <li class="nav-item" role="presentation">
+                                        <a href="/Login" class="nav-link" id="best-selling-tab"    aria-controls="best-selling" aria-selected="false">
+                                            ورود</a>
+                                    </li>
+                                 
+                                </ul>
             }
 
         </div>

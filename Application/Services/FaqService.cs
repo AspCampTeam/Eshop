@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.FAQ;
 
 namespace Application.Services
 {
@@ -66,5 +67,9 @@ namespace Application.Services
 
         #endregion
 
+        public async Task<List<FAQ>> GetFaqListAsync()
+        {
+            return await _faqRepository.GetAllFAQsAsync();
+        }
     }
 }

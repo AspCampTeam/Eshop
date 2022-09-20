@@ -14,13 +14,15 @@ namespace Eshop.Controllers
         IProductService _productService;
         private IOrderService _orderService;
         private IDynamicLinkService _dynamicLinkService;
+        private IFaqService _faqService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService, IFaqService faqService)
         {
             _logger = logger;
             _productService = productService;
             _orderService = orderService;
             _dynamicLinkService = dynamicLinkService;
+            _faqService = faqService;
         }
 
         public async Task<IActionResult> Index()
@@ -78,6 +80,11 @@ namespace Eshop.Controllers
             }
 
             return View();
+        }
+        [Route("faq")]
+        public async Task<IActionResult> FAQ()
+        {
+            return View(await _faqService.GetFaqListAsync());
         }
     }
 }

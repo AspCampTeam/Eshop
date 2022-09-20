@@ -66,7 +66,12 @@ namespace Application.Services
 
         public async Task<DynamicPage> GetPageByTitle(string title)
         {
-            return await _dynamicPageRepository.GetPageById(title);
+            return await _dynamicPageRepository.GetPageByTitle(title);
+        }
+
+        public async Task<List<DynamicPage>> GetAllPagesForSite()
+        {
+            return await _dynamicPageRepository.GetAllPagesForSite();
         }
     }
 }

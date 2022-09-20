@@ -83,6 +83,11 @@ namespace DataLayer.Repositories
         {
             return await _context.DynamicPages.Include(p=>p.DynamicLink).FirstOrDefaultAsync(p => p.Title == title);
         }
+
+        public async Task<List<DynamicPage>> GetAllPagesForSite()
+        {
+            return await _context.DynamicPages.ToListAsync();
+        }
     }
 
 }

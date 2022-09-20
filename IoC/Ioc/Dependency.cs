@@ -34,6 +34,8 @@ namespace IoC.Ioc
             service.AddTransient<ISocialMediaService, SocialMediaService>();
             service.AddTransient<IPermissionRoleRepository, PermissionRoleRepository>();
             service.AddTransient<IPermissionService, PermissionService>();
+            service.AddTransient<IFaqRepository, FaqRepository>();
+            service.AddTransient<IFaqService, FaqService>();
 
         }
     }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer.DbContext;
 using Domain.Interfaces;
+using Domain.Models.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories
 {
@@ -29,9 +31,11 @@ namespace DataLayer.Repositories
             return model.Id;
         }
 
-        public Task<int> AddDynamicLink(DynamicLink link)
+        public async Task<int> AddDynamicLink(DynamicLink link)
         {
-            
+           await _context.AddAsync(link);
+           await _context.SaveChangesAsync();
+           return link.Id;
         }
 
         public async Task<bool> DeleteDynamicPage(int id)

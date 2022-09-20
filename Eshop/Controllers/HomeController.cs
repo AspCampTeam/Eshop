@@ -91,11 +91,40 @@ namespace Eshop.Controllers
         }
 
 
+
         [Route("Page/{title}")]
         public async Task<IActionResult> Page(string title)
         {
             var link = await _pageService.GetPageByTitle(title);
             return View();
+
+        [HttpPost]
+        [Route("file-upload")]
+        public IActionResult UploadImage(IFormFile upload, string CKEditorFuncNum, string CKEditor, string langCode)
+        {
+            if (upload.Length <= 0) return null;
+
+            var fileName = Guid.NewGuid() + Path.GetExtension(upload.FileName).ToLower();
+
+
+
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(), "wwwroot/MyImages",
+                fileName);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                upload.CopyTo(stream);
+
+            }
+
+
+
+            var url = $"{"/MyImages/"}{fileName}";
+
+
+            return Json(new { uploaded = true, url });
+
         }
     }
 }

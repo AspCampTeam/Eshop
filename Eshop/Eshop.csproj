@@ -53,6 +53,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Images\thumb\" />
+    <Folder Include="wwwroot\MyImages\" />
   </ItemGroup>
 
 </Project>

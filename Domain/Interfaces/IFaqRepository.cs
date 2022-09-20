@@ -21,7 +21,7 @@ namespace Domain.Interfaces
         Task<bool> UpdateFaq(FAQ faq);
         Task<bool> Save();
 
-
+#endregion
 
         #region Site
 

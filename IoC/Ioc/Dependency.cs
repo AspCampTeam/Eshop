@@ -36,6 +36,8 @@ namespace IoC.Ioc
             service.AddTransient<IPermissionService, PermissionService>();
             service.AddTransient<IFaqRepository, FaqRepository>();
             service.AddTransient<IFaqService, FaqService>();
+            service.AddTransient<IDynamicPageRepository, DynamicPageRepository>();
+            service.AddTransient<IDynamicPageService, DynamicPageService>();
 
         }
     }

@@ -17,7 +17,7 @@ namespace Application.Interface
         Task<bool> EditFaqFromAdmin(AddOrEditFaqViewModel faq);
         Task<bool> DeleteFaqFromAdmin(int faqId);
         Task<AddOrEditFaqViewModel> GetFaqById(int faqId);
-
+#endregion
         #region Site
 
         Task<List<FAQ>> GetFaqListAsync();

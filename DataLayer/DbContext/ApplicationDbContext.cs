@@ -45,7 +45,7 @@ namespace DataLayer.DbContext
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
-
+        public DbSet<DynamicPage> DynamicPages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -13,7 +13,9 @@ namespace Domain.Models.Banner
 
         public BannerPosition Position { get; set; }
 
-        public string Link { get; set; }
+        public BannerCol BannerCol { get; set; }
+
+        public string? Link { get; set; }
 
     }
 }

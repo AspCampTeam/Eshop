@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.Banner;
 using Domain.Models.Order;
 using Domain.Models.Product;
 using Domain.Models.Tickets;
@@ -46,6 +47,7 @@ namespace DataLayer.DbContext
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<DynamicPage> DynamicPages { get; set; }
+        public DbSet<Banner> Banners { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -124,6 +126,9 @@ namespace DataLayer.DbContext
                 .HasQueryFilter(c => !c.IsDelete);
 
             modelBuilder.Entity<DynamicPage>()
+                .HasQueryFilter(c => !c.IsDelete);
+
+            modelBuilder.Entity<Banner>()
                 .HasQueryFilter(c => !c.IsDelete);
         }
 

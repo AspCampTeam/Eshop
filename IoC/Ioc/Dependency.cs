@@ -40,7 +40,8 @@ namespace IoC.Ioc
             service.AddTransient<IDynamicPageService, DynamicPageService>();
             service.AddTransient<IBannerRepository, BannerRepository>();
             service.AddTransient<IBannerService, BannerService>();
-
+            service.AddTransient<ILoggerRepository, LoggerRepository>();
+            service.AddTransient<ILoggerService, LoggerService>();
         }
     }
 }

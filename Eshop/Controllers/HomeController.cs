@@ -17,8 +17,9 @@ namespace Eshop.Controllers
         private IDynamicLinkService _dynamicLinkService;
         private IFaqService _faqService;
         private IDynamicPageService _pageService;
+        private IBannerService _bannerService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService, IFaqService faqService, IDynamicPageService pageService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService, IFaqService faqService, IDynamicPageService pageService, IBannerService bannerService)
         {
             _logger = logger;
             _productService = productService;
@@ -26,6 +27,7 @@ namespace Eshop.Controllers
             _dynamicLinkService = dynamicLinkService;
             _faqService = faqService;
             _pageService = pageService;
+            _bannerService = bannerService;
         }
 
         public async Task<IActionResult> Index()
@@ -33,9 +35,11 @@ namespace Eshop.Controllers
             var res = await _productService.GetAllProductForIndex();
             var header = await _dynamicLinkService.GetLinksForHeader();
             var footer = await _dynamicLinkService.GetLinksForFooter();
+            var banner = await _bannerService.GetBannerListAsync();
             ViewData["HeaderLinks"] = header;
             ViewData["FooterLinks"] = footer;
             ViewData["Products"] = res;
+            ViewData["Banners"] = banner;
             return View();
         }
 
@@ -98,7 +102,7 @@ namespace Eshop.Controllers
             var link = await _pageService.GetPageByTitle(title);
             return View(link);
 
-           
+
         }
 
         [HttpPost]
@@ -129,5 +133,7 @@ namespace Eshop.Controllers
             return Json(new { uploaded = true, url });
 
         }
+
+
     }
 }

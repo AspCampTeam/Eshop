@@ -1,4 +1,5 @@
 ﻿using Application.Interface;
+using Application.Security;
 using Domain.ViewModels.Banner;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,12 @@ namespace Eshop.Areas.Admin.Controllers.Common
     public class BannerController : AdminBaseController
     {
         private IBannerService _bannerService;
+        private ILoggerService _loggerService;
 
-        public BannerController(IBannerService bannerService)
+        public BannerController(IBannerService bannerService, ILoggerService loggerService)
         {
             _bannerService = bannerService;
+            _loggerService = loggerService;
         }
 
 
@@ -43,7 +46,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
                 return View("BannerManger", model);
             }
             var res =await _bannerService.EditBannerFromAdmin(model);
-
+           var res2= await _loggerService.AddLog(User.GetUserId(), "ویرایش بنر");
             return RedirectToAction("Banners");
         }
 

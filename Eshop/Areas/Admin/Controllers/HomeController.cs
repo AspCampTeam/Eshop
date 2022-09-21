@@ -30,7 +30,13 @@ namespace Eshop.Areas.Admin.Controllers
             return View(ticket);
             
         }
-        
-       
+
+        [Route("Logs")]
+        public async Task<IActionResult> Logs()
+        {
+
+            return View();
+        }
+
     }
 }

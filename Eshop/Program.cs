@@ -11,6 +11,8 @@ using Dependency = IoC.Ioc.Dependency;
 var builder = WebApplication.CreateBuilder(args);
 //StatUp
 // Add services to the container.
+
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -29,6 +31,7 @@ builder.Services.AddAuthentication(option =>
 });
 
 Dependency.RegisterServices(builder.Services);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,7 +42,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
+ 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

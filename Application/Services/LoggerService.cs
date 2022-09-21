@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.Common;
+using Domain.ViewModels.Log;
 
 namespace Application.Services
 {
@@ -15,6 +17,24 @@ namespace Application.Services
         public LoggerService(ILoggerRepository loggerRepository)
         {
             _loggerRepository = loggerRepository;
+        }
+
+        public async Task<bool> AddLog(int userId, string message)
+        {
+            var addLog = new Log()
+            {
+                CreatDate = DateTime.Now,
+                UserId = userId,
+                Desctiption = message,
+                IsDelete = false,
+
+            };
+            return await _loggerRepository.AddLogToUser(addLog);
+        }
+
+        public async Task<FilterUserLogViewModel> GetLog(FilterUserLogViewModel filter)
+        {
+            return await _loggerRepository.GetAllLogsOfAdmins(filter);
         }
     }
 }

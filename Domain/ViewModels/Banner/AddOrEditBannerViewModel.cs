@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain.Models.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,11 +12,12 @@ namespace Domain.ViewModels.Banner
 {
     public class AddOrEditBannerViewModel
     {
-        public int Id { get; set; }
-        public IFormFile Image { get; set; }
+        public int? Id { get; set; }
+        public IFormFile? Image { get; set; }
         public string Link { get; set; }
-        public EditBannerPosition Position { get; set; }
-        public EditBannerSize Size { get; set; }
+        public BannerPosition Position { get; set; }
+        public BannerCol Size { get; set; }
+        public string? ImageName { get; set; }
     }
 
 

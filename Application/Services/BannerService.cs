@@ -3,6 +3,7 @@ using Application.Interface;
 using DataLayer.Repositories;
 using Domain.Interfaces;
 using Domain.Models.Banner;
+using Domain.Models.Enums;
 using Domain.Models.Product;
 using Domain.ViewModels.Banner;
 using System;
@@ -48,8 +49,13 @@ namespace Application.Services
                     model.Image.CopyTo(stream);
                 }
                 addImage.Link = model.Link;
-                addImage.BannerCol = (Domain.Models.Enums.BannerCol)model.Size;
-                addImage.Position = (Domain.Models.Enums.BannerPosition)model.Position;
+                addImage.BannerCol = model.Size;
+                addImage.Position = model.Position;
+                if (model.Position!= BannerPosition.Slide)
+                {
+                    addImage.BannerCol = BannerCol.OneEighth;
+                }
+                
                 addImage.IsDelete = false;
                 addImage.CreatDate = DateTime.Now;
                 return await _bannerRepository.AddBanner(addImage);
@@ -80,7 +86,7 @@ namespace Application.Services
 
         public async Task<bool> EditBannerFromAdmin(AddOrEditBannerViewModel banner)
         {
-            var model = await _bannerRepository.GetBannerById(banner.Id);
+            var model = await _bannerRepository.GetBannerById((int)banner.Id);
             if (model != null)
             {
                 string deletPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/banners", model.ImageName);
@@ -112,7 +118,20 @@ namespace Application.Services
 
         }
 
+        public async Task<AddOrEditBannerViewModel> GetBannerById(int id)
+        {
+            var banner =await _bannerRepository.GetBannerById(id);
+            var res = new AddOrEditBannerViewModel()
+            {
+                Id = banner.Id,
+                ImageName = banner.ImageName,
+                Link = banner.Link,
+                Position = banner.Position,
+                Size = banner.BannerCol,
+                
+            };
 
-
+            return res;
+        }
     }
 }

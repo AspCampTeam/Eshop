@@ -27,10 +27,11 @@ namespace DataLayer.Repositories
         #endregion
 
 
-        public async Task<bool> AddQuestion(FAQ faq)
+        public async Task<int> AddQuestion(FAQ faq)
         {
             await _context.AddAsync(faq);
-            return await Save();
+             await Save();
+            return faq.Id;
         }
 
         public async Task<bool> DeleteQuestion(int faqId)

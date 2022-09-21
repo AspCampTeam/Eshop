@@ -37,6 +37,7 @@ namespace Domain.Models.Product
 
         public List<ProductTag> ProductTags { get; set; }
 
+
         #endregion
 
     }

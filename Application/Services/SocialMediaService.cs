@@ -90,7 +90,7 @@ namespace Application.Services
             return await _socialMediaRepository.Delete(id);
         }
 
-        public async Task<bool> AddSocialMedia(AddSocialMediaLinkViewModel model)
+        public async Task<int> AddSocialMedia(AddSocialMediaLinkViewModel model)
         {
             var media = new SocialMedia()
             {

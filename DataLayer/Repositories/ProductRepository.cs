@@ -31,31 +31,31 @@ namespace DataLayer.Repositories
 
         #endregion
 
-        public async Task<bool> AddCategory(ProductCategory category)
+        public async Task<int> AddCategory(ProductCategory category)
         {
             try
             {
                 await _context.AddAsync(category);
                 Save();
-                return true;
+                return category.Id;
             }
             catch
             {
-                return false;
+                return 0;
             }
         }
 
-        public async Task<bool> AddSubCategory(ProductCategory category)
+        public async Task<int> AddSubCategory(ProductCategory category)
         {
             try
             {
                 await _context.AddAsync(category);
                 Save();
-                return true;
+                return category.Id;
             }
             catch
             {
-                return false;
+                return 0;
             }
         }
 
@@ -706,17 +706,17 @@ namespace DataLayer.Repositories
 
         }
 
-        public async Task<bool> AddTagToProduct(ProductTag tag)
+        public async Task<int> AddTagToProduct(ProductTag tag)
         {
             _context.ProductTags.Add(tag);
             try
             {
                 await _context.SaveChangesAsync();
-                return true;
+                return tag.Id;
             }
             catch
             {
-                return false;
+                return 0;
             }
         }
 

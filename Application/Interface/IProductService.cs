@@ -69,7 +69,7 @@ namespace Application.Interface
         /// <returns>
         ///     If Returns IS True Category Added To Bank
         /// </returns>
-        Task<bool> AddCategory(EditOrAddCategoryProduct model);
+        Task<int> AddCategory(EditOrAddCategoryProduct model);
 
         /// <summary>
         /// Admin By This Method Can Add SubCategory
@@ -83,7 +83,7 @@ namespace Application.Interface
         /// <returns>
         ///     If Return True SubCategory Added
         /// </returns>
-        Task<bool> AddSubCategory(string name, int parentId);
+        Task<int> AddSubCategory(string name, int parentId);
 
         /// <summary>
         ///   Admin By This Method Can Update Category
@@ -271,7 +271,7 @@ namespace Application.Interface
         /// <param name="tag">A ViewModel Of Needed Data Of Tag</param>
         /// <param name="productId">Id Of Product To Add A Tag</param>
         /// <returns>A Boolean That Indicate The Result Of Opration</returns>
-        Task<bool> AddTagToProduct(TagViewModel tag,int productId);
+        Task<int> AddTagToProduct(TagViewModel tag,int productId);
 
         /// <summary>
         /// Update A Tag Of Product From Admin

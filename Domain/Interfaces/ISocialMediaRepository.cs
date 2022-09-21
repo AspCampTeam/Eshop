@@ -18,7 +18,7 @@ namespace Domain.Interfaces
 
         public IQueryable<SocialMedia> GetAllSocialMediaForAdmin();
 
-        Task<bool> AddSocialMedia(SocialMedia media);
+        Task<int> AddSocialMedia(SocialMedia media);
 
         Task<bool> IsMediaAlreadyHasUrl(SocialMediaPlatform platform);
 

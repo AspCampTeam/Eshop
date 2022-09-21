@@ -17,7 +17,7 @@ namespace Application.Interface
         Task<FilterSocialMediaForAdminViewModel> GetAllMediasForAdmin(FilterSocialMediaForAdminViewModel filter);
         Task<bool> DeleteSocial(int id);
 
-        Task<bool> AddSocialMedia(AddSocialMediaLinkViewModel model);
+        Task<int> AddSocialMedia(AddSocialMediaLinkViewModel model);
         Task<EditSocialMediaViewModel> GetMediaById(int id);
         Task<bool> IsMediaAlreadyHasUrl(SocialMediaPlatform platform);
 

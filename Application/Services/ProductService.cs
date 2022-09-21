@@ -54,7 +54,7 @@ namespace Application.Services
             return query;
         }
 
-        public async Task<bool> AddCategory(EditOrAddCategoryProduct category)
+        public async Task<int> AddCategory(EditOrAddCategoryProduct category)
         {
             var cat = new ProductCategory()
             {
@@ -67,7 +67,7 @@ namespace Application.Services
 
         }
 
-        public async Task<bool> AddSubCategory(string name, int parentId)
+        public async Task<int> AddSubCategory(string name, int parentId)
         {
 
             var cat = new ProductCategory()
@@ -375,7 +375,7 @@ namespace Application.Services
             }
         }
 
-        public async Task<bool> AddTagToProduct(TagViewModel tag, int productId)
+        public async Task<int> AddTagToProduct(TagViewModel tag, int productId)
         {
             var add = new ProductTag()
             {
@@ -387,12 +387,12 @@ namespace Application.Services
 
             try
             {
-                await _productRepository.AddTagToProduct(add);
-                return true;
+               return  await _productRepository.AddTagToProduct(add);
+                
             }
             catch
             {
-                return false;
+                return 0;
             }
         }
 

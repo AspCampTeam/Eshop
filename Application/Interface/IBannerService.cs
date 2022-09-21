@@ -19,7 +19,7 @@ namespace Application.Interface
 
         #region Admin
         Task<FilterBannerViewModel> GetAllBannersForAdmin(FilterBannerViewModel filter);
-        Task<bool> AddBannerFromAdmin(AddOrEditBannerViewModel model);
+        Task<int> AddBannerFromAdmin(AddOrEditBannerViewModel model);
         Task<bool> EditBannerFromAdmin(AddOrEditBannerViewModel banner);
         Task<bool> DeleteBannerFromAdmin(int id);
         Task<AddOrEditBannerViewModel> GetBannerById(int id);

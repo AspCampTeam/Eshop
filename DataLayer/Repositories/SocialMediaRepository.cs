@@ -81,18 +81,18 @@ namespace DataLayer.Repositories
         }
 
 
-        public async Task<bool> AddSocialMedia(SocialMedia media)
+        public async Task<int> AddSocialMedia(SocialMedia media)
         {
             try
             {
                 await _context.AddAsync(media);
                 await Save();
-                return true;
+                return media.Id;
             }
             catch 
             {
 
-                return false;
+                return 0;
             }
         }
 

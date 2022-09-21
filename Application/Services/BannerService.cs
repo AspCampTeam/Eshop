@@ -35,7 +35,7 @@ namespace Application.Services
             return _bannerRepository.GetBannerListAsync();
         }
 
-        public async Task<bool> AddBannerFromAdmin(AddOrEditBannerViewModel model)
+        public async Task<int> AddBannerFromAdmin(AddOrEditBannerViewModel model)
         {
             var addImage = new Banner();
             if (model.Image != null)
@@ -62,7 +62,7 @@ namespace Application.Services
             }
             else
             {
-                return false;
+                return 0;
             }
         }
 

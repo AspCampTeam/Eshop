@@ -15,8 +15,8 @@ namespace Domain.Interfaces
     {
         #region Product Category
 
-        Task<bool> AddCategory(ProductCategory category);
-        Task<bool> AddSubCategory(ProductCategory category);
+        Task<int> AddCategory(ProductCategory category);
+        Task<int> AddSubCategory(ProductCategory category);
         Task<List<ProductCategory>> GetAllCategories();
         Task<List<ProductCategory>> GetAllSubCategories(int id);
         Task<List<ProductCategory>> GetAllSubCategoriesForEditProduct(int id);
@@ -56,7 +56,7 @@ namespace Domain.Interfaces
 
         Task<FilterListTagViewModel> GetAllTagsOfProductForAdmin(FilterListTagViewModel filter, int productId);
         Task<ProductTag> GetTagById(int id);
-        Task<bool> AddTagToProduct(ProductTag tag);
+        Task<int> AddTagToProduct(ProductTag tag);
         Task<bool> DeleteTag(ProductTag tag);
         Task<bool> UpdateTag(ProductTag tag);
 

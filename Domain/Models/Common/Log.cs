@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models.Product;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Domain.Models.Common
     {
         public int UserId { get; set; }
         public string Desctiption { get; set; }
-
+        public int EntityId { get; set; }
 
 
 
@@ -19,6 +20,8 @@ namespace Domain.Models.Common
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+
+
 
         #endregion
 

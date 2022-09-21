@@ -22,7 +22,7 @@ namespace Application.Services
             _faqRepository = faqRepository;
         }
 
-        public Task<bool> AddFaqFromAdmin(AddOrEditFaqViewModel faq)
+        public Task<int> AddFaqFromAdmin(AddOrEditFaqViewModel faq)
         {
             var entity = new FAQ() 
             {

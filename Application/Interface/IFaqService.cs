@@ -13,7 +13,7 @@ namespace Application.Interface
 
         #region Admin
         Task<FilterFaqViewModel> GetAllFaqsForAdmin(FilterFaqViewModel filter);
-        Task<bool> AddFaqFromAdmin(AddOrEditFaqViewModel faq);
+        Task<int> AddFaqFromAdmin(AddOrEditFaqViewModel faq);
         Task<bool> EditFaqFromAdmin(AddOrEditFaqViewModel faq);
         Task<bool> DeleteFaqFromAdmin(int faqId);
         Task<AddOrEditFaqViewModel> GetFaqById(int faqId);

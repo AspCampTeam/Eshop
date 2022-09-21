@@ -14,7 +14,7 @@ namespace Domain.Interfaces
 
         #region Admin
 
-        Task<bool> AddQuestion(FAQ faq);
+        Task<int> AddQuestion(FAQ faq);
         Task<bool> DeleteQuestion(int faqId);
         Task<FAQ> GetFaqById(int faqId);
         Task<FilterFaqViewModel> GetAllFaqForAdmin(FilterFaqViewModel filter);

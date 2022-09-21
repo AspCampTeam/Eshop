@@ -35,10 +35,11 @@ namespace DataLayer.Repositories
         
         }
 
-        public async Task<bool> AddBanner(Banner banner)
+        public async Task<int> AddBanner(Banner banner)
         {
             await _context.AddAsync(banner);
-            return await Save();
+             await Save();
+            return banner.Id;
         }
 
         public async Task<FilterBannerViewModel> GetAllBanners(FilterBannerViewModel filter)

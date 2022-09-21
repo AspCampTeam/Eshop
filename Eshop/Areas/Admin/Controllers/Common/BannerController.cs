@@ -73,7 +73,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
                 return View("BannerManger", model);
             }
             var res = await _bannerService.AddBannerFromAdmin(model);
-            if (!res)
+            if (res==0)
             {
                 return BadRequest();
             }

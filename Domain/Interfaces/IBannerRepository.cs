@@ -23,7 +23,7 @@ namespace Domain.Interfaces
 
         #region Admin
         
-        Task<bool> AddBanner(Banner banner);
+        Task<int> AddBanner(Banner banner);
         Task<bool> RemoveBanner(int bannerId);
         Task<Banner> GetBannerById(int id);
         Task<FilterBannerViewModel> GetAllBanners(FilterBannerViewModel filter);

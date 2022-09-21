@@ -10,8 +10,8 @@ namespace Domain.ViewModels.Log
 {
     public class FilterUserLogViewModel:BasePaging<Models.Common.Log>
     {
-        public string UserName { get; set; }
-        public string Activity { get; set; }
+        public string? UserName { get; set; }
+        public string? Activity { get; set; }
         
     }
 }

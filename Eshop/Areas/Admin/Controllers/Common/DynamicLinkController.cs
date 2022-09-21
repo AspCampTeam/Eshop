@@ -10,10 +10,12 @@ namespace Eshop.Areas.Admin.Controllers
     public class DynamicLinkController : AdminBaseController
     {
         private IDynamicLinkService _dynamicLinkService;
+        private ILoggerService _loggerService;
 
-        public DynamicLinkController(IDynamicLinkService dynamicLinkService)
+        public DynamicLinkController(IDynamicLinkService dynamicLinkService, ILoggerService loggerService)
         {
             _dynamicLinkService = dynamicLinkService;
+            _loggerService = loggerService;
         }
 
         [CheckPermission(Permissions.LinkManagement)]
@@ -44,7 +46,7 @@ namespace Eshop.Areas.Admin.Controllers
             }
 
             var addlink = await _dynamicLinkService.AddLink(model);
-
+            await _loggerService.AddLog(addlink, User.GetUserId(), "افزودن لینک مفید");
             return Redirect("/Admin/Links");
         }
 
@@ -78,7 +80,7 @@ namespace Eshop.Areas.Admin.Controllers
             {
                 return BadRequest();
             }
-
+            await _loggerService.AddLog(model.Id, User.GetUserId(), "ویرایش لینک مفید");
             return Redirect("/Admin/Links");
         }
 
@@ -97,6 +99,7 @@ namespace Eshop.Areas.Admin.Controllers
             }
             else
             {
+                await _loggerService.AddLog(id, User.GetUserId(), "ویرایش بنر");
                 return Redirect("/Admin/Links");
             }
         }

@@ -9,7 +9,7 @@ namespace Application.Interface
 {
     public interface ILoggerService
     {
-        Task<bool> AddLog(int userId,string message);
+        Task<bool> AddLog(int entityId,int userId,string message);
 
         Task<FilterUserLogViewModel> GetLog(FilterUserLogViewModel filter);
     }

@@ -46,7 +46,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
                 return View("BannerManger", model);
             }
             var res =await _bannerService.EditBannerFromAdmin(model);
-           var res2= await _loggerService.AddLog(User.GetUserId(), "ویرایش بنر");
+           var res2= await _loggerService.AddLog((int)model.Id,User.GetUserId(), "ویرایش بنر");
             return RedirectToAction("Banners");
         }
 
@@ -77,6 +77,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
             {
                 return BadRequest();
             }
+             await _loggerService.AddLog(res, User.GetUserId(), "افزودن بنر");
             return RedirectToAction("Banners");
         }
 
@@ -97,6 +98,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
         public async Task<IActionResult> DeleteBanner(AddOrEditBannerViewModel model)
         {
             var res = await _bannerService.DeleteBannerFromAdmin((int)model.Id);
+            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "حذف بنر");
             return RedirectToAction("Banners");
         }
 

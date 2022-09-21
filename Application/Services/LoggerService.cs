@@ -19,7 +19,7 @@ namespace Application.Services
             _loggerRepository = loggerRepository;
         }
 
-        public async Task<bool> AddLog(int userId, string message)
+        public async Task<bool> AddLog(int entityId,int userId, string message)
         {
             var addLog = new Log()
             {
@@ -27,7 +27,7 @@ namespace Application.Services
                 UserId = userId,
                 Desctiption = message,
                 IsDelete = false,
-
+                EntityId = entityId
             };
             return await _loggerRepository.AddLogToUser(addLog);
         }

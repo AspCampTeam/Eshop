@@ -1,4 +1,5 @@
 ﻿using Application.Interface;
+using Application.Security;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Operations;
@@ -9,11 +10,14 @@ namespace Eshop.Areas.Admin.Controllers.Common
     {
         #region Injections
         private IFaqService _faqService;
+        private ILoggerService _loggerService;
 
-        public FAQController(IFaqService faqService)
+        public FAQController(IFaqService faqService, ILoggerService loggerService)
         {
             _faqService = faqService;
+            _loggerService = loggerService;
         }
+
         #endregion
 
 
@@ -40,7 +44,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
             if (!ModelState.IsValid)
                 return View(faq);
             var res = await _faqService.AddFaqFromAdmin(faq);
-
+            await _loggerService.AddLog(res, User.GetUserId(), "افزودن پرسش پر تکرار");
             return RedirectToAction("FAQs");
         }
 
@@ -63,7 +67,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
                 return View("FaqManager", faq);
 
             var delete =await _faqService.DeleteFaqFromAdmin((int)faq.Id);
-
+            await _loggerService.AddLog((int)faq.Id, User.GetUserId(), "حذف پرسش پر تکرار");
             return RedirectToAction("FAQs");
         }
 
@@ -89,7 +93,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
                 return View("FaqManager", faq);
 
             var res = await _faqService.EditFaqFromAdmin(faq);
-
+            await _loggerService.AddLog((int)faq.Id, User.GetUserId(), "ویرایش پرسش پر تکرار");
             return RedirectToAction("FAQs");
         }
 

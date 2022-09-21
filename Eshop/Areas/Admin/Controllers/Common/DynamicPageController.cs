@@ -1,4 +1,5 @@
 ﻿using Application.Interface;
+using Application.Security;
 using Domain.ViewModels.DynamicPage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -8,10 +9,12 @@ namespace Eshop.Areas.Admin.Controllers.Common
     public class DynamicPageController : AdminBaseController
     {
         private IDynamicPageService _dynamicPageService;
+        private ILoggerService _loggerService;
 
-        public DynamicPageController(IDynamicPageService dynamicPageService)
+        public DynamicPageController(IDynamicPageService dynamicPageService, ILoggerService loggerService)
         {
             _dynamicPageService = dynamicPageService;
+            _loggerService = loggerService;
         }
 
         [Route("Pages")]
@@ -42,7 +45,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
             {
                 return BadRequest();
             }
-
+            await _loggerService.AddLog(id, User.GetUserId(), "افزودن صفحه داینامیک");
             return Redirect("/Admin/Pages");
         }
 
@@ -54,7 +57,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
             {
                 return BadRequest();
             }
-
+            await _loggerService.AddLog(id, User.GetUserId(), " حذف صفحه داینامیک");
             return Redirect("/Admin/Pages");
         }
 

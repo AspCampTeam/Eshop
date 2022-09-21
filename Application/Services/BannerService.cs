@@ -89,18 +89,22 @@ namespace Application.Services
             var model = await _bannerRepository.GetBannerById((int)banner.Id);
             if (model != null)
             {
-                string deletPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/banners", model.ImageName);
-                if (File.Exists(deletPath))
+                if (banner.Image != null)
                 {
-                    File.Delete(deletPath);
-                }
-                string imagepath = "";
-                model.ImageName = NameGenerator.GeneratorUniqCode() + Path.GetExtension(banner.Image.FileName);
-                imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/banners", model.ImageName);
+                    string deletPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/banners", model.ImageName);
+                    if (File.Exists(deletPath))
+                    {
+                        File.Delete(deletPath);
+                    }
+                    string imagepath = "";
 
-                await using (var stream = new FileStream(imagepath, FileMode.Create))
-                {
-                    banner.Image.CopyTo(stream);
+                    model.ImageName = NameGenerator.GeneratorUniqCode() + Path.GetExtension(banner.Image.FileName);
+                    imagepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/banners", model.ImageName);
+
+                    await using (var stream = new FileStream(imagepath, FileMode.Create))
+                    {
+                        banner.Image.CopyTo(stream);
+                    }
                 }
                 model.Link = banner.Link;
                 model.BannerCol = (Domain.Models.Enums.BannerCol)banner.Size;

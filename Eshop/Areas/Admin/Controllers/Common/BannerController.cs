@@ -79,7 +79,7 @@ namespace Eshop.Areas.Admin.Controllers.Common
             return View("BannerManger",model);
         }
 
-        [Route("DeleteBanner")]
+        [Route("DeleteBanner/{id}")]
         [HttpPost]
         public async Task<IActionResult> DeleteBanner(AddOrEditBannerViewModel model)
         {

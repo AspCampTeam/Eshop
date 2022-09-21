@@ -28,8 +28,11 @@ namespace DataLayer.Repositories
 
         public async Task<List<Banner>> GetBannerListAsync()
         {
-           return await _context.Banners.ToListAsync();
+            return await _context.Banners.ToListAsync();
 
+
+        
+        }
 
         public async Task<bool> AddBanner(Banner banner)
         {
@@ -39,7 +42,7 @@ namespace DataLayer.Repositories
 
         public async Task<FilterBannerViewModel> GetAllBanners(FilterBannerViewModel filter)
         {
-           var query = _context.Banners.OrderByDescending(b => b.CreatDate).AsQueryable();
+            var query = _context.Banners.OrderByDescending(b => b.CreatDate).AsQueryable();
 
             #region Position
             switch (filter.Position)

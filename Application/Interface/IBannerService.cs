@@ -14,7 +14,7 @@ namespace Application.Interface
         #region Site
 
         Task<List<Banner>> GetBannerListAsync();
-
+        #endregion
 
         #region Admin
         Task<FilterBannerViewModel> GetAllBannersForAdmin(FilterBannerViewModel filter);

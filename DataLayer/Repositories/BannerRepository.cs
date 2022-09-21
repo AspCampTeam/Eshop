@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Banner;
 using Microsoft.EntityFrameworkCore;
+using Domain.Models.Enums;
 
 namespace DataLayer.Repositories
 {
@@ -121,6 +122,11 @@ namespace DataLayer.Repositories
             return banner;
 
 
+        }
+
+        public async Task<bool> IsBannerExist(BannerPosition position)
+        {
+            return await _context.Banners.AnyAsync(b => b.Position == position);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Banner;
+using Domain.Models.Enums;
 
 namespace Application.Interface
 {
@@ -22,6 +23,7 @@ namespace Application.Interface
         Task<bool> EditBannerFromAdmin(AddOrEditBannerViewModel banner);
         Task<bool> DeleteBannerFromAdmin(int id);
         Task<AddOrEditBannerViewModel> GetBannerById(int id);
+        Task<bool> IsBannerExist(BannerPosition position);
         #endregion
     }
 }

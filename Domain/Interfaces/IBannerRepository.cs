@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Banner;
+using Domain.Models.Enums;
 
 namespace Domain.Interfaces
 {
@@ -27,6 +28,7 @@ namespace Domain.Interfaces
         Task<Banner> GetBannerById(int id);
         Task<FilterBannerViewModel> GetAllBanners(FilterBannerViewModel filter);
         Task<Banner> UpdateBanner(Banner banner);
+        Task<bool> IsBannerExist(BannerPosition position);
 
         #endregion
         Task<bool> Save();

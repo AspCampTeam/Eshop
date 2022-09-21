@@ -141,5 +141,14 @@ namespace Application.Services
 
             return res;
         }
+
+        public async Task<bool> IsBannerExist(BannerPosition position)
+        {
+            if (position==BannerPosition.Slide)
+            {
+                return false;
+            }
+            return await _bannerRepository.IsBannerExist(position);
+        }
     }
 }

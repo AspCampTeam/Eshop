@@ -37,6 +37,11 @@ namespace Eshop.Areas.Admin.Controllers.Common
         {
             if (!ModelState.IsValid)
                 return View("BannerManger", model);
+            if (await _bannerService.IsBannerExist(model.Position))
+            {
+                ModelState.AddModelError("Position", " بنر دارد. لطفا ویرایش کنید");
+                return View("BannerManger", model);
+            }
             var res =await _bannerService.EditBannerFromAdmin(model);
 
             return RedirectToAction("Banners");
@@ -59,6 +64,11 @@ namespace Eshop.Areas.Admin.Controllers.Common
         {
             if (!ModelState.IsValid)
                 return View("BannerManger",model);
+            if (await _bannerService.IsBannerExist(model.Position))
+            {
+                ModelState.AddModelError("Position", "این موقعیت بنر دارد. لطفا ویرایش کنید");
+                return View("BannerManger", model);
+            }
             var res = await _bannerService.AddBannerFromAdmin(model);
             if (!res)
             {

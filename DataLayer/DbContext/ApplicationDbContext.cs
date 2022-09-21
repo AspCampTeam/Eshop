@@ -48,6 +48,7 @@ namespace DataLayer.DbContext
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<DynamicPage> DynamicPages { get; set; }
         public DbSet<Banner> Banners { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

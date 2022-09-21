@@ -8,6 +8,7 @@ using Domain.Models.Enums;
 using Domain.Models.Product;
 using Domain.Models.Tickets;
 using Domain.Models.Order;
+using Domain.Models.Common;
 
 namespace Domain.Models
 {
@@ -55,6 +56,7 @@ namespace Domain.Models
         public List<Ticket> Tickets { get; set; }
         public List<TicketMassages> TicketMassagesList { get; set; }
         public List<Order.Order> Orders { get; set; }
+        public List<Log> Logs { get; set; }
 
         #endregion
 

@@ -14,6 +14,7 @@ namespace Application.Interface
         Task<bool> AddBannerFromAdmin(AddOrEditBannerViewModel model);
         Task<bool> EditBannerFromAdmin(AddOrEditBannerViewModel banner);
         Task<bool> DeleteBannerFromAdmin(int id);
+        Task<AddOrEditBannerViewModel> GetBannerById(int id);
         #endregion
     }
 }

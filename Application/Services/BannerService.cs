@@ -16,7 +16,7 @@ using TopLearn.Core.Generator;
 
 namespace Application.Services
 {
-    public class BannerService:IBannerService
+    public class BannerService : IBannerService
     {
         #region Injections
         private IBannerRepository _bannerRepository;
@@ -51,11 +51,11 @@ namespace Application.Services
                 addImage.Link = model.Link;
                 addImage.BannerCol = model.Size;
                 addImage.Position = model.Position;
-                if (model.Position!= BannerPosition.Slide)
+                if (model.Position == BannerPosition.Slide)
                 {
                     addImage.BannerCol = BannerCol.OneEighth;
                 }
-                
+
                 addImage.IsDelete = false;
                 addImage.CreatDate = DateTime.Now;
                 return await _bannerRepository.AddBanner(addImage);
@@ -68,7 +68,7 @@ namespace Application.Services
 
         public async Task<bool> DeleteBannerFromAdmin(int id)
         {
-            var model =await _bannerRepository.GetBannerById(id);
+            var model = await _bannerRepository.GetBannerById(id);
             if (model != null)
             {
                 string deletPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/banners", model.ImageName);
@@ -107,11 +107,15 @@ namespace Application.Services
                     }
                 }
                 model.Link = banner.Link;
-                model.BannerCol = (Domain.Models.Enums.BannerCol)banner.Size;
-                model.Position = (Domain.Models.Enums.BannerPosition)banner.Position;
+                model.BannerCol = banner.Size;
+                if (model.Position == BannerPosition.Slide)
+                {
+                    model.BannerCol = BannerCol.OneEighth;
+                }
+                model.Position = banner.Position;
                 await _bannerRepository.UpdateBanner(model);
                 return true;
-               
+
             }
             return false;
         }
@@ -124,7 +128,7 @@ namespace Application.Services
 
         public async Task<AddOrEditBannerViewModel> GetBannerById(int id)
         {
-            var banner =await _bannerRepository.GetBannerById(id);
+            var banner = await _bannerRepository.GetBannerById(id);
             var res = new AddOrEditBannerViewModel()
             {
                 Id = banner.Id,
@@ -132,7 +136,7 @@ namespace Application.Services
                 Link = banner.Link,
                 Position = banner.Position,
                 Size = banner.BannerCol,
-                
+
             };
 
             return res;

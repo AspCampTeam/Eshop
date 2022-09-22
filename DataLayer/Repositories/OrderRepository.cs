@@ -64,13 +64,14 @@ namespace DataLayer.Repositories
             return filter;
         }
 
-        public async Task<List<Order>> GetAllFinalizedOrders()
+        public async Task<List<Order>> GetAllFinalizedOrders(int take)
         {
             return await _context.Orders
                 .Include(o=>o.User)
                 .Include(o=>o.OrderDetails)
                 .Where(o => o.IsFinally)
                 .OrderByDescending(p=>p.CreatDate)
+                .Take(take)
                 .ToListAsync();
         }
 

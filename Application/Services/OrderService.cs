@@ -41,9 +41,9 @@ namespace Application.Services
             return res;
         }
 
-        public async Task<OrderListPartialViewModel> GetFinalizedOrdersForAdmin()
+        public async Task<OrderListPartialViewModel> GetFinalizedOrdersForAdmin(int take)
         {
-            var orders = await _repository.GetAllFinalizedOrders();
+            var orders = await _repository.GetAllFinalizedOrders(take);
 
             var res = new OrderListPartialViewModel() { Orders = orders };
 

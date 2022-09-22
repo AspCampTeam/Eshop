@@ -13,7 +13,7 @@ namespace Domain.Interfaces
         #region Admin
 
         Task<FilterUserOrdersForAdmin> GetAllOrdersOfUserById(FilterUserOrdersForAdmin filter);
-        Task<List<Order>> GetAllFinalizedOrders();
+        Task<List<Order>> GetAllFinalizedOrders(int take);
 
         Task<int[]> GetWeeklySalesOrderForChart();
 

@@ -28,7 +28,7 @@ namespace Eshop.Areas.Admin.Controllers
         public async Task<IActionResult> Index(UserTicketsListViewModel model)
         {
             var ticket = await _ticketService.GetNoReadTickets(model);
-            ViewData["OrderPartialModel"] = await _orderService.GetFinalizedOrdersForAdmin();
+            ViewData["OrderPartialModel"] = await _orderService.GetFinalizedOrdersForAdmin(10);
                var res= await _orderService.GetSalesOrderChartForAdmin();
                ViewData["SalesPartialModel"] = res;
             ViewData["TenLog"] = await _loggerService.GetLastTenLogs(new FilterUserLogViewModel());

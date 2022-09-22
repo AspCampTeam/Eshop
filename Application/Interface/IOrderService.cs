@@ -15,7 +15,7 @@ namespace Application.Interface
 
         Task<FilterUserOrdersForAdmin> GetAllOrdersOfUserForAdmin(FilterUserOrdersForAdmin filter);
         Task<OrderDetailForAdminViewModel> GetOrderDetailForAdminById(int orderId);
-        Task<OrderListPartialViewModel> GetFinalizedOrdersForAdmin();
+        Task<OrderListPartialViewModel> GetFinalizedOrdersForAdmin(int take);
         Task<SalesOrderChartViewModel> GetSalesOrderChartForAdmin();
 
         #endregion

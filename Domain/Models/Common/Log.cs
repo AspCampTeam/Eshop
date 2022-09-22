@@ -1,4 +1,5 @@
-﻿using Domain.Models.Product;
+﻿using Domain.Models.Enums;
+using Domain.Models.Product;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace Domain.Models.Common
         public int UserId { get; set; }
         public string Desctiption { get; set; }
         public int EntityId { get; set; }
-
+        public LogType LogType { get; set; }
 
 
         #region Relations

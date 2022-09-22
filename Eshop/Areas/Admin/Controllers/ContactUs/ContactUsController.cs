@@ -22,7 +22,7 @@ namespace Eshop.Areas.Admin.Controllers.ContactUss
         public ContactUsController(IContactUssService contactUssService, ILoggerService loggerService)
         {
             _ContactUssService = contactUssService;
-            _LoggerService = loggerService;
+            _loggerService = loggerService;
         }
 
 

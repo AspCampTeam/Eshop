@@ -13,15 +13,18 @@ namespace Eshop.Areas.Admin.Controllers.Product
         #region Injections
 
         private IProductService _productService;
+        private ILoggerService _loggerService;
 
-        public ProductCategory(IProductService productService)
+        public ProductCategory(IProductService productService, ILoggerService loggerService)
         {
             _productService = productService;
+            _loggerService = loggerService;
         }
+
 
         #endregion
 
-        
+
         [Route("Categories")]
         public async Task<IActionResult> Categories(FilterCategoryProduct filter)
         {
@@ -66,7 +69,8 @@ namespace Eshop.Areas.Admin.Controllers.Product
             else
                 model.ParentId = null;
 
-            await _productService.AddCategory(model);
+            var id =await _productService.AddCategory(model);
+            await _loggerService.AddLog(id, User.GetUserId(), "افزودن دسته بندی");
             return Redirect("/Admin/Categories");
         }
 
@@ -100,6 +104,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             model.IsDeleted = false;
             model.CategoryId = id;
             await _productService.UpdateCategory(model);
+            await _loggerService.AddLog(id, User.GetUserId(), "ویرایش دسته بندی");
             return Redirect("/Admin/Categories");
         }
 
@@ -136,6 +141,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             model.IsDeleted = true;
             model.CategoryId = id;
             await _productService.UpdateCategory(model);
+            await _loggerService.AddLog(id, User.GetUserId(), "حذف دسته بندی");
             return Redirect("/Admin/Categories");
         }
 

@@ -12,11 +12,15 @@ namespace Eshop.Areas.Admin.Controllers.Product
         #region Injections
 
         private IProductService _productService;
+        private ILoggerService _loggerService;
 
-        public ProductCommentController(IProductService productService)
+        public ProductCommentController(IProductService productService, ILoggerService loggerService)
         {
             _productService = productService;
+            _loggerService = loggerService;
         }
+
+
 
         #endregion
 
@@ -54,7 +58,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
                 ModelState.AddModelError("Answer","عملیات با مشکل مواجه شد");
                 return View("CommentManager", commentIdForDel);
             }
-            
+            await _loggerService.AddLog(commentIdForDel, User.GetUserId(), "حذف کامنت");
             return Redirect("Admin/Product");
 
         }
@@ -74,7 +78,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
                 ModelState.AddModelError("Answer", "عملیات با مشکل مواجه شد");
                 return View("CommentManager", answer);
             }
-
+            await _loggerService.AddLog((int)answer.CommentId, User.GetUserId(), "پاسخ به کامنت");
             return Redirect("Index/" + answer.ProductId);
         }
     }

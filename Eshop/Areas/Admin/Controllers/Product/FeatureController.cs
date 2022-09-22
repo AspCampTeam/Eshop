@@ -10,13 +10,14 @@ namespace Eshop.Areas.Admin.Controllers.Product
     public class FeatureController : AdminBaseController
     {
         private IProductService _productService;
+        private ILoggerService _loggerService;
 
-        public FeatureController(IProductService productService)
+        public FeatureController(IProductService productService, ILoggerService loggerService)
         {
             _productService = productService;
+            _loggerService = loggerService;
         }
 
-        
         [Route("Feature")]
         public async Task<IActionResult> Index(FeatureViewModel model)
         {
@@ -48,7 +49,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
                 return BadRequest();
 
             }
-
+            await _loggerService.AddLog(id, User.GetUserId(), "افزودن ویژگی");
             return Redirect("/Admin/Feature");
         }
 
@@ -77,7 +78,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             {
                 return NotFound();
             }
-
+            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "ویرایش ویژگی");
             return Redirect("/Admin/Feature");
 
         }
@@ -102,6 +103,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             {
                 return NotFound();
             }
+            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "حذف ویژگی");
             return Redirect("/Admin/Feature");
         }
 
@@ -136,7 +138,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             }
 
             var id = await _productService.AddFeatureValue(model);
-
+            await _loggerService.AddLog(id, User.GetUserId(), "افزودن مقدار ویژگی");
             return Redirect("/Admin/Feature");
 
         }
@@ -157,8 +159,8 @@ namespace Eshop.Areas.Admin.Controllers.Product
                 return View();
             }
 
-            var id = await _productService.UpdateFeatureValue(model);
-
+            var status = await _productService.UpdateFeatureValue(model);
+            await _loggerService.AddLog(model.Id, User.GetUserId(), "ویرایش مقدار ویژگی");
             return Redirect("/Admin/Feature");
 
         }
@@ -186,7 +188,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             {
                 return BadRequest();
             }
-
+            await _loggerService.AddLog(model.Id, User.GetUserId(), "حذف مقدار ویژگی");
             return Redirect("/Admin/Values/" +model.FeatureId );
         }
     }

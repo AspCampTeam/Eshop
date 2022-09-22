@@ -10,11 +10,14 @@ namespace Eshop.Areas.Admin.Controllers.Permission
     public class PermissionController : AdminBaseController
     {
         private IPermissionService _permissionService;
+        private ILoggerService _loggerService;
 
-        public PermissionController(IPermissionService permissionService)
+        public PermissionController(IPermissionService permissionService, ILoggerService loggerService)
         {
             _permissionService = permissionService;
+            _loggerService = loggerService;
         }
+
         [Route("Roles")]
         //[CheckPermission(Permissions.RoleManagement)]
         public async Task<IActionResult> Index()
@@ -43,6 +46,7 @@ namespace Eshop.Areas.Admin.Controllers.Permission
 
             var res = await _permissionService.AddRole(model);
             var rer2 = await _permissionService.AddPermissionRole(res, selectedPermission);
+            await _loggerService.AddLog(res, User.GetUserId(), "افزودن نقش");
             return Redirect("/Admin/Roles");
         }
         #endregion
@@ -70,7 +74,7 @@ namespace Eshop.Areas.Admin.Controllers.Permission
             var res = await _permissionService.UpdateRole(model);
 
             var res2 = await _permissionService.EditPermissionRole(model.Id, selectedPermission);
-
+            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "ویرایش نقش");
             return Redirect("/Admin/Roles");
         }
 
@@ -80,6 +84,7 @@ namespace Eshop.Areas.Admin.Controllers.Permission
         {
             var Role = await _permissionService.GetRoleById(id);
             var res = await _permissionService.DeleteRole(Role);
+            await _loggerService.AddLog(id, User.GetUserId(), "حذف نقش");
             if (res)
             {
                 return Redirect("/Admin/Roles");

@@ -10,12 +10,15 @@ namespace Eshop.Areas.Admin.Controllers
 {
     public class ProductController : AdminBaseController
     {
-        IProductService _productService;
+        private IProductService _productService;
+        private ILoggerService _loggerService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ILoggerService loggerService)
         {
             _productService = productService;
+            _loggerService = loggerService;
         }
+
         [Route("Product")]
         [CheckPermission(Permissions.ProductManagement)]
         public async Task<IActionResult> Index(FilterProductViewModel filter,int startPrice=0,int endPrice=0)
@@ -59,7 +62,7 @@ namespace Eshop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            await _loggerService.AddLog(id, User.GetUserId(), "افزودن محصول");
             return Redirect("/Admin/Product");
         }
 
@@ -98,7 +101,7 @@ namespace Eshop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "ویرایش محصول");
             return Redirect("/Admin/Product");
         }
         #endregion
@@ -121,7 +124,7 @@ namespace Eshop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "حذف محصول");
             return Redirect("/Admin/Product");
         }
         #endregion

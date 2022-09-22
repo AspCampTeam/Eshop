@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol.Plugins;
 using Application.Security;
 using Eshop.Common;
+using Application.Services;
 
 namespace Eshop.Areas.Admin.Controllers.ContactUss
 {
@@ -16,11 +17,14 @@ namespace Eshop.Areas.Admin.Controllers.ContactUss
         #region Injection
 
         private IContactUssService _ContactUssService;
+        private ILoggerService _loggerService;
 
-        public ContactUsController(IContactUssService ContactUssService)
+        public ContactUsController(IContactUssService contactUssService, ILoggerService loggerService)
         {
-            _ContactUssService = ContactUssService;
+            _ContactUssService = contactUssService;
+            _LoggerService = loggerService;
         }
+
 
         #endregion
 
@@ -53,7 +57,7 @@ namespace Eshop.Areas.Admin.Controllers.ContactUss
 
         [Route("AnswerContactUs/{id}")]
         [HttpPost]
-        public IActionResult AnswerContactUs(AnswerContactUsViewModel answer)
+        public async Task<IActionResult>  AnswerContactUs(AnswerContactUsViewModel answer)
         {
 
             try
@@ -67,7 +71,7 @@ namespace Eshop.Areas.Admin.Controllers.ContactUss
             }
 
             _ContactUssService.AnswerContactUsTicket(answer.Id,answer.AnswerBody);
-
+            await _loggerService.AddLog((int)answer.Id, User.GetUserId(), " پاسخ به تماس با ما");
 
             return RedirectToAction("GetContactUsss");
         }

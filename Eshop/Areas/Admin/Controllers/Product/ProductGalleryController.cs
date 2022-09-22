@@ -9,12 +9,15 @@ namespace Eshop.Areas.Admin.Controllers.Product
     [CheckPermission(Permissions.ProductGallery)]
     public class ProductGalleryController : AdminBaseController
     {
-        IProductService _productService;
+        private IProductService _productService;
+        private ILoggerService _loggerService;
 
-        public ProductGalleryController(IProductService productService)
+        public ProductGalleryController(IProductService productService, ILoggerService loggerService)
         {
             _productService = productService;
+            _loggerService = loggerService;
         }
+
         [Route("ProductGallery/{id}")]
         public IActionResult Index(int id)
         {
@@ -45,6 +48,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
                 return View();
             }
             int id = await _productService.AddImageFromAdmin(model);
+            await _loggerService.AddLog(id, User.GetUserId(), "افزودن عکس به محصول");
             return Redirect("/Admin/ProductGallery/" + model.ProductId);
         }
 
@@ -78,7 +82,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             var image = await _productService.GetGalleryById(model.Id);
            var res=await _productService.DeleteImage(image);
            int id = await _productService.AddImageFromAdmin(model);
-
+            await _loggerService.AddLog(id, User.GetUserId(), "ویرایش عکس محصول");
             return Redirect("/Admin/ProductGallery/" + model.ProductId);
         }
 
@@ -114,6 +118,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
            {
                return NotFound();
            }
+            await _loggerService.AddLog(model.Id, User.GetUserId(), "حذف عکس از محصول");
             return Redirect("/Admin/ProductGallery/"+prId);
         }
 

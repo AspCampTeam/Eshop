@@ -12,6 +12,7 @@ using Domain.Models.Enums;
 using TopLearn.Core.Convertor;
 using Domain.ViewModels.User;
 using Eshop.Controllers.Shared;
+using Application.Security;
 
 namespace Eshop.Controllers
 {
@@ -118,9 +119,10 @@ namespace Eshop.Controllers
 
         #region Logout
         [Route("Logout")]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _loggerService.AddLog(User.GetUserId(), User.GetUserId(), "ورود به حساب کاربری", LogType.UserLogin);
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("/Login");
         }
         #endregion

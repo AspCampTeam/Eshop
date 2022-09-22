@@ -1,12 +1,14 @@
 ﻿@using Domain.Models.Enums
 @using Domain.ViewModels.Ticket
 @using Domain.ViewModels.Order
+@using Domain.ViewModels.Log
 @model Domain.ViewModels.Ticket.UserTicketsListViewModel
 
 @{
     ViewData["Title"] = "خانه";
     var saleModel = ViewData["SalesPartialModel"] as SalesOrderChartViewModel;
     int[] dataChart = saleModel.ChartData;
+    var logs = ViewData["TenLog"] as FilterUserLogViewModel;
 
 }
 <div style="margin-top: 100px" class="row">
@@ -39,7 +41,7 @@
                 </div>
             </div>
         </div>
-
+        <partial name="_LastTenLogPartial" model="logs" />
     </div>
     <div class="col-xs-12 col-md-12">
         <div class="widget">

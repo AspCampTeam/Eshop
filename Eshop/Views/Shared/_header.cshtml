@@ -1,7 +1,9 @@
 ﻿@using Application.Interface
 @using Application.Security
 @using Domain.Models.Banner
+@using Domain.Models.Role
 @using Domain.ViewModels.DynamicLinks
+@using Eshop.Common
 
 @{
     var banners = ViewData["Banners"] as List<Banner>;
@@ -170,12 +172,14 @@
                                            حساب کاربری
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                   <Authrize permission-id="Permissions.Admin">
+                                        <li class="nav-item">
                                         <a class="nav-link" href="/Admin/">
                                             <i class="nav-link-icon ri-copper-coin-fill"></i>
                                             پنل ادمین
                                         </a>
                                     </li>
+                                   </Authrize>
                                     <li class="nav-item">
                                         <a class="nav-link" href="/Logout">
                                             <i class="nav-link-icon ri-logout-box-r-line"></i>

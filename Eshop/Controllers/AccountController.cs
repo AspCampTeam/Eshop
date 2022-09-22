@@ -18,13 +18,17 @@ namespace Eshop.Controllers
     public class AccountController : BaseSiteController
     {
         private IUserService _userService;
-        IViewRenderService _viewRenderService;
+        private IViewRenderService _viewRenderService;
+        private ILoggerService _loggerService;
 
-        public AccountController(IUserService userService, IViewRenderService viewRenderService)
+        public AccountController(IUserService userService, IViewRenderService viewRenderService, ILoggerService loggerService)
         {
             _userService = userService;
             _viewRenderService = viewRenderService;
+            _loggerService = loggerService;
         }
+
+
 
         #region Register
 
@@ -73,7 +77,7 @@ namespace Eshop.Controllers
 
         [Route("/Login")]
         [HttpPost]
-        public IActionResult Login(LoginViewModel login)
+        public async Task<IActionResult> Login(LoginViewModel login)
         {
             if (!ModelState.IsValid)
             {
@@ -104,8 +108,8 @@ namespace Eshop.Controllers
                 IsPersistent = login.RememberMe
             };
 
-            HttpContext.SignInAsync(principal, properties);
-
+            await HttpContext.SignInAsync(principal, properties);
+            await _loggerService.AddLog(user.Id, user.Id, "ورود به حساب کاربری", LogType.UserLogin);
             return Redirect("/");
         }
 

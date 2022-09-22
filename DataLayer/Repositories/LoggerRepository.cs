@@ -1,6 +1,7 @@
 ﻿using DataLayer.DbContext;
 using Domain.Interfaces;
 using Domain.Models.Common;
+using Domain.Models.Enums;
 using Domain.ViewModels.Log;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -26,10 +27,40 @@ namespace DataLayer.Repositories
             return await Save();
         }
 
+        public async Task<FilterUserLogViewModel> GetAllLoginLogs(FilterUserLogViewModel filterUserLogViewModel)
+        {
+            var query = _context.Logs.Include(l => l.User).OrderByDescending(l => l.CreatDate).AsQueryable();
+
+            query = query.Where(l => l.LogType == LogType.UserLogin);
+
+            #region User
+
+            if (!string.IsNullOrEmpty(filterUserLogViewModel.UserName))
+            {
+                query = query.Where(l => l.User.Email.Contains(filterUserLogViewModel.UserName));
+            }
+
+
+            #endregion
+
+            #region Activity
+
+            if (!string.IsNullOrEmpty(filterUserLogViewModel.Activity))
+            {
+                query = query.Where(l => l.Desctiption.Contains(filterUserLogViewModel.Activity));
+            }
+
+            #endregion
+
+            await filterUserLogViewModel.Paging(query);
+            return filterUserLogViewModel;
+        }
+
         public async Task<FilterUserLogViewModel> GetAllLogsOfAdmins(FilterUserLogViewModel filterUserLogViewModel)
         {
             var query = _context.Logs.Include(l => l.User).OrderByDescending(l => l.CreatDate).AsQueryable();
 
+            query = query.Where(l => l.LogType == LogType.AdminActivity);
 
             #region User
 

@@ -13,14 +13,14 @@ namespace Eshop.Areas.Admin.Controllers
         private IUserService _userService;
         private ITicketService _ticketService;
         private IOrderService _orderService;
-        private ILoggerRepository _loggerRepository;
+        private ILoggerService _loggerService;
 
-        public HomeController(IUserService userService, ITicketService ticketService, IOrderService orderService, ILoggerRepository loggerRepository)
+        public HomeController(IUserService userService, ITicketService ticketService, IOrderService orderService, ILoggerService loggerService)
         {
             _userService = userService;
             _ticketService = ticketService;
             _orderService = orderService;
-            _loggerRepository = loggerRepository;
+            _loggerService = loggerService;
         }
 
 
@@ -31,6 +31,7 @@ namespace Eshop.Areas.Admin.Controllers
             ViewData["OrderPartialModel"] = await _orderService.GetFinalizedOrdersForAdmin();
                var res= await _orderService.GetSalesOrderChartForAdmin();
                ViewData["SalesPartialModel"] = res;
+            ViewData["TenLog"] = await _loggerService.GetLastTenLogs(new FilterUserLogViewModel());
             return View(ticket);
             
         }
@@ -39,8 +40,10 @@ namespace Eshop.Areas.Admin.Controllers
         public async Task<IActionResult> Logs(FilterUserLogViewModel model)
         {
 
-            return View( await _loggerRepository.GetAllLogsOfAdmins(model));
+            return View( await _loggerService.GetLog(model));
         }
+
+        
 
     }
 }

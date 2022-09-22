@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Common;
 using Domain.ViewModels.Log;
+using Domain.Models.Enums;
 
 namespace Application.Services
 {
@@ -19,7 +20,22 @@ namespace Application.Services
             _loggerRepository = loggerRepository;
         }
 
-        public async Task<bool> AddLog(int entityId,int userId, string message)
+        public async Task<bool> AddLog(int entityId,int userId, string message,LogType? logType)
+        {
+          
+            var addLog = new Log()
+            {
+                CreatDate = DateTime.Now,
+                UserId = userId,
+                Desctiption = message,
+                IsDelete = false,
+                EntityId = entityId,
+                LogType = (LogType)logType
+            };
+            return await _loggerRepository.AddLogToUser(addLog);
+        }
+
+        public async Task<bool> AddLog(int entityId, int userId, string message)
         {
             var addLog = new Log()
             {
@@ -27,14 +43,26 @@ namespace Application.Services
                 UserId = userId,
                 Desctiption = message,
                 IsDelete = false,
-                EntityId = entityId
+                EntityId = entityId,
+                LogType = LogType.AdminActivity
             };
             return await _loggerRepository.AddLogToUser(addLog);
+        }
+
+        public async Task<FilterUserLogViewModel> GetLastTenLogs(FilterUserLogViewModel filter)
+        {
+            filter.TakeEntity = 10;
+           return await _loggerRepository.GetAllLogsOfAdmins(filter);
         }
 
         public async Task<FilterUserLogViewModel> GetLog(FilterUserLogViewModel filter)
         {
             return await _loggerRepository.GetAllLogsOfAdmins(filter);
+        }
+
+        public async Task<FilterUserLogViewModel> GetUserLoginLogs(FilterUserLogViewModel filter)
+        {
+            return await _loggerRepository.GetAllLoginLogs(filter);
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Domain.Interfaces
     public interface ILoggerRepository
     {
         Task<FilterUserLogViewModel> GetAllLogsOfAdmins(FilterUserLogViewModel filterUserLogViewModel);
+        Task<FilterUserLogViewModel> GetAllLoginLogs(FilterUserLogViewModel filterUserLogViewModel);
+
         Task<bool> AddLogToUser(Log log);
         Task<bool> Save();
 

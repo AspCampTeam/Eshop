@@ -43,11 +43,13 @@ namespace Eshop.Areas.Admin.Controllers
             return View( await _loggerService.GetLog(model));
         }
 
+
         [Route("UserLogs")]
         public async Task<IActionResult> UserLogs(FilterUserLogViewModel model)
         {
-            return PartialView("_LoggingUserLogin",await );
+            return View("LoggingUserLogin",await _loggerService.GetUserLoginLogs(model));
         }
+
 
     }
 }

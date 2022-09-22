@@ -42,5 +42,11 @@ namespace Eshop.Areas.Admin.Controllers
             return View( await _loggerRepository.GetAllLogsOfAdmins(model));
         }
 
+        [Route("UserLogs")]
+        public async Task<IActionResult> UserLogs(FilterUserLogViewModel model)
+        {
+            return PartialView("_LoggingUserLogin",await );
+        }
+
     }
 }

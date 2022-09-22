@@ -1,7 +1,7 @@
-﻿@using Application.Convertor
-@model Domain.ViewModels.Log.FilterUserLogViewModel
+﻿@model Domain.ViewModels.Log.FilterUserLogViewModel 
 
-<form id="indexForm">
+    
+    <form id="indexForm">
     <div class="row">
         <div style="margin-top: 110px" class="col-xs-12 col-md-12">
             <div class="widget">
@@ -22,11 +22,6 @@
                 <div class="widget-body">
                     <div id="simpledatatable_wrapper" class="dataTables_wrapper form-inline no-footer">
                        
-                        <div id="simpledatatable_filter" class="dataTables_filter"><label>
-                           
-                            <a href="" class="btn btn-maroon">گزارش ورود کابران</a>
-                        </label></div>
-
                         <div id="simpledatatable_filter" class="dataTables_filter"><label>
                             <input type="text" asp-for="UserName" class="form-control input-sm" placeholder="ایمیل" aria-controls="simpledatatable">
                             <input type="text" asp-for="Activity" class="form-control input-sm" placeholder="فعالیت" aria-controls="simpledatatable">

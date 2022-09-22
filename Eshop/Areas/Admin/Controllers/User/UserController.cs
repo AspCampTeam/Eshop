@@ -1,5 +1,6 @@
 ﻿using Application.Interface;
 using Application.Security;
+using Domain.Interfaces;
 using Domain.Models;
 using Domain.Models.Role;
 using Domain.ViewModels.User;
@@ -9,20 +10,22 @@ using TopLearn.Core.Generator;
 
 namespace Eshop.Areas.Admin.Controllers.User
 {
-  
+
     public class UserController : AdminBaseController
     {
         private IUserService _userService;
         private IPermissionService _permissionService;
+        private ILoggerService _loggerService;
 
-        public UserController(IUserService userService, IPermissionService permissionService)
+        public UserController(IUserService userService, IPermissionService permissionService, ILoggerService loggerService)
         {
             _userService = userService;
             _permissionService = permissionService;
+            _loggerService = loggerService;
         }
         [CheckPermission(Permissions.UserManagement)]
         [Route("GetUsers")]
-        public IActionResult GetUsers(string filteremail="",string filterphoneNumber="",int pageId=1)
+        public IActionResult GetUsers(string filteremail = "", string filterphoneNumber = "", int pageId = 1)
         {
 
             return View(_userService.GetUserForAdmin(filteremail, filterphoneNumber, pageId));
@@ -35,9 +38,9 @@ namespace Eshop.Areas.Admin.Controllers.User
         }
         [Route("AddUser")]
         [HttpPost]
-        public IActionResult AddUser(UserFroAdmin user)
+        public async Task<IActionResult> AddUser(UserFroAdmin user)
         {
-            
+
 
             if (!ModelState.IsValid)
             {
@@ -45,12 +48,13 @@ namespace Eshop.Areas.Admin.Controllers.User
             }
 
             Domain.Models.User IsExist = _userService.GetUserByEmail(user.Email);
-            if (  IsExist!=null)
+            if (IsExist != null)
             {
                 ViewBag.Error = true;
                 return View(user);
             }
             int id = _userService.AddUserFromAdmin(user);
+           await _loggerService.AddLog(id, User.GetUserId(), "افزودن کاربر");
             return Redirect("/Admin/GetUsers");
         }
         [Route("EditUser/{id}")]
@@ -66,7 +70,7 @@ namespace Eshop.Areas.Admin.Controllers.User
         }
         [Route("EditUser/{id}")]
         [HttpPost]
-        public IActionResult EditUser(EditUserFromAdmin user)
+        public async Task<IActionResult> EditUser(EditUserFromAdmin user)
         {
             if (!ModelState.IsValid)
             {
@@ -74,6 +78,7 @@ namespace Eshop.Areas.Admin.Controllers.User
             }
 
             _userService.UpdateUserFromAdmin(user);
+           await _loggerService.AddLog(user.Id, User.GetUserId(), "ویرایش کاربر");
             return Redirect("/Admin/GetUsers");
         }
 
@@ -91,11 +96,12 @@ namespace Eshop.Areas.Admin.Controllers.User
         }
         [Route("DeleteUser/{id}")]
         [HttpPost]
-        public IActionResult DeleteUser(EditUserFromAdmin user)
+        public async Task<IActionResult> DeleteUser(EditUserFromAdmin user)
         {
-            
+
 
             _userService.DeleteUserFromAdmin(user);
+            await _loggerService.AddLog(user.Id, User.GetUserId(), "حذف کاربر");
             return Redirect("/Admin/GetUsers");
         }
 
@@ -116,7 +122,7 @@ namespace Eshop.Areas.Admin.Controllers.User
         [CheckPermission(Permissions.UserRoles)]
         public async Task<IActionResult> UserRoles(int id)
         {
-            return View( await _permissionService.GetRolesByUserId(id));
+            return View(await _permissionService.GetRolesByUserId(id));
         }
 
         [Route("AddUserRoles/{id}")]
@@ -124,7 +130,7 @@ namespace Eshop.Areas.Admin.Controllers.User
         public async Task<IActionResult> AddUserRoles(int id)
         {
             ViewData["Permission"] = await _permissionService.GetAllPermission();
-            ViewBag.userId=id;
+            ViewBag.userId = id;
             return View(await _permissionService.GetAllRoles());
         }
 
@@ -138,8 +144,8 @@ namespace Eshop.Areas.Admin.Controllers.User
 
             }
 
-            var res = await _permissionService.AddRoleUser(selectedPermission, userId );
-
+            var res = await _permissionService.AddRoleUser(selectedPermission, userId);
+            await _loggerService.AddLog(res, User.GetUserId(), "افزودن نقش");
             return Redirect("/Admin/UserRoles/" + userId);
         }
 
@@ -149,11 +155,11 @@ namespace Eshop.Areas.Admin.Controllers.User
         public async Task<IActionResult> DeleteUserRole(int id)
         {
             var res = await _permissionService.DeleteUserRole(id);
-            if (res!=true)
+            if (res != true)
             {
                 return BadRequest();
             }
-
+            await _loggerService.AddLog(id, User.GetUserId(), "حذف دسترسی");
             return Redirect("/Admin/GetUsers");
         }
 

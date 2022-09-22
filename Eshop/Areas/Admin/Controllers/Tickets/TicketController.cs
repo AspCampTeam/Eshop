@@ -12,10 +12,12 @@ namespace Eshop.Areas.Admin.Controllers.Tickets
     public class TicketController : AdminBaseController
     {
         private ITicketService _ticketService;
+        private ILoggerService _loggerService;
 
-        public TicketController(ITicketService ticketService)
+        public TicketController(ITicketService ticketService, ILoggerService loggerService)
         {
             _ticketService = ticketService;
+            _loggerService = loggerService;
         }
         [Route("Ticket")]
         [CheckPermission(Permissions.TicketManagement)]
@@ -23,7 +25,7 @@ namespace Eshop.Areas.Admin.Controllers.Tickets
         {
             var query = await _ticketService.GetListTicketsForAdmin(filter);
 
-            return  View(query);
+            return View(query);
         }
 
         [Route("AddTicket")]
@@ -39,23 +41,24 @@ namespace Eshop.Areas.Admin.Controllers.Tickets
 
         [Route("AddTicket")]
         [HttpPost]
-        public async Task<IActionResult> AddTicket( AddTicketFromAdminViewModel ticket)
+        public async Task<IActionResult> AddTicket(AddTicketFromAdminViewModel ticket)
         {
             if (!ModelState.IsValid)
             {
-              
+
                 return View(ticket);
             }
 
-          
+
             var query = await _ticketService.AddTicketFromAdmin(ticket);
 
-            if (query==null)
+            if (query == null)
             {
                 ViewBag.Error = true;
                 return View(ticket);
             }
 
+            await _loggerService.AddLog(query.Id, User.GetUserId(), "افزودن تیکت");
             return Redirect("/Admin/Ticket");
         }
 
@@ -63,21 +66,21 @@ namespace Eshop.Areas.Admin.Controllers.Tickets
         [CheckPermission(Permissions.AnswerTicket)]
         public async Task<IActionResult> TicketMassage(int id)
         {
-               
-            var ticket =_ticketService.ReadTicketFromAdmin(id);
-         
-          ViewData["Ticket"] = ticket;
-           ViewData["Massage"]=  await _ticketService.GetTicketMassagesForAdmin(id);
+
+            var ticket = _ticketService.ReadTicketFromAdmin(id);
+
+            ViewData["Ticket"] = ticket;
+            ViewData["Massage"] = await _ticketService.GetTicketMassagesForAdmin(id);
             return View();
         }
 
 
-       
+
 
         [Route("AddTicketMassage")]
         [HttpPost]
         [CheckPermission(Permissions.AnswerTicket)]
-        public async Task<IActionResult> AddTicketMassage(int ticketId,string tickemassage)
+        public async Task<IActionResult> AddTicketMassage(int ticketId, string tickemassage)
         {
 
             var ticket = new TicketMassages()
@@ -105,19 +108,19 @@ namespace Eshop.Areas.Admin.Controllers.Tickets
                 ViewBag.Error = true;
                 return Redirect("/TicketMassage/" + query.TicketId);
             }
-
+            await _loggerService.AddLog(query.Id, User.GetUserId(), "افزودن پیام به تیکت");
             return Redirect("/TicketMassage/" + query.TicketId);
-            
+
         }
         [Route("CloseTicket/{id}")]
         [CheckPermission(Permissions.CloseTicket)]
-        public IActionResult CloseTicket(int id)
+        public async Task<IActionResult> CloseTicket(int id)
         {
             if (!_ticketService.CloseTicketFromAdmin(id))
             {
                 return NotFound();
             }
-
+            await _loggerService.AddLog(id, User.GetUserId(), "بستن تیکت ");
             return Redirect("/Admin/Ticket");
         }
     }

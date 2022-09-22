@@ -12,16 +12,18 @@ namespace Eshop.Areas.Admin.Controllers
         #region Injection
 
         private IProductService _productService;
+        private ILoggerService _loggerService;
 
-        public ProductTagController(IProductService productService)
+        public ProductTagController(IProductService productService, ILoggerService loggerService)
         {
             _productService = productService;
+            _loggerService = loggerService;
         }
 
         #endregion
 
         [Route("Tags/{id}")]
-       
+
         public async Task<IActionResult> Index(FilterListTagViewModel filter, int id)
         {
             ViewData["ProductId"] = id;
@@ -46,6 +48,7 @@ namespace Eshop.Areas.Admin.Controllers
             ViewBag.IsDeleteing = true;
             var dbTag = await _productService.GetTagById(id);
             await _productService.DeleteTag(id);
+            await _loggerService.AddLog((int) tag.TagId, User.GetUserId(), "حذف تگ");
             return Redirect("/Admin/Tags/" + id);
         }
 
@@ -67,8 +70,8 @@ namespace Eshop.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View("TagManager", tag);
 
-            await _productService.AddTagToProduct(tag, id);
-
+            var res = await _productService.AddTagToProduct(tag, id);
+            await _loggerService.AddLog(res, User.GetUserId(), "افزودن تگ");
             return Redirect("/Admin/Tags/" + id);
         }
 
@@ -88,6 +91,7 @@ namespace Eshop.Areas.Admin.Controllers
         public async Task<IActionResult> EditTag(TagViewModel tag, int id)
         {
             await _productService.UpdateTag(tag, id);
+            await _loggerService.AddLog((int)tag.TagId, User.GetUserId(), "ویرایش تگ");
             return Redirect("/Admin/Tags/" + id);
         }
         #endregion 

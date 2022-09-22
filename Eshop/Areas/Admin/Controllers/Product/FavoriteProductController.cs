@@ -16,6 +16,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
             _productService = productService;
         }
         [Route("FavoriteProduct/{id}")]
+        [CheckPermission(Permissions.UserManagement)]
         public async Task<IActionResult> Index(FavoriteProductViewModel model,int id)
         {
             return View( await _productService.GetFavoriteProductForAdmin(model,id));

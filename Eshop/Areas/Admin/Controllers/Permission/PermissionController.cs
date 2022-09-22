@@ -19,7 +19,7 @@ namespace Eshop.Areas.Admin.Controllers.Permission
         }
 
         [Route("Roles")]
-        //[CheckPermission(Permissions.RoleManagement)]
+        [CheckPermission(Permissions.RoleManagement)]
         public async Task<IActionResult> Index()
         {
             return View(await _permissionService.GetAllRoles());
@@ -51,7 +51,7 @@ namespace Eshop.Areas.Admin.Controllers.Permission
         }
         #endregion
 
-        //[CheckPermission(Permissions.EditRole)]
+        [CheckPermission(Permissions.EditRole)]
         [Route("EditRole/{id}")]
         public async Task<IActionResult> EditRole(int id)
         {
@@ -78,7 +78,7 @@ namespace Eshop.Areas.Admin.Controllers.Permission
             return Redirect("/Admin/Roles");
         }
 
-        //[CheckPermission(Permissions.DeleteRole)]
+        [CheckPermission(Permissions.DeleteRole)]
         [Route("DeleteRole/{id}")]
         public async Task<IActionResult> DeleteRole(int id)
         {

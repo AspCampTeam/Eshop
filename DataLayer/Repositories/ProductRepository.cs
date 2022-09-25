@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.DbContext;
-using DataLayer.Migrations;
 using Domain.Interfaces;
 using Domain.Models.Product;
 using Domain.ViewModels.Product_Tags;

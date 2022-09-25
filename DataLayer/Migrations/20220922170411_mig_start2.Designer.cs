@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220920103430_mig_Banner")]
-    partial class mig_Banner
+    [Migration("20220922170411_mig_start2")]
+    partial class mig_start2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,6 +120,40 @@ namespace DataLayer.Migrations
                         .IsUnique();
 
                     b.ToTable("DynamicPages");
+                });
+
+            modelBuilder.Entity("Domain.Models.Common.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Desctiption")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EntityId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LogType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("Domain.Models.Common.SocialMedia", b =>
@@ -706,6 +740,359 @@ namespace DataLayer.Migrations
                     b.HasIndex("ParentId");
 
                     b.ToTable("Permissions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3555),
+                            IsDelete = false,
+                            Title = "مدیریت سایت"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3576),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت کاربران"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3593),
+                            IsDelete = false,
+                            ParentId = 2,
+                            Title = "افزودن کاربر"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3609),
+                            IsDelete = false,
+                            ParentId = 2,
+                            Title = "ویرایش کاربر"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3626),
+                            IsDelete = false,
+                            ParentId = 2,
+                            Title = "حذف کاربر"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3644),
+                            IsDelete = false,
+                            ParentId = 2,
+                            Title = "سفارشات کاربران"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3659),
+                            IsDelete = false,
+                            ParentId = 2,
+                            Title = "دسترسی کاربر"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3674),
+                            IsDelete = false,
+                            ParentId = 2,
+                            Title = "محصولات مورد علافه کاربر"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3690),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت تماس با ما"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3708),
+                            IsDelete = false,
+                            ParentId = 13,
+                            Title = "حذف تماس با ما"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3725),
+                            IsDelete = false,
+                            ParentId = 13,
+                            Title = "پاسخ تماس با ما"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3768),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت تیکت ها"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3785),
+                            IsDelete = false,
+                            ParentId = 17,
+                            Title = "افزودن تیکت"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3801),
+                            IsDelete = false,
+                            ParentId = 17,
+                            Title = "بستن تیکت"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3817),
+                            IsDelete = false,
+                            ParentId = 17,
+                            Title = "پاسخ به تیکت"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3833),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "میدیریت محصولات"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3849),
+                            IsDelete = false,
+                            ParentId = 22,
+                            Title = "افزودن محصول"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3867),
+                            IsDelete = false,
+                            ParentId = 22,
+                            Title = "مدیریت تصاویر محصول"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3886),
+                            IsDelete = false,
+                            ParentId = 22,
+                            Title = "مدیریت نظرات محصول"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3901),
+                            IsDelete = false,
+                            ParentId = 22,
+                            Title = "مدیریت تگ های محصول"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3917),
+                            IsDelete = false,
+                            ParentId = 22,
+                            Title = "ویرایش محصول"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3932),
+                            IsDelete = false,
+                            ParentId = 22,
+                            Title = "حذف محصول"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3947),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت ویژگی ها"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3963),
+                            IsDelete = false,
+                            ParentId = 30,
+                            Title = "مدیریت مقادیر ویژگی ها"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3979),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت دسته بندی محصولات"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3994),
+                            IsDelete = false,
+                            ParentId = 7,
+                            Title = "افزودن نقش کاربر"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4010),
+                            IsDelete = false,
+                            ParentId = 7,
+                            Title = "حذف نقش کاربر"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4025),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت نقش ها"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4041),
+                            IsDelete = false,
+                            ParentId = 35,
+                            Title = "افزودن نقش"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4056),
+                            IsDelete = false,
+                            ParentId = 35,
+                            Title = "ویرایش نقش"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4071),
+                            IsDelete = false,
+                            ParentId = 35,
+                            Title = "حذف نقش"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4087),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت لینک"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4102),
+                            IsDelete = false,
+                            ParentId = 39,
+                            Title = "افزودن لینک"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4121),
+                            IsDelete = false,
+                            ParentId = 39,
+                            Title = "ویرایش لینک"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4136),
+                            IsDelete = false,
+                            ParentId = 39,
+                            Title = "حذف لینک"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4151),
+                            IsDelete = false,
+                            ParentId = 32,
+                            Title = "افزودن دسته بندی"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4165),
+                            IsDelete = false,
+                            ParentId = 32,
+                            Title = "ویرایش دسته بندی"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4180),
+                            IsDelete = false,
+                            ParentId = 32,
+                            Title = "حذف دسته بندی"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4195),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = "مدیریت بنر"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4264),
+                            IsDelete = false,
+                            ParentId = 46,
+                            Title = "افزودن بنر"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4284),
+                            IsDelete = false,
+                            ParentId = 46,
+                            Title = "ویرایش بنر"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4300),
+                            IsDelete = false,
+                            ParentId = 46,
+                            Title = "حذف بنر"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4315),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = " مدیریت صفحه های داینامیک"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4331),
+                            IsDelete = false,
+                            ParentId = 1,
+                            Title = " مدیریت سوالات متداول"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Role.Role", b =>
@@ -729,6 +1116,15 @@ namespace DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3398),
+                            IsDelete = false,
+                            RoleTitle = "مدیریت اصلی سایت"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Role.RolePermission", b =>
@@ -758,6 +1154,360 @@ namespace DataLayer.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("RolePermissions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4388),
+                            IsDelete = false,
+                            PermissionId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4430),
+                            IsDelete = false,
+                            PermissionId = 2,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4449),
+                            IsDelete = false,
+                            PermissionId = 3,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4465),
+                            IsDelete = false,
+                            PermissionId = 4,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4480),
+                            IsDelete = false,
+                            PermissionId = 5,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4496),
+                            IsDelete = false,
+                            PermissionId = 6,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4515),
+                            IsDelete = false,
+                            PermissionId = 7,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4530),
+                            IsDelete = false,
+                            PermissionId = 8,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4545),
+                            IsDelete = false,
+                            PermissionId = 13,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4564),
+                            IsDelete = false,
+                            PermissionId = 15,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4579),
+                            IsDelete = false,
+                            PermissionId = 16,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4594),
+                            IsDelete = false,
+                            PermissionId = 17,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4609),
+                            IsDelete = false,
+                            PermissionId = 18,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4624),
+                            IsDelete = false,
+                            PermissionId = 20,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4639),
+                            IsDelete = false,
+                            PermissionId = 21,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4653),
+                            IsDelete = false,
+                            PermissionId = 22,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4667),
+                            IsDelete = false,
+                            PermissionId = 23,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4683),
+                            IsDelete = false,
+                            PermissionId = 24,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4698),
+                            IsDelete = false,
+                            PermissionId = 25,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4713),
+                            IsDelete = false,
+                            PermissionId = 27,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4728),
+                            IsDelete = false,
+                            PermissionId = 28,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4744),
+                            IsDelete = false,
+                            PermissionId = 29,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4761),
+                            IsDelete = false,
+                            PermissionId = 30,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4804),
+                            IsDelete = false,
+                            PermissionId = 31,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4820),
+                            IsDelete = false,
+                            PermissionId = 32,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4835),
+                            IsDelete = false,
+                            PermissionId = 33,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4850),
+                            IsDelete = false,
+                            PermissionId = 34,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4865),
+                            IsDelete = false,
+                            PermissionId = 35,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4881),
+                            IsDelete = false,
+                            PermissionId = 36,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4896),
+                            IsDelete = false,
+                            PermissionId = 37,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4911),
+                            IsDelete = false,
+                            PermissionId = 38,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4928),
+                            IsDelete = false,
+                            PermissionId = 39,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4943),
+                            IsDelete = false,
+                            PermissionId = 40,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4962),
+                            IsDelete = false,
+                            PermissionId = 41,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4978),
+                            IsDelete = false,
+                            PermissionId = 42,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4993),
+                            IsDelete = false,
+                            PermissionId = 43,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5008),
+                            IsDelete = false,
+                            PermissionId = 44,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5025),
+                            IsDelete = false,
+                            PermissionId = 45,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5040),
+                            IsDelete = false,
+                            PermissionId = 46,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5055),
+                            IsDelete = false,
+                            PermissionId = 47,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5070),
+                            IsDelete = false,
+                            PermissionId = 48,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5085),
+                            IsDelete = false,
+                            PermissionId = 49,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5100),
+                            IsDelete = false,
+                            PermissionId = 50,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5115),
+                            IsDelete = false,
+                            PermissionId = 51,
+                            RoleId = 1
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Role.UserRoles", b =>
@@ -787,6 +1537,16 @@ namespace DataLayer.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5132),
+                            IsDelete = false,
+                            RoleId = 1,
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Tickets.Ticket", b =>
@@ -923,6 +1683,22 @@ namespace DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActiveCode = "123456",
+                            BirthDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4363),
+                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4358),
+                            Email = "/",
+                            Gender = 0,
+                            IsAdmin = true,
+                            IsDelete = false,
+                            Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
+                            PhoneNumber = "12345678910",
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Common.DynamicPage", b =>
@@ -934,6 +1710,17 @@ namespace DataLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("DynamicLink");
+                });
+
+            modelBuilder.Entity("Domain.Models.Common.Log", b =>
+                {
+                    b.HasOne("Domain.Models.User", "User")
+                        .WithMany("Logs")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Models.Order.Order", b =>
@@ -1145,13 +1932,13 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("Domain.Models.Role.RolePermission", b =>
                 {
                     b.HasOne("Domain.Models.Role.Permission", "Permission")
-                        .WithMany()
+                        .WithMany("RolePermission")
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Models.Role.Role", "Role")
-                        .WithMany()
+                        .WithMany("RolePermission")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1164,7 +1951,7 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("Domain.Models.Role.UserRoles", b =>
                 {
                     b.HasOne("Domain.Models.Role.Role", "Role")
-                        .WithMany()
+                        .WithMany("UserRole")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1259,6 +2046,18 @@ namespace DataLayer.Migrations
                     b.Navigation("productSelectedFeatures");
                 });
 
+            modelBuilder.Entity("Domain.Models.Role.Permission", b =>
+                {
+                    b.Navigation("RolePermission");
+                });
+
+            modelBuilder.Entity("Domain.Models.Role.Role", b =>
+                {
+                    b.Navigation("RolePermission");
+
+                    b.Navigation("UserRole");
+                });
+
             modelBuilder.Entity("Domain.Models.Tickets.Ticket", b =>
                 {
                     b.Navigation("TicketMassagesList");
@@ -1267,6 +2066,8 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("Domain.Models.User", b =>
                 {
                     b.Navigation("FavoriteProducts");
+
+                    b.Navigation("Logs");
 
                     b.Navigation("Orders");
 

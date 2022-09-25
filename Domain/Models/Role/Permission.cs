@@ -14,8 +14,9 @@ namespace Domain.Models.Role
 
         #region Relations
         [ForeignKey("ParentId")]
-        public Permission Permission1 { get; set; }
+        public Permission? Permission1 { get; set; }
 
+        public List<RolePermission> RolePermission { get; set; }
         #endregion
     }
 }

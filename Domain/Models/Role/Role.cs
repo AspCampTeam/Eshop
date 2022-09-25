@@ -10,7 +10,7 @@ namespace Domain.Models.Role
     {
         public string RoleTitle { get; set; }
 
-
+        //
         #region Relations
 
         public List<UserRoles> UserRole { get; set; }

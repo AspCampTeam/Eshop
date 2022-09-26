@@ -466,7 +466,7 @@ namespace DataLayer.DbContext
                 Id = 1,
                 CreatDate = DateTime.Now,
                 IsDelete = false,
-                Email = "/",
+                Email = "yektakala@admin.com",
                 Password = "20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70",
                 ActiveCode = "123456",
                 BirthDate = DateTime.Now,

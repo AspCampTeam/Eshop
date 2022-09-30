@@ -44,7 +44,7 @@ namespace Eshop.Controllers
             string img = await _productService.GetDefaultImageById(id);
             ViewBag.DefaultImage = img;
 
-            return View(new AddCommentViewModel { ProductId = id, ParentId = id });
+            return View(new AddCommentViewModel { ProductId = id, ParentId = parentId });
         }
 
         [Route("AddComment/{id}")]

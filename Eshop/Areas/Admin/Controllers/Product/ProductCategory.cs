@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Eshop.Areas.Admin.Controllers.Product
 {
-    [CheckPermission(Permissions.ProductCategories)]
+   
     public class ProductCategory : AdminBaseController
     {
         #region Injections
@@ -24,7 +24,7 @@ namespace Eshop.Areas.Admin.Controllers.Product
 
         #endregion
 
-
+        [CheckPermission(Permissions.ProductCategories)]
         [Route("Categories")]
         public async Task<IActionResult> Categories(FilterCategoryProduct filter)
         {
@@ -37,14 +37,15 @@ namespace Eshop.Areas.Admin.Controllers.Product
         [Route("SubCategories/{id}")]
         public async Task<IActionResult> SubCategories(FilterCategoryProduct filter, int id)
         {
-            var res = await _productService.GetSubCategoriesForAdmin(filter, id);
-            if (res == null)
+            filter = await _productService.GetSubCategoriesForAdmin(filter, id);
+            ViewBag.Id = id;
+            if (filter == null)
             {
                 ViewBag.NoSubCat = true;
                 ModelState.AddModelError("Category", "زیر گروهی یافت نشد");
-                return View(res);
+                return View(filter);
             }
-            return View(res);
+            return View(filter);
         }
 
         #region Add Category
@@ -56,7 +57,6 @@ namespace Eshop.Areas.Admin.Controllers.Product
         }
 
        [HttpPost("AddCategory/{parentId?}")]
-     
         public async Task<IActionResult> AddCategory(EditOrAddCategoryProduct model, int? parentId)
         {
             if (!ModelState.IsValid)

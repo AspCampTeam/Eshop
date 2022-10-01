@@ -57,42 +57,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\js\extensions\calendar\app-calendar.js" />
-    <None Include="wwwroot\js\extensions\calendar\calendars-data.js" />
-    <None Include="wwwroot\js\extensions\calendar\schedules.js" />
-    <None Include="wwwroot\js\extensions\drag-drop.js" />
-    <None Include="wwwroot\js\extensions\dropzone.js" />
-    <None Include="wwwroot\js\extensions\ext-component-block-ui.js" />
-    <None Include="wwwroot\js\extensions\ext-component-media-player.js" />
-    <None Include="wwwroot\js\extensions\ext-component-miscellaneous.js" />
-    <None Include="wwwroot\js\extensions\ext-component-treeview.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\bootstrap-treeview.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\dragula.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\dropzone.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\idle-timer.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\jquery.contextMenu.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\jquery.steps.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\moment.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\nouislider.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\numeral\locales.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\numeral\numeral.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\polyfill.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\shepherd.min.js" />
     <None Include="wwwroot\js\extensions\vendors\extensions\sweetalert2.all.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\swiper.min.js" />
     <None Include="wwwroot\js\extensions\vendors\extensions\toastr.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\extensions\wNumb.js" />
-    <None Include="wwwroot\js\extensions\i18n.js" />
-    <None Include="wwwroot\js\extensions\noui-slider.js" />
     <None Include="wwwroot\js\extensions\sweet-alerts.js" />
-    <None Include="wwwroot\js\extensions\swiper.js" />
     <None Include="wwwroot\js\extensions\toastr.js" />
-    <None Include="wwwroot\js\extensions\tour.js" />
-    <None Include="wwwroot\js\extensions\vendors\ui\blockUI.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\ui\jquery.sticky.js" />
-    <None Include="wwwroot\js\extensions\vendors\ui\plyr.min.js" />
-    <None Include="wwwroot\js\extensions\vendors\ui\prism-treeview.js" />
-    <None Include="wwwroot\js\extensions\vendors\ui\prism.min.js" />
   </ItemGroup>
 
 </Project>

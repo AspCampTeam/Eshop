@@ -28,10 +28,10 @@
             <div class="row">
                 @if (ViewBag.Comment != null)
                 {
-                    <partial name="_SuccessAlertToastr" />
-                    <div class="alert alert-success">
+                   <div id="notificationSweetAlert"> <partial name="_SuccessAlertToastr" /></div>
+                   @* <div class="alert alert-success">
                         <p class="help-block">دیدگاه شما با ثبت شد</p>
-                    </div>
+                    </div>*@
                 }
                 <div class="col-lg-4 col-md-5 mb-md-0 mb-4">
                     <div class="ui-sticky ui-sticky-top">
@@ -1290,6 +1290,11 @@
                 }
             });
         }
+
+        $('#notificationSweetAlert').fadeOut(5000)
+
+	});
+
 </script>
 }
 

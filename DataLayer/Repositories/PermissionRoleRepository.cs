@@ -120,7 +120,7 @@ namespace DataLayer.Repositories
 
             userRole.IsDelete = true;
             _context.UserRoles.Update(userRole);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return true;
         }
 

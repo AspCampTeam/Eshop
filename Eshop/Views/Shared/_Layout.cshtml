@@ -3,7 +3,7 @@
 
 <head>
     <partial name="_Style" />
-   @RenderSection("css",false)
+    @RenderSection("css",false)
 </head>
 
 <body>
@@ -12,7 +12,7 @@
         <!-- start of page-header -->
         <header class="page-header d-md-block d-none">
             <!-- start banner -->
-            <partial name="_header"/>
+            <partial name="_header" />
             <!-- end banner -->
             <!-- start of page-header-top -->
             <!-- end of page-header-top -->
@@ -170,23 +170,26 @@
             </div>
         </header>
         <!-- start of page-content -->
-           @{
-                ViewData["Title"] = "Home Page";
-            }
+        @{
+            ViewData["Title"] = "Home Page";
+        }
         <main class="page-content">
-         
 
-        @RenderBody()
-               
+
+            @RenderBody()
+
         </main>
         <!-- end of page-content -->
         <partial name="_footer" />
     </div>
 
 
-<partial name="_layoutJs" />
+    <partial name="_layoutJs" />
 
-@RenderSection("Section",false)
+    @RenderSection("Section",false)
+   
+
+
 </body>
 
 </html>

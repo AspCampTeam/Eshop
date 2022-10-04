@@ -15,7 +15,7 @@
                             <ul class="mega-menu">
                                 @foreach (var subItem in await _ProductService.GetAllSubProductCategoryAsync(item.Id))
                                 {
-                                    <li class="parent" ><a  href="#">@subItem.Title</a></li>
+                                    <li class="parent" ><a  href="/FilterProduct/@subItem.Id">@subItem.Title</a></li>
                                 }
                                       
                             </ul>

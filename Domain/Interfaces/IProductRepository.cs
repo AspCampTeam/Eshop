@@ -105,6 +105,7 @@ namespace Domain.Interfaces
         #region FilterProductByCategory
 
         Task<FilterProductByCategory> GetProductByCategorty(FilterProductByCategory filter, int categoryId);
+        Task<FilterProductByCategory> GetProductByCategortyName(FilterProductByCategory filter, string productName);
 
         #endregion
 

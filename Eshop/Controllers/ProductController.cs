@@ -77,5 +77,12 @@ namespace Eshop.Controllers
             var res = await _productService.GetProductByCategorty(model, id);
             return View(res);
         }
+
+        [Route("FilterProductByName")]
+        public async Task<IActionResult> ProductFilter(FilterProductByCategory model, string name)
+        {
+            var res = await _productService.GetProductByCategortyName(model, name);
+            return View(res);
+        }
     }
 }

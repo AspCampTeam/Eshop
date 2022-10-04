@@ -1,5 +1,6 @@
 ﻿@using Domain.ViewModels.Product
 @using Domain.Models.Banner
+@using Domain.Models.Enums
 @{
     var products = ViewData["Products"] as List<ProductCartViewModel>;
     var banners = ViewData["Banners"] as List<Banner>;
@@ -8,43 +9,48 @@
 <main class="page-content">
     <div class="container">
         <div class="row mb-3 d-sm-block d-none">
-            <div class="col-12">
-                <!-- start of banner -->
-                <div class="banner-img">
-                    <a href="#"><img src="/site/theme-assets/images/banner/025.gif" alt="banner"></a>
+            @if (banners != null && banners.Any(c => c.Position == BannerPosition.Top))
+            {
+
+                
+                <div class="col-12">
+                    <!-- start of banner -->
+                    <div class="banner-img">
+                        <a href="@banners.FirstOrDefault(c=>c.Position==BannerPosition.Top).Link"><img src="/Images/banners/@banners.FirstOrDefault(c=>c.Position==BannerPosition.Top).ImageName" alt="banner"></a>
+                    </div>
+                    <!-- end of banner -->
                 </div>
-                <!-- end of banner -->
-            </div>
+            }
         </div>
         <div class="row mb-5">
             @if (banners != null && banners.Any(c => c.Position == Domain.Models.Enums.BannerPosition.Slide))
             {
                 <div class="col-lg-8 mb-lg-0 mb-4">
                     <!-- start of main-slider -->
-                <div class="swiper main-swiper-slider">
+                    <div class="swiper main-swiper-slider">
                         <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        @foreach (var item in banners.Where(c => c.Position == Domain.Models.Enums.BannerPosition.Slide))
-                        {
-                            <div class="swiper-slide main-swiper-slide">
-                                <a href="@item.Link"
+                        <div class="swiper-wrapper">
+                            @foreach (var item in banners.Where(c => c.Position == Domain.Models.Enums.BannerPosition.Slide))
+                            {
+                                <div class="swiper-slide main-swiper-slide">
+                                    <a href="@item.Link"
                                style="background-image: url(/Images/banners/@item.ImageName);">
-                                    <img src="/Images/banners/@item.ImageName" alt="">
-                                </a>
-                            </div>
-                        }
-                            
+                                        <img src="/Images/banners/@item.ImageName" alt="">
+                                    </a>
+                                </div>
+                            }
+
 
                         </div>
                         <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
+                        <div class="swiper-pagination"></div>
 
                         <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
                     </div>
                     <!-- end of main-slider -->
-            </div>
+                </div>
             }
 
             <div class="col-lg-4">
@@ -54,26 +60,26 @@
 
                         <div class="col-lg-12 col-6 mb-lg-3">
                             <!-- start of banner -->
-                        <div class="banner-img banner-side-main bg-position-right">
+                            <div class="banner-img banner-side-main bg-position-right">
                                 <a href="@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.RightUP).Link" style="background-image: url(/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.RightUP).ImageName));height:220px;">
                                     <img src="/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.RightUP).ImageName" alt="">
                                 </a>
                             </div>
                             <!-- end of banner -->
-                    </div>
+                        </div>
                     }
 
                     @if (banners != null && banners.Any(c => c.Position == Domain.Models.Enums.BannerPosition.RightDown))
                     {
                         <div class="col-lg-12 col-6">
                             <!-- start of banner -->
-                        <div class="banner-img banner-side-main-slider bg-position-right">
+                            <div class="banner-img banner-side-main-slider bg-position-right">
                                 <a href="@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.RightDown).Link" style="background-image: url(/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.RightDown).ImageName));height:220px;">
                                     <img src="/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.RightDown).ImageName" alt="">
                                 </a>
                             </div>
                             <!-- end of banner -->
-                    </div>
+                        </div>
                     }
                 </div>
             </div>
@@ -84,25 +90,25 @@
             {
                 <div class="col-md-6 mb-lg-0 mb-3">
                     <!-- start of banner -->
-                <div class="banner-img">
+                    <div class="banner-img">
                         <a href="@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomRight).Link">
                             <img src="/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomRight).ImageName" alt="">
                         </a>
                     </div>
                     <!-- end of banner -->
-            </div>
+                </div>
             }
             @if (banners != null && banners.Any(c => c.Position == Domain.Models.Enums.BannerPosition.BottomLeft))
             {
                 <div class="col-md-6 mb-lg-0 mb-3">
                     <!-- start of banner -->
-                <div class="banner-img">
+                    <div class="banner-img">
                         <a href="@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomLeft).Link">
                             <img src="/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomLeft).ImageName" alt="">
                         </a>
                     </div>
                     <!-- end of banner -->
-            </div>
+                </div>
             }
         </div>
         <!-- start of box => specials-product-slider -->
@@ -243,44 +249,45 @@
             </div>
         </div>
         <!-- end of box => categories-slider -->
-        <div class="row mb-5">
-            <div class="col-md-3 col-6 mb-lg-0 mb-3">
-                <!-- start of banner -->
-                <div class="banner-img">
-                    <a href="#">
-                        <img src="/site/theme-assets/images/banner/020.jpg" alt="">
-                    </a>
-                </div>
-                <!-- end of banner -->
+    <div class="row mb-5">
+       @* @if(banners.Any(c=>c.Position==pos))
+        <div class="col-md-3 col-6 mb-lg-0 mb-3">
+            <!-- start of banner -->
+            <div class="banner-img">
+                <a href="#">
+                    <img src="/site/theme-assets/images/banner/020.jpg" alt="">
+                </a>
             </div>
-            <div class="col-md-3 col-6 mb-lg-0 mb-3">
-                <!-- start of banner -->
-                <div class="banner-img">
-                    <a href="#">
-                        <img src="/site/theme-assets/images/banner/021.jpg" alt="">
-                    </a>
-                </div>
-                <!-- end of banner -->
-            </div>
-            <div class="col-md-3 col-6 mb-lg-0 mb-3">
-                <!-- start of banner -->
-                <div class="banner-img">
-                    <a href="#">
-                        <img src="/site/theme-assets/images/banner/022.jpg" alt="">
-                    </a>
-                </div>
-                <!-- end of banner -->
-            </div>
-            <div class="col-md-3 col-6 mb-lg-0 mb-3">
-                <!-- start of banner -->
-                <div class="banner-img">
-                    <a href="#">
-                        <img src="/site/theme-assets/images/banner/023.jpg" alt="">
-                    </a>
-                </div>
-                <!-- end of banner -->
-            </div>
+            <!-- end of banner -->
         </div>
+        <div class="col-md-3 col-6 mb-lg-0 mb-3">
+            <!-- start of banner -->
+            <div class="banner-img">
+                <a href="#">
+                    <img src="/site/theme-assets/images/banner/021.jpg" alt="">
+                </a>
+            </div>
+            <!-- end of banner -->
+        </div>
+        <div class="col-md-3 col-6 mb-lg-0 mb-3">
+            <!-- start of banner -->
+            <div class="banner-img">
+                <a href="#">
+                    <img src="/site/theme-assets/images/banner/022.jpg" alt="">
+                </a>
+            </div>
+            <!-- end of banner -->
+        </div>
+        <div class="col-md-3 col-6 mb-lg-0 mb-3">
+            <!-- start of banner -->
+            <div class="banner-img">
+                <a href="#">
+                    <img src="/site/theme-assets/images/banner/023.jpg" alt="">
+                </a>
+            </div>
+            <!-- end of banner -->
+        </div>*@
+    </div>
         <!-- start of box -->
         <div class="ui-box mb-5">
             <div class="ui-box-title">منتخب محصولات تخفیف و حراج</div>
@@ -307,24 +314,30 @@
         </div>
         <!-- end of box -->
         <div class="row mb-5">
-            <div class="col-md-6 mb-lg-0 mb-3">
-                <!-- start of banner -->
-                <div class="banner-img">
-                    <a href="#">
-                        <img src="/site/theme-assets/images/banner/018.jpg" alt="">
-                    </a>
+            @if (banners != null && banners.Any(c => c.Position == Domain.Models.Enums.BannerPosition.BottomRight))
+            {
+                <div class="col-md-6 mb-lg-0 mb-3">
+                    <!-- start of banner -->
+                    <div class="banner-img">
+                        <a href="@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomRight).Link">
+                            <img src="/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomRight).ImageName" alt="">
+                        </a>
+                    </div>
+                    <!-- end of banner -->
                 </div>
-                <!-- end of banner -->
-            </div>
-            <div class="col-md-6 mb-lg-0 mb-3">
-                <!-- start of banner -->
-                <div class="banner-img">
-                    <a href="#">
-                        <img src="/site/theme-assets/images/banner/019.jpg" alt="">
-                    </a>
+            }
+            @if (banners != null && banners.Any(c => c.Position == Domain.Models.Enums.BannerPosition.BottomLeft))
+            {
+                <div class="col-md-6 mb-lg-0 mb-3">
+                    <!-- start of banner -->
+                    <div class="banner-img">
+                        <a href="@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomLeft).Link">
+                            <img src="/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.BottomLeft).ImageName" alt="">
+                        </a>
+                    </div>
+                    <!-- end of banner -->
                 </div>
-                <!-- end of banner -->
-            </div>
+            }
         </div>
     </div>
     <!-- start of quick-view-modal -->

@@ -1,18 +1,23 @@
 ﻿@using Application.Interface
 @using Application.Security
 @using Domain.Models.Banner
+@using Domain.Models.Enums
 @using Domain.Models.Role
 @using Domain.ViewModels.DynamicLinks
+@using Domain.ViewModels.Product
 @using Eshop.Common
+@using Eshop.Helpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     var banners = ViewData["Banners"] as List<Banner>;
+    
 }
 
 @if (banners!=null&&banners.Any(c => c.Position == Domain.Models.Enums.BannerPosition.TopMost))
 {
     <div class="alert banner-container alert-dismissible fade show" role="alert">
-        <a href="#" class="banner-placement rounded-0"
+        <a href="@banners.FirstOrDefault(c=>c.Position==BannerPosition.Top).Link" class="banner-placement rounded-0"
        style="background-image: url(/Images/banners/@banners.FirstOrDefault(c=>c.Position == Domain.Models.Enums.BannerPosition.TopMost).ImageName);height: 60px;"></a>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -83,9 +88,9 @@
                     </a>
                 </div>
                 <div class="search-container">
-                    <form action="#" class="search-form">
-                        <input type="text" class="form-control search-field" placeholder="جستجو کنید..">
-                        <button class="btn btn-primary btn-search btn-action">
+                    <form asp-controller="Product" asp-action="ProductFilter" method="get" class="search-form">
+                        <input type="text" name="name" id="searche" class="form-control search-field" placeholder="جستجو کنید..">
+                        <button  class="btn btn-primary btn-search btn-action">
                             <i class="ri-search-2-line"></i>
                         </button>
                         <button class="btn btn-primary btn-close-search-result btn-action d-none">

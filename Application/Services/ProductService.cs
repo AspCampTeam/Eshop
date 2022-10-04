@@ -740,6 +740,11 @@ namespace Application.Services
             return await _productRepository.GetProductByCategorty(filter, categoryId);
         }
 
+        public async Task<FilterProductByCategory> GetProductByCategortyName(FilterProductByCategory filter, string productName)
+        {
+            return await _productRepository.GetProductByCategortyName(filter, productName);
+        }
+
         public async Task<FeatureViewModel> GetAllFeatureForAdmin(FeatureViewModel model)
         {
             return await _productRepository.GetAllFeatureForAdmin(model);

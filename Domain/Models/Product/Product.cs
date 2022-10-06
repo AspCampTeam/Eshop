@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Models.Votes;
 
 namespace Domain.Models.Product
 {
@@ -37,7 +38,9 @@ namespace Domain.Models.Product
 
         public List<ProductTag> ProductTags { get; set; }
 
+        public List<ProductVotes> ProductVotesList { get; set; }
 
+        public List<ProductComment> ProductComments { get; set; }
         #endregion
 
     }

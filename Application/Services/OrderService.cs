@@ -51,7 +51,7 @@ namespace Application.Services
         }
 
 
-  
+
         public async Task<int> GetTotalPrice(int orderId)
         {
             return await _repository.GetTotalPrice(orderId);
@@ -69,116 +69,160 @@ namespace Application.Services
             var product = await _productRepository.GetProductById(productId);
             var productPrice = product.productPrices.FirstOrDefault(c => c.Id == productPriceId);
 
-            var OrderPrdouctFeature = productPrice.productSelectedFeatures
-                .Where(c => c.ProductPriceId == productPriceId).Select(c => c.Feature.Title).ToList();
-
-            var OrderProductFeatureValue = productPrice.productSelectedFeatures
-                .Where(c => c.ProductPriceId == productPriceId).Select(c => c.featureValue.Value).ToList();
-
-            var productFeatureAndValues =
-                new Tuple<List<string>, List<string>>(OrderPrdouctFeature, OrderProductFeatureValue);
-            if (getOrder == null)
+            if (productId != null)
             {
-                var addOrder = new Order()
+                if (getOrder == null)
                 {
-                    CreatDate = DateTime.Now,
-                    IsDelete = false,
-                    IsFinally = false,
-                    UserId = userId,
-                    OrderDetails = new List<OrderDetail>()
+
+                    var addOrder = new Order()
                     {
-                        new OrderDetail()
-                        {
-                            IsDelete = false,
-                            Count = 1,
-                            CreatDate = DateTime.Now,
-                            ProductId = product.Id,
-                            Price = (productPriceId==null)?product.Price:productPrice.Price,
-                            ProductPriceId = (productPriceId != null ? productPriceId.Value : null)
-                        }
-                    }
-                };
-
-                foreach (var item1 in productFeatureAndValues.Item1)
-                {
-                    foreach (var item2 in productFeatureAndValues.Item2)
-                    {
-                        var addOrderProductFeature = new OrderDetailProductFeature()
-                        {
-                            CreatDate = DateTime.Now,
-                            IsDelete = false,
-                            FeatureTitle = item1,
-                            FeatureValue = item2,
-                            OrderDetailId = addOrder.OrderDetails.FirstOrDefault(c=>c.OrderId==addOrder.Id).Id
-                        };
-                    }
-                }
-
-                return await _repository.AddOrderFromUser(addOrder);
-            }
-
-            else
-            {
-                var orderDetial = await _repository.GetOrderDetailByOrderId(getOrder.Id, product.Id, productPrice.Id);
-                if (orderDetial != null)
-                {
-                    orderDetial.Count += 1;
-                    var result = await _repository.EditOrderDetail(orderDetial);
-
-
-                    foreach (var item1 in productFeatureAndValues.Item1)
-                    {
-                        foreach (var item2 in productFeatureAndValues.Item2)
-                        {
-                            var addOrderProductFeature = new OrderDetailProductFeature()
-                            {
-                                CreatDate = DateTime.Now,
-                                IsDelete = false,
-                                FeatureTitle = item1,
-                                FeatureValue = item2,
-                                OrderDetailId = orderDetial.Id
-                            };
-                            int orderDetailProductFeatureId = await _repository.AddOrderDetailProductFeature(addOrderProductFeature);
-                        }
-                    }
-                }
-                else
-                {
-                    var addDetail = new OrderDetail()
-                    {
-                        Count = 1,
                         CreatDate = DateTime.Now,
                         IsDelete = false,
-                        OrderId = getOrder.Id,
-                        Price = (productPriceId == null) ? product.Price : productPrice.Price,
-                        ProductId = product.Id,
-                        ProductPriceId = productPriceId
+                        IsFinally = false,
+                        UserId = userId,
+                        OrderDetails = new List<OrderDetail>()
+                        {
+                            new OrderDetail()
+                            {
+                                IsDelete = false,
+                                Count = 1,
+                                CreatDate = DateTime.Now,
+                                ProductId = product.Id,
+                                Price = (productPriceId == null) ? product.Price : productPrice.Price,
+                                ProductPriceId = (productPriceId != null ? productPriceId.Value : null)
+                            }
+                        }
                     };
 
-                       var res= await _repository.AddOrderDetialFromUser(addDetail);
 
-                    foreach (var item1 in productFeatureAndValues.Item1)
+
+                    if (productPriceId != null)
                     {
-                        foreach (var item2 in productFeatureAndValues.Item2)
-                        {
-                            var addOrderProductFeature = new OrderDetailProductFeature()
-                            {
-                                CreatDate = DateTime.Now,
-                                IsDelete = false,
-                                FeatureTitle = item1,
-                                FeatureValue = item2,
-                                OrderDetailId = addDetail.Id
-                            };
+                        List<string> OrderPrdouctFeature = productPrice.productSelectedFeatures
+                            .Where(c => c.ProductPriceId == productPriceId).Select(c => c.Feature.Title).ToList();
 
-                           int orderDetailProductFeatureId= await _repository.AddOrderDetailProductFeature(addOrderProductFeature);
+
+                        var OrderProductFeatureValue = productPrice.productSelectedFeatures
+                            .Where(c => c.ProductPriceId == productPriceId).Select(c => c.featureValue.Value).ToList();
+
+                        var productFeatureAndValues =
+                            new Tuple<List<string>, List<string>>(OrderPrdouctFeature, OrderProductFeatureValue);
+
+                        foreach (var item1 in productFeatureAndValues.Item1)
+                        {
+                            foreach (var item2 in productFeatureAndValues.Item2)
+                            {
+                                var addOrderProductFeature = new OrderDetailProductFeature()
+                                {
+                                    CreatDate = DateTime.Now,
+                                    IsDelete = false,
+                                    FeatureTitle = item1,
+                                    FeatureValue = item2,
+                                    OrderDetailId = addOrder.OrderDetails.FirstOrDefault(c => c.OrderId == addOrder.Id)
+                                        .Id
+                                };
+                            }
                         }
+
+                   
+                    }
+                    return await _repository.AddOrderFromUser(addOrder);
+
+                }
+
+
+
+                else
+                {
+                    var orderDetial = await _repository.GetOrderDetailByOrderId(getOrder.Id, product.Id,null);
+                    if (orderDetial != null)
+                    {
+                        orderDetial.Count += 1;
+                        var result = await _repository.EditOrderDetail(orderDetial);
+
+                        if (productPriceId!=null)
+                        {
+                            var getorderDetial = await _repository.GetOrderDetailByOrderId(getOrder.Id, product.Id, productPrice.Id);
+
+                            List<string> OrderPrdouctFeature = productPrice.productSelectedFeatures
+                                .Where(c => c.ProductPriceId == productPriceId).Select(c => c.Feature.Title).ToList();
+
+
+                            var OrderProductFeatureValue = productPrice.productSelectedFeatures
+                                .Where(c => c.ProductPriceId == productPriceId).Select(c => c.featureValue.Value).ToList();
+
+                            var productFeatureAndValues =
+                                new Tuple<List<string>, List<string>>(OrderPrdouctFeature, OrderProductFeatureValue);
+
+                            foreach (var item1 in productFeatureAndValues.Item1)
+                            {
+                                foreach (var item2 in productFeatureAndValues.Item2)
+                                {
+                                    var addOrderProductFeature = new OrderDetailProductFeature()
+                                    {
+                                        CreatDate = DateTime.Now,
+                                        IsDelete = false,
+                                        FeatureTitle = item1,
+                                        FeatureValue = item2,
+                                        OrderDetailId = getorderDetial.Id
+                                    };
+                                    int orderDetailProductFeatureId = await _repository.AddOrderDetailProductFeature(addOrderProductFeature);
+                                }
+                            }
+                        }
+                       
+                    }
+                    else
+                    {
+                        var addDetail = new OrderDetail()
+                        {
+                            Count = 1,
+                            CreatDate = DateTime.Now,
+                            IsDelete = false,
+                            OrderId = getOrder.Id,
+                            Price = (productPriceId == null) ? product.Price : productPrice.Price,
+                            ProductId = product.Id,
+                            ProductPriceId = productPriceId
+                        };
+
+                        var res = await _repository.AddOrderDetialFromUser(addDetail);
+                        if (productPriceId != null)
+                        {
+                            List<string> OrderPrdouctFeature = productPrice.productSelectedFeatures
+                                .Where(c => c.ProductPriceId == productPriceId).Select(c => c.Feature.Title).ToList();
+
+
+                            var OrderProductFeatureValue = productPrice.productSelectedFeatures
+                                .Where(c => c.ProductPriceId == productPriceId).Select(c => c.featureValue.Value).ToList();
+
+                            var productFeatureAndValues =
+                                new Tuple<List<string>, List<string>>(OrderPrdouctFeature, OrderProductFeatureValue);
+
+                            foreach (var item1 in productFeatureAndValues.Item1)
+                            {
+                                foreach (var item2 in productFeatureAndValues.Item2)
+                                {
+                                    var addOrderProductFeature = new OrderDetailProductFeature()
+                                    {
+                                        CreatDate = DateTime.Now,
+                                        IsDelete = false,
+                                        FeatureTitle = item1,
+                                        FeatureValue = item2,
+                                        OrderDetailId = addDetail.Id
+                                    };
+
+                                    int orderDetailProductFeatureId =
+                                        await _repository.AddOrderDetailProductFeature(addOrderProductFeature);
+                                }
+                            }
+                        }
+
+                        return res;
                     }
 
-                    return res;
                 }
 
             }
-
             return getOrder.Id;
 
         }

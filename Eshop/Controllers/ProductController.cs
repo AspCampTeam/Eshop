@@ -13,11 +13,13 @@ namespace Eshop.Controllers
 
         private IProductService _productService;
         IUserService _userService;
+        private IVoteService _voteService;
 
-        public ProductController(IProductService productService, IUserService userService)
+        public ProductController(IProductService productService, IUserService userService, IVoteService voteService)
         {
             _productService = productService;
             _userService = userService;
+            _voteService = voteService;
         }
 
         #endregion
@@ -44,7 +46,7 @@ namespace Eshop.Controllers
             string img = await _productService.GetDefaultImageById(id);
             ViewBag.DefaultImage = img;
 
-            return View(new AddCommentViewModel { ProductId = id, ParentId = id });
+            return View(new AddCommentViewModel { ProductId = id, ParentId = parentId });
         }
 
         [Route("AddComment/{id}")]
@@ -75,6 +77,27 @@ namespace Eshop.Controllers
         {
             var res = await _productService.GetProductByCategorty(model, id);
             return View(res);
+        }
+
+        [Route("FilterProductByName")]
+        public async Task<IActionResult> ProductFilter(FilterProductByCategory model, string name)
+        {
+            var res = await _productService.GetProductByCategortyName(model, name);
+            return View(res);
+        }
+        [Route("AddVote/{productId}")]
+        public async Task<IActionResult> AddVote(int productId, bool vote)
+        {
+            var res = await _voteService.AddProductVote(productId, User.GetUserId(), vote);
+            return Redirect("/product/"+productId);
+        }
+
+        [Route("AddCommentVote/{commentId}")]
+        public async Task<IActionResult> AddCommentVote(int commentId, bool vote)
+        {
+            var res = await _voteService.AddCommentVote(commentId, User.GetUserId(), vote);
+            var product = _voteService.GetProductByCommentId(commentId);
+            return Redirect("/product/" + product.Id);
         }
     }
 }

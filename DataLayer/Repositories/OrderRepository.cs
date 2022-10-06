@@ -67,10 +67,10 @@ namespace DataLayer.Repositories
         public async Task<List<Order>> GetAllFinalizedOrders(int take)
         {
             return await _context.Orders
-                .Include(o=>o.User)
-                .Include(o=>o.OrderDetails)
+                .Include(o => o.User)
+                .Include(o => o.OrderDetails)
                 .Where(o => o.IsFinally)
-                .OrderByDescending(p=>p.CreatDate)
+                .OrderByDescending(p => p.CreatDate)
                 .Take(take)
                 .ToListAsync();
         }
@@ -90,7 +90,7 @@ namespace DataLayer.Repositories
                 .Include(c => c.OrderDetails).ThenInclude(c => c.Product)
                 .ThenInclude(c => c.productPrices).ThenInclude(c => c.productSelectedFeatures)
                 .ThenInclude(c => c.Feature).ThenInclude(c => c.FeatureValues)
-                .FirstOrDefaultAsync(c => c.UserId == userId&&!c.IsFinally);
+                .FirstOrDefaultAsync(c => c.UserId == userId && !c.IsFinally);
             return res;
         }
 
@@ -102,7 +102,9 @@ namespace DataLayer.Repositories
 
             var count = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Count);
 
-            return price * count;
+
+            var res = _context.Orders.FirstOrDefault(c => c.Id == orderId).OrderDetails.Sum(c => c.Price);
+            return res * count;
         }
 
         public async Task<List<OrderDetail>> GetListOrderDetailsByOrderId(int orderId)
@@ -113,15 +115,23 @@ namespace DataLayer.Repositories
 
         public async Task<Order> GetOrderById(int orderId)
         {
-            return await _context.Orders.Include(c => c.OrderDetails).FirstOrDefaultAsync(c => c.Id == orderId&&!c.IsFinally);
+            return await _context.Orders.Include(c => c.OrderDetails).FirstOrDefaultAsync(c => c.Id == orderId && !c.IsFinally);
 
         }
 
-        public async Task<OrderDetail> GetOrderDetailByOrderId(int orderId, int productId, int productPriceId)
+        public async Task<OrderDetail> GetOrderDetailByOrderId(int orderId, int productId, int? productPriceId)
         {
-            return await _context.OrderDetails.FirstOrDefaultAsync(
-                c => c.OrderId == orderId && c.ProductId == productId && c.ProductPriceId == productPriceId);
+            if (productPriceId != null)
+            {
 
+                return await _context.OrderDetails.FirstOrDefaultAsync(
+                    c => c.OrderId == orderId && c.ProductId == productId && c.ProductPriceId == productPriceId);
+            }
+            else
+            {
+                return await _context.OrderDetails.FirstOrDefaultAsync(
+                    c => c.OrderId == orderId && c.ProductId == productId);
+            }
         }
 
         public async Task<int> AddOrderDetialFromUser(OrderDetail orderDetail)
@@ -147,8 +157,8 @@ namespace DataLayer.Repositories
 
         public async Task<bool> UpdateOrderDetail(OrderDetail model)
         {
-          
-            
+
+
 
             _context.OrderDetails.Update(model);
             await _context.SaveChangesAsync();
@@ -167,7 +177,7 @@ namespace DataLayer.Repositories
                 .Include(o => o.Order)
                 .ThenInclude(o => o.User)
                 .Include(o => o.Product)
-                .ThenInclude(p=>p.ProductGalleries)
+                .ThenInclude(p => p.ProductGalleries)
                 .ToListAsync();
 
             return res;
@@ -189,15 +199,15 @@ namespace DataLayer.Repositories
 
         public async Task<int[]> GetWeeklySalesOrderForChart()
         {
-            int[] weekDays = {0,1,2,3,4,5,6};
+            int[] weekDays = { 0, 1, 2, 3, 4, 5, 6 };
             int[] res = new int[7];
             List<int> result = new List<int>(6);
 
-            var orders =  _context.Orders.OrderByDescending(o => o.FinalizedDate)
-                .Include(o=>o.OrderDetails)
-                .Where(o=>o.IsFinally)
+            var orders = _context.Orders.OrderByDescending(o => o.FinalizedDate)
+                .Include(o => o.OrderDetails)
+                .Where(o => o.IsFinally)
                 .AsQueryable();
-            foreach(int item in weekDays)
+            foreach (int item in weekDays)
             {
                 int itemData = 0;
                 var res1 = orders.Where(o => o.FinalizedDate == DateTime.Now.Date.AddDays(-item));
@@ -205,10 +215,10 @@ namespace DataLayer.Repositories
                 {
                     itemData += order.OrderDetails.Sum(o => o.Price);
                 }
-                
+
                 res[item] = itemData;
             }
-            return  res;
+            return res;
         }
     }
 }

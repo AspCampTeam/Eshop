@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "زیرو گروه ها";
-    
+    var id = ViewBag.Id;
 }
 
 @*@if ( ViewBag.NoSubCat)
@@ -32,7 +32,7 @@
                             </label>
                             <input type="submit" class="btn btn-darkorange btn-sm shiny btn-label fa fa-search" value="جست و جو">
                             <input type="submit" class="btn btn-darkorange btn-sm shiny btn-label fa fa-search" value="حذف فیلتر">
-                            <a  href="/Admin/AddCategory/@Model.Entities.FirstOrDefault().ParnetId" class="btn btn-azure shiny btn-label fa ">اضافه کردن دسته بندی جدید</a>
+                            <a href="/Admin/AddCategory/@id" class="btn btn-azure shiny btn-label fa ">اضافه کردن دسته بندی جدید</a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             دستورات
                         </th>
                         <th>
-                            <a  href="/Admin/AddCategory/@Model.Entities.FirstOrDefault().ParnetId" class="btn btn-azure shiny">اضافه کردن زیر گروه جدید</a>
+                            <a  href="/Admin/AddCategory/@id" class="btn btn-azure shiny">اضافه کردن زیر گروه جدید</a>
                         </th>
                     </tr>
                 </thead>
@@ -80,9 +80,7 @@
             </table>
             <partial name="_Paging" model="@Model.GetCurrentPaging()" />
 
-            <div class="footer">
-                <code>class="table table-hover"</code>
-            </div>
+           
         </div>
     </form>
 </div>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Enums;
+using Domain.Models.Votes;
 
 namespace Domain.Models.Product
 {
@@ -28,6 +29,8 @@ namespace Domain.Models.Product
         
         [ForeignKey("ParentId")]
         public ProductComment ProductComments { get; set; }
+
+        public List<CommentVote> CommentVotes { get; set; }
 
         #endregion
 

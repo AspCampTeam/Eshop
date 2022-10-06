@@ -37,11 +37,12 @@
                     </ul>
                 </div>
                 <div class="product-rating fa-num">
-                    <i class="ri-star-fill star"></i>
-                    <strong>۴.۴</strong>
-                    <span>(۴۳۶)</span>
+                    @await Component.InvokeAsync("GetVotes",Model.ProductId)
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+   

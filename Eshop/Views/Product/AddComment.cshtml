@@ -5,7 +5,7 @@
 }
 
 <div class="ui-box bg-white product-detail-container mb-5">
-    <form method="post" asp-controller="Product" asp-action="AddComment">
+    
     <div class="ui-box-content">
         <div class="row mb-3">
             <div class="col-lg-4 mb-lg-0 mb-4">
@@ -16,8 +16,7 @@
                             <img src="/images/img/@imageName" alt="">
                         </div>
                     </div>
-                    <input type="hidden" asp-for="ProductId"/>
-                    <input type="hidden" asp-for="ParentId"/>
+                    
                     
                 </div>
                 <!-- end of product-gallery -->
@@ -84,9 +83,10 @@
         </div>
         <div class="row">
             <div class="col-md-5 mb-md-0 mb-4">
-                <form action="#" class="add-comment-product">
+                <form method="post" asp-controller="Product" asp-action="AddComment" class="add-comment-product">
                     <!-- start of form-element -->
-                   
+                    <input type="hidden" asp-for="ProductId"/>
+                    <input type="hidden" asp-for="ParentId"/>
                     <!-- end of form-element -->
                     <!-- start of form-element -->
                     <!-- end of form-element -->
@@ -144,6 +144,6 @@
             </div>
         </div>
     </div>
-    </form>
+    
 </div>
 

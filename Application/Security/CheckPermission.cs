@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+//using System.Web.Mvc;
 using Application.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using IAuthorizationFilter = Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter;
-using RedirectResult = System.Web.Mvc.RedirectResult;
+//using RedirectResult = System.Web.Mvc.RedirectResult;
 
 namespace Application.Security
 {
@@ -29,9 +30,9 @@ namespace Application.Security
             {
 
 
-                if (!await _permissionService.CheckPermission(context.HttpContext.User.GetUserId(), _permissionId))
+                if (!await _permissionService.CheckPermission( _permissionId, context.HttpContext.User.GetUserId()))
                 {
-                    context.Result = new Microsoft.AspNetCore.Mvc.RedirectResult("/Login" + context.HttpContext.Request.Path);
+                    context.Result = new Microsoft.AspNetCore.Mvc.RedirectResult("/Login");
                 }
             }
             else

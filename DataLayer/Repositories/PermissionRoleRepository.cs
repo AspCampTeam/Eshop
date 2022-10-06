@@ -13,7 +13,7 @@ namespace DataLayer.Repositories
 {
     public class PermissionRoleRepository : IPermissionRoleRepository
     {
-       private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public PermissionRoleRepository(ApplicationDbContext context)
         {
@@ -91,16 +91,16 @@ namespace DataLayer.Repositories
             foreach (var role in roleId)
             {
                 _context.UserRoles.Where(ur => ur.UserId == userId).ToList().ForEach(c => _context.UserRoles.Remove(c));
-              await  _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
-            
+
             try
             {
-               // await AddRoleUser(roleId, userId);
-               
+                // await AddRoleUser(roleId, userId);
+
                 return true;
             }
-            catch 
+            catch
             {
 
                 return false;
@@ -109,16 +109,16 @@ namespace DataLayer.Repositories
 
         public async Task<Tuple<List<UserRoles>, User>> GetRolesByUserId(int userId)
         {
-                var res= await _context.UserRoles.Include(c=>c.Role).Where(c=>c.UserId==userId).ToListAsync();
-                var user =  _context.UserRoles.Include(c=>c.User).FirstOrDefault(c => c.UserId == userId).User;
-                return Tuple.Create(res,user);
+            var res = await _context.UserRoles.Include(c => c.Role).Where(c => c.UserId == userId).ToListAsync();
+            var user = _context.UserRoles.Include(c => c.User).FirstOrDefault(c => c.UserId == userId).User;
+            return Tuple.Create(res, user);
         }
 
         public async Task<bool> DeleteUserRole(int UserRole)
         {
             var userRole = await GetUserRolesById(UserRole);
 
-            userRole.IsDelete=true;
+            userRole.IsDelete = true;
             _context.UserRoles.Update(userRole);
             _context.SaveChangesAsync();
             return true;
@@ -133,17 +133,17 @@ namespace DataLayer.Repositories
         {
             foreach (var item in selectedPermission)
             {
-               await _context.RolePermissions.AddAsync(
-                    new RolePermission()
-                    {
-                        CreatDate = DateTime.Now,
-                        IsDelete = false,
-                        PermissionId = item,
-                        RoleId = roleId,
+                await _context.RolePermissions.AddAsync(
+                     new RolePermission()
+                     {
+                         CreatDate = DateTime.Now,
+                         IsDelete = false,
+                         PermissionId = item,
+                         RoleId = roleId,
 
-                    }
-                );
-               await _context.SaveChangesAsync();
+                     }
+                 );
+                await _context.SaveChangesAsync();
             }
 
             return roleId;
@@ -165,30 +165,30 @@ namespace DataLayer.Repositories
 
         public async Task<bool> CheckPermission(int permissionId, int userId)
         {
-            var User = await _context.Users.FindAsync(userId);
+            var User = _context.Users.FirstOrDefault(c => c.Id == userId);
 
-
-            List<int> UserRole = await _context.UserRoles.Where(c => c.UserId == userId).Select(c => c.RoleId).ToListAsync();
+            List<int>? UserRole = _context.UserRoles.Where(c => c.UserId == userId).Select(c => c.RoleId).ToList();
 
             if (!UserRole.Any())
             {
                 return false;
             }
 
-            List<int> RolePermission = await _context.RolePermissions.Where(c => c.PermissionId == permissionId)
-                .Select(c => c.RoleId).ToListAsync();
+            List<int>? RolePermission = _context.RolePermissions.Where(c => c.PermissionId == permissionId)
+                .Select(c => c.RoleId).ToList();
             if (RolePermission == null)
             {
                 return false;
             }
 
-            return RolePermission.Any(c => UserRole.Contains(c));
+            var res = RolePermission.Any(c => UserRole.Contains(c));
+            return res;
         }
 
         public async Task<List<Permission>> GetAllPermission()
         {
-                var res= await _context.Permissions.ToListAsync();
-                return res;
+            var res = await _context.Permissions.ToListAsync();
+            return res;
         }
     }
 }

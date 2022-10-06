@@ -544,6 +544,64 @@ namespace DataLayer.Repositories
             return filter;
         }
 
+        public async Task<FilterProductByCategory> GetProductByCategortyName(FilterProductByCategory filter, string productName)
+        {
+            var query = _context.ProductSelectedCategories.Include(c => c.Product).ThenInclude(c => c.ProductGalleries)
+                .Include(c => c.Product).ThenInclude(c => c.FavoriteProducts).Where(c => c.Product.Title.Contains(productName))
+                .AsQueryable();
+
+            #region Filter
+
+            if (!string.IsNullOrEmpty(filter.Title))
+            {
+                query = query.Where(c => c.Product.Title.Contains(filter.Title));
+            }
+
+            if (filter.StartPrice != 0)
+            {
+                query = query.Where(c => c.Product.Price > filter.StartPrice);
+            }
+
+            if (filter.EndPrice != 0)
+            {
+                query = query.Where(c => c.Product.Price < filter.EndPrice);
+            }
+
+            switch (filter.OrderBy)
+            {
+                case "all":
+                    break;
+                case "expensive":
+                {
+                    query = query.OrderByDescending(c => c.Product.Price);
+
+                }
+                    break;
+                case "cheep":
+                {
+                    query = query.OrderBy(c => c.Product.Price);
+
+                }
+                    break;
+                case "newest":
+                {
+                    query = query.OrderByDescending(c => c.Product.CreatDate);
+
+                }
+                    break;
+                case "popular":
+                {
+                    query = query.OrderByDescending(c => c.Product.FavoriteProducts.Count);
+                }
+                    break;
+            }
+
+            #endregion
+
+            await filter.Paging(query);
+            return filter;
+        }
+
         public async Task<FeatureViewModel> GetAllFeatureForAdmin(FeatureViewModel filter)
         {
             var query = _context.Features

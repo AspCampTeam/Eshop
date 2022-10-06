@@ -55,6 +55,10 @@ namespace DataLayer.DbContext
         public DbSet<Log> Logs { get; set; }
         public DbSet<ProductVotes> ProductVotes { get; set; }
         public DbSet<CommentVote> CommentVotes { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var cascadeFKs = modelBuilder.Model.GetEntityTypes()
@@ -139,6 +143,9 @@ namespace DataLayer.DbContext
                 .HasQueryFilter(c => !c.IsDelete);
 
             modelBuilder.Entity<Banner>()
+                .HasQueryFilter(c => !c.IsDelete);
+            
+            modelBuilder.Entity<Discount>()
                 .HasQueryFilter(c => !c.IsDelete);
 
             #region Seed Data

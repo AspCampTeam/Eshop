@@ -42,6 +42,8 @@ namespace IoC.Ioc
             service.AddTransient<IBannerService, BannerService>();
             service.AddTransient<ILoggerRepository, LoggerRepository>();
             service.AddTransient<ILoggerService, LoggerService>();
+            service.AddTransient<IVoteRepository, VoteRepository>();
+            service.AddTransient<IVoteService, VoteService>();
         }
     }
 }

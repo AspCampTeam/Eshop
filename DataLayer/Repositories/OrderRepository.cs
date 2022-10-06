@@ -102,7 +102,9 @@ namespace DataLayer.Repositories
 
             var count = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Count);
 
-            return price * count;
+
+            var res = _context.Orders.FirstOrDefault(c => c.Id == orderId).OrderDetails.Sum(c => c.Price);
+            return res * count;
         }
 
         public async Task<List<OrderDetail>> GetListOrderDetailsByOrderId(int orderId)

@@ -1,5 +1,5 @@
 ﻿@using Application.Interface
-@model List<Domain.Models.Product.ProductComment>
+@model Tuple<List<Domain.Models.Product.ProductComment>,Tuple<int ,int>>
 @inject IUserService _UserService
 @{
     ViewData["Title"] = "ShowComment";
@@ -12,7 +12,7 @@
 <div style="margin: 20px">
 
 
-    @foreach (var item in Model.Where(c => c.ParentId == null))
+    @foreach (var item in Model.Item1.Where(c => c.ParentId == null))
     {
         var user = _UserService.GetUserById(item.SenderId);
         <div class="comments">
@@ -30,9 +30,9 @@
 
                 </div>
 
-                @if (Model.Any(c => c.ParentId == item.Id))
+                @if (Model.Item1.Any(c => c.ParentId == item.Id))
                 {
-                    foreach (var reply in Model.Where(c => c.ParentId == item.Id))
+                    foreach (var reply in Model.Item1.Where(c => c.ParentId == item.Id))
                     {
                         <p></p>
                         <div style="margin-right: 35px; padding: 10px 30px;" class=" ui-box col-md-4">
@@ -48,8 +48,8 @@
                 }
                 <div class="comment-footer">
                     <span class="me-2">آیا این دیدگاه برایتان مفید بود؟</span>
-                    <button class="comment-like">۷</button>
-                    <button class="comment-dislike">۲</button>
+                    <a href="/AddCommentVote/@item.Id?vote=true" class="comment-like">@Model.Item2.Item1</a>
+                    <a href="/AddCommentVote/@item.Id?vote=false" class="comment-dislike">@Model.Item2.Item1</a>
                 </div>
             </div>
             <!-- end of comment -->

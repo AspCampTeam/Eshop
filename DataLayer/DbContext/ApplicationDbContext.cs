@@ -13,6 +13,7 @@ using Domain.Models.Common;
 using Domain.Models.Enums;
 using Domain.Models.Role;
 using Domain.Models.FAQ;
+using Domain.Models.Votes;
 
 namespace DataLayer.DbContext
 {
@@ -52,7 +53,8 @@ namespace DataLayer.DbContext
         public DbSet<DynamicPage> DynamicPages { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Log> Logs { get; set; }
-
+        public DbSet<ProductVotes> ProductVotes { get; set; }
+        public DbSet<CommentVote> CommentVotes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var cascadeFKs = modelBuilder.Model.GetEntityTypes()

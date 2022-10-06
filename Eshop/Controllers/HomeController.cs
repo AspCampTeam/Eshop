@@ -18,8 +18,9 @@ namespace Eshop.Controllers
         private IFaqService _faqService;
         private IDynamicPageService _pageService;
         private IBannerService _bannerService;
+        private IVoteService _voteService;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService, IFaqService faqService, IDynamicPageService pageService, IBannerService bannerService)
+        public HomeController(ILogger<HomeController> logger, IProductService productService, IOrderService orderService, IDynamicLinkService dynamicLinkService, IFaqService faqService, IDynamicPageService pageService, IBannerService bannerService, IVoteService voteService)
         {
             _logger = logger;
             _productService = productService;
@@ -28,6 +29,7 @@ namespace Eshop.Controllers
             _faqService = faqService;
             _pageService = pageService;
             _bannerService = bannerService;
+            _voteService = voteService;
         }
 
         public async Task<IActionResult> Index()
@@ -133,7 +135,6 @@ namespace Eshop.Controllers
             return Json(new { uploaded = true, url });
 
         }
-
-
+       
     }
 }

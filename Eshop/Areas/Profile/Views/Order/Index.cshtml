@@ -81,6 +81,10 @@
 
 <main class="page-content">
     <div class="container">
+        @if (ViewBag.addproduct != null && ViewBag.addproduct==true)
+        {
+            <div id="notificationSweetAlert"> <partial name="_SuccessAlertToastr" /></div>
+        }
         <form method="post" asp-controller="Order" asp-action="Index">
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
@@ -260,3 +264,8 @@
         </form>
     </div>
 </main>
+@section Section{
+    <script>
+        $('#notificationSweetAlert').fadeOut(5000)
+    </script>
+}

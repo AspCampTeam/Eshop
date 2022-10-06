@@ -51,7 +51,7 @@ namespace Eshop.Areas.Profile.Controllers
                 return BadRequest();
             }
 
-            return Redirect("/Profile/Orders/" + User.GetUserId());
+            return Redirect("/Profile/Orders/" + User.GetUserId()+"?addproduct=true");
         }
 
         [Route("OrderDetail/{id}")]

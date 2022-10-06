@@ -63,12 +63,11 @@ namespace Eshop.Controllers
             return Redirect("/Product/" + model.ProductId + "?comment=true");
         }
 
-        [Route("AddFavoriteProduct")]
-        public async Task<IActionResult> AddFavoriteProduct(long id)
+        [Route("AddFavoriteProduct/{id}")]
+        public async Task<IActionResult> AddFavoriteProduct(int id)
         {
-            int Id = Convert.ToInt32(id);
             int UserId = User.GetUserId();
-            var res = await _productService.AddFavoriteProduct(Id, UserId);
+            var res = await _productService.AddFavoriteProduct(id, UserId);
 
             return Json(res);
         }

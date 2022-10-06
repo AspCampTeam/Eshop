@@ -83,7 +83,7 @@ namespace Domain.ViewModels.Product
 
 
         public List<int>? FeatureValues { get; set; }
-        public int Prices { get; set; }
+        public int? Prices { get; set; }
         
     }
 

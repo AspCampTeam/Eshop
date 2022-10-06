@@ -28,9 +28,7 @@
             <div class="row">
                 @if (ViewBag.Comment != null)
                 {
-                    <div class="alert alert-success">
-                        <p class="help-block">دیدگاه شما با ثبت شد</p>
-                    </div>
+                   <div id="notificationSweetAlert"> <partial name="_SuccessAlertToastr" /></div>
                 }
                 <div class="col-lg-4 col-md-5 mb-md-0 mb-4">
                     <div class="ui-sticky ui-sticky-top">
@@ -274,7 +272,11 @@
                             </div>
                         </div>
                         <div class="product-seller--add-to-cart">
+
+                            <a href="/profile/BuyProduct/@Model.Id" class="btn btn-primary w-100" data-toast="" data-toast-type="success" data-toast-color="green" data-toast-position="topRight" data-toast-icon="ri-check-fill" data-toast-title="موفق!" data-toast-message="به سبد اضافه شد!">
+
                             <a href="/profile/BuyProduct/@Model.Id" class="btn btn-primary w-100" @*data-toast="" data-toast-type="success" data-toast-color="green" data-toast-position="topRight" data-toast-icon="ri-check-fill" data-toast-title="موفق!" data-toast-message="به سبد اضافه شد!"*@>
+
                                 افزودن به سبد خرید
                             </a>
                         </div>
@@ -390,7 +392,7 @@
                                                     <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="مشاهده سریع" aria-label="مشاهده سریع" data-remodal-target="quick-view-modal"><i class="ri-search-line"></i></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقمندی" aria-label="افزودن به علاقمندی"><i class="ri-heart-3-line"></i></a>
+                                                    <a href="/AddFavoriteProduct/@Model.Id" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقمندی" aria-label="افزودن به علاقمندی"><i class="ri-heart-3-line"></i></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1010,6 +1012,15 @@
                 }
             });
         }
-    </script>
+
+
+        $('#notificationSweetAlert').fadeOut(5000)
+
+	});
+
+</script>
+
+
+
 }
 

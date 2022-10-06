@@ -56,4 +56,11 @@
     <Folder Include="wwwroot\MyImages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\extensions\vendors\extensions\sweetalert2.all.min.js" />
+    <None Include="wwwroot\js\extensions\vendors\extensions\toastr.min.js" />
+    <None Include="wwwroot\js\extensions\sweet-alerts.js" />
+    <None Include="wwwroot\js\extensions\toastr.js" />
+  </ItemGroup>
+
 </Project>

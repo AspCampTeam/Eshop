@@ -743,14 +743,14 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3555),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(442),
                             IsDelete = false,
                             Title = "مدیریت سایت"
                         },
                         new
                         {
                             Id = 2,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3576),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(459),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت کاربران"
@@ -758,7 +758,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 3,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3593),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(467),
                             IsDelete = false,
                             ParentId = 2,
                             Title = "افزودن کاربر"
@@ -766,7 +766,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 4,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3609),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(474),
                             IsDelete = false,
                             ParentId = 2,
                             Title = "ویرایش کاربر"
@@ -774,7 +774,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 5,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3626),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(482),
                             IsDelete = false,
                             ParentId = 2,
                             Title = "حذف کاربر"
@@ -782,7 +782,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 6,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3644),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(490),
                             IsDelete = false,
                             ParentId = 2,
                             Title = "سفارشات کاربران"
@@ -790,7 +790,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 7,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3659),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(497),
                             IsDelete = false,
                             ParentId = 2,
                             Title = "دسترسی کاربر"
@@ -798,7 +798,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 8,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3674),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(507),
                             IsDelete = false,
                             ParentId = 2,
                             Title = "محصولات مورد علافه کاربر"
@@ -806,7 +806,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 13,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3690),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(514),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت تماس با ما"
@@ -814,7 +814,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 15,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3708),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(522),
                             IsDelete = false,
                             ParentId = 13,
                             Title = "حذف تماس با ما"
@@ -822,7 +822,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 16,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3725),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(529),
                             IsDelete = false,
                             ParentId = 13,
                             Title = "پاسخ تماس با ما"
@@ -830,7 +830,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 17,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3768),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(536),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت تیکت ها"
@@ -838,7 +838,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 18,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3785),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(543),
                             IsDelete = false,
                             ParentId = 17,
                             Title = "افزودن تیکت"
@@ -846,7 +846,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 20,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3801),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(550),
                             IsDelete = false,
                             ParentId = 17,
                             Title = "بستن تیکت"
@@ -854,7 +854,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 21,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3817),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(557),
                             IsDelete = false,
                             ParentId = 17,
                             Title = "پاسخ به تیکت"
@@ -862,7 +862,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 22,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3833),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(564),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "میدیریت محصولات"
@@ -870,7 +870,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 23,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3849),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(571),
                             IsDelete = false,
                             ParentId = 22,
                             Title = "افزودن محصول"
@@ -878,7 +878,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 24,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3867),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(579),
                             IsDelete = false,
                             ParentId = 22,
                             Title = "مدیریت تصاویر محصول"
@@ -886,7 +886,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 25,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3886),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(586),
                             IsDelete = false,
                             ParentId = 22,
                             Title = "مدیریت نظرات محصول"
@@ -894,7 +894,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 27,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3901),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(596),
                             IsDelete = false,
                             ParentId = 22,
                             Title = "مدیریت تگ های محصول"
@@ -902,7 +902,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 28,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3917),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(603),
                             IsDelete = false,
                             ParentId = 22,
                             Title = "ویرایش محصول"
@@ -910,7 +910,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 29,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3932),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(611),
                             IsDelete = false,
                             ParentId = 22,
                             Title = "حذف محصول"
@@ -918,7 +918,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 30,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3947),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(619),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت ویژگی ها"
@@ -926,7 +926,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 31,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3963),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(626),
                             IsDelete = false,
                             ParentId = 30,
                             Title = "مدیریت مقادیر ویژگی ها"
@@ -934,7 +934,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 32,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3979),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(633),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت دسته بندی محصولات"
@@ -942,7 +942,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 33,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3994),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(640),
                             IsDelete = false,
                             ParentId = 7,
                             Title = "افزودن نقش کاربر"
@@ -950,7 +950,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 34,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4010),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(703),
                             IsDelete = false,
                             ParentId = 7,
                             Title = "حذف نقش کاربر"
@@ -958,7 +958,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 35,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4025),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(710),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت نقش ها"
@@ -966,7 +966,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 36,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4041),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(743),
                             IsDelete = false,
                             ParentId = 35,
                             Title = "افزودن نقش"
@@ -974,7 +974,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 37,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4056),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(751),
                             IsDelete = false,
                             ParentId = 35,
                             Title = "ویرایش نقش"
@@ -982,7 +982,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 38,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4071),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(758),
                             IsDelete = false,
                             ParentId = 35,
                             Title = "حذف نقش"
@@ -990,7 +990,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 39,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4087),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(768),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت لینک"
@@ -998,7 +998,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 40,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4102),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(776),
                             IsDelete = false,
                             ParentId = 39,
                             Title = "افزودن لینک"
@@ -1006,7 +1006,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 41,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4121),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(784),
                             IsDelete = false,
                             ParentId = 39,
                             Title = "ویرایش لینک"
@@ -1014,7 +1014,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 42,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4136),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(792),
                             IsDelete = false,
                             ParentId = 39,
                             Title = "حذف لینک"
@@ -1022,7 +1022,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 43,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4151),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(799),
                             IsDelete = false,
                             ParentId = 32,
                             Title = "افزودن دسته بندی"
@@ -1030,7 +1030,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 44,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4165),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(806),
                             IsDelete = false,
                             ParentId = 32,
                             Title = "ویرایش دسته بندی"
@@ -1038,7 +1038,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 45,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4180),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(813),
                             IsDelete = false,
                             ParentId = 32,
                             Title = "حذف دسته بندی"
@@ -1046,7 +1046,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 46,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4195),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(820),
                             IsDelete = false,
                             ParentId = 1,
                             Title = "مدیریت بنر"
@@ -1054,7 +1054,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 47,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4264),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(828),
                             IsDelete = false,
                             ParentId = 46,
                             Title = "افزودن بنر"
@@ -1062,7 +1062,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 48,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4284),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(835),
                             IsDelete = false,
                             ParentId = 46,
                             Title = "ویرایش بنر"
@@ -1070,7 +1070,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 49,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4300),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(843),
                             IsDelete = false,
                             ParentId = 46,
                             Title = "حذف بنر"
@@ -1078,7 +1078,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 50,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4315),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(850),
                             IsDelete = false,
                             ParentId = 1,
                             Title = " مدیریت صفحه های داینامیک"
@@ -1086,7 +1086,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 51,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4331),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(860),
                             IsDelete = false,
                             ParentId = 1,
                             Title = " مدیریت سوالات متداول"
@@ -1119,7 +1119,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(3398),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(261),
                             IsDelete = false,
                             RoleTitle = "مدیریت اصلی سایت"
                         });
@@ -1157,7 +1157,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4388),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(893),
                             IsDelete = false,
                             PermissionId = 1,
                             RoleId = 1
@@ -1165,7 +1165,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4430),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(905),
                             IsDelete = false,
                             PermissionId = 2,
                             RoleId = 1
@@ -1173,7 +1173,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 3,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4449),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(912),
                             IsDelete = false,
                             PermissionId = 3,
                             RoleId = 1
@@ -1181,7 +1181,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 4,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4465),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(920),
                             IsDelete = false,
                             PermissionId = 4,
                             RoleId = 1
@@ -1189,7 +1189,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 5,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4480),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(928),
                             IsDelete = false,
                             PermissionId = 5,
                             RoleId = 1
@@ -1197,7 +1197,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 6,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4496),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(988),
                             IsDelete = false,
                             PermissionId = 6,
                             RoleId = 1
@@ -1205,7 +1205,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 7,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4515),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(996),
                             IsDelete = false,
                             PermissionId = 7,
                             RoleId = 1
@@ -1213,7 +1213,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 8,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4530),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1004),
                             IsDelete = false,
                             PermissionId = 8,
                             RoleId = 1
@@ -1221,7 +1221,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 9,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4545),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1012),
                             IsDelete = false,
                             PermissionId = 13,
                             RoleId = 1
@@ -1229,7 +1229,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 10,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4564),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1020),
                             IsDelete = false,
                             PermissionId = 15,
                             RoleId = 1
@@ -1237,7 +1237,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 11,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4579),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1053),
                             IsDelete = false,
                             PermissionId = 16,
                             RoleId = 1
@@ -1245,7 +1245,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 12,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4594),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1064),
                             IsDelete = false,
                             PermissionId = 17,
                             RoleId = 1
@@ -1253,7 +1253,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 13,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4609),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1072),
                             IsDelete = false,
                             PermissionId = 18,
                             RoleId = 1
@@ -1261,7 +1261,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 14,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4624),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1079),
                             IsDelete = false,
                             PermissionId = 20,
                             RoleId = 1
@@ -1269,7 +1269,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 15,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4639),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1086),
                             IsDelete = false,
                             PermissionId = 21,
                             RoleId = 1
@@ -1277,7 +1277,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 16,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4653),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1094),
                             IsDelete = false,
                             PermissionId = 22,
                             RoleId = 1
@@ -1285,7 +1285,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 17,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4667),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1101),
                             IsDelete = false,
                             PermissionId = 23,
                             RoleId = 1
@@ -1293,7 +1293,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 18,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4683),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1110),
                             IsDelete = false,
                             PermissionId = 24,
                             RoleId = 1
@@ -1301,7 +1301,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 19,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4698),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1117),
                             IsDelete = false,
                             PermissionId = 25,
                             RoleId = 1
@@ -1309,7 +1309,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 20,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4713),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1124),
                             IsDelete = false,
                             PermissionId = 27,
                             RoleId = 1
@@ -1317,7 +1317,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 21,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4728),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1132),
                             IsDelete = false,
                             PermissionId = 28,
                             RoleId = 1
@@ -1325,7 +1325,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 22,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4744),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1139),
                             IsDelete = false,
                             PermissionId = 29,
                             RoleId = 1
@@ -1333,7 +1333,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 23,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4761),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1146),
                             IsDelete = false,
                             PermissionId = 30,
                             RoleId = 1
@@ -1341,7 +1341,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 24,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4804),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1154),
                             IsDelete = false,
                             PermissionId = 31,
                             RoleId = 1
@@ -1349,7 +1349,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 25,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4820),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1186),
                             IsDelete = false,
                             PermissionId = 32,
                             RoleId = 1
@@ -1357,7 +1357,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 26,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4835),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1197),
                             IsDelete = false,
                             PermissionId = 33,
                             RoleId = 1
@@ -1365,7 +1365,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 27,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4850),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1205),
                             IsDelete = false,
                             PermissionId = 34,
                             RoleId = 1
@@ -1373,7 +1373,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 28,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4865),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1213),
                             IsDelete = false,
                             PermissionId = 35,
                             RoleId = 1
@@ -1381,7 +1381,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 29,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4881),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1221),
                             IsDelete = false,
                             PermissionId = 36,
                             RoleId = 1
@@ -1389,7 +1389,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 30,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4896),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1229),
                             IsDelete = false,
                             PermissionId = 37,
                             RoleId = 1
@@ -1397,7 +1397,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 31,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4911),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1236),
                             IsDelete = false,
                             PermissionId = 38,
                             RoleId = 1
@@ -1405,7 +1405,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 32,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4928),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1244),
                             IsDelete = false,
                             PermissionId = 39,
                             RoleId = 1
@@ -1413,7 +1413,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 33,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4943),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1251),
                             IsDelete = false,
                             PermissionId = 40,
                             RoleId = 1
@@ -1421,7 +1421,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 34,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4962),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1260),
                             IsDelete = false,
                             PermissionId = 41,
                             RoleId = 1
@@ -1429,7 +1429,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 35,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4978),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1267),
                             IsDelete = false,
                             PermissionId = 42,
                             RoleId = 1
@@ -1437,7 +1437,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 36,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4993),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1275),
                             IsDelete = false,
                             PermissionId = 43,
                             RoleId = 1
@@ -1445,7 +1445,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 37,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5008),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1282),
                             IsDelete = false,
                             PermissionId = 44,
                             RoleId = 1
@@ -1453,7 +1453,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 38,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5025),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1290),
                             IsDelete = false,
                             PermissionId = 45,
                             RoleId = 1
@@ -1461,7 +1461,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 39,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5040),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1297),
                             IsDelete = false,
                             PermissionId = 46,
                             RoleId = 1
@@ -1469,7 +1469,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 40,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5055),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1325),
                             IsDelete = false,
                             PermissionId = 47,
                             RoleId = 1
@@ -1477,7 +1477,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 41,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5070),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1334),
                             IsDelete = false,
                             PermissionId = 48,
                             RoleId = 1
@@ -1485,7 +1485,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 42,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5085),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1341),
                             IsDelete = false,
                             PermissionId = 49,
                             RoleId = 1
@@ -1493,7 +1493,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 43,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5100),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1349),
                             IsDelete = false,
                             PermissionId = 50,
                             RoleId = 1
@@ -1501,7 +1501,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 44,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5115),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1356),
                             IsDelete = false,
                             PermissionId = 51,
                             RoleId = 1
@@ -1540,7 +1540,7 @@ namespace DataLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(5132),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(1368),
                             IsDelete = false,
                             RoleId = 1,
                             UserId = 1
@@ -1687,9 +1687,9 @@ namespace DataLayer.Migrations
                         {
                             Id = 1,
                             ActiveCode = "123456",
-                            BirthDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4363),
-                            CreatDate = new DateTime(2022, 9, 22, 20, 34, 11, 368, DateTimeKind.Local).AddTicks(4358),
-                            Email = "/",
+                            BirthDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(876),
+                            CreatDate = new DateTime(2022, 10, 6, 12, 3, 3, 201, DateTimeKind.Local).AddTicks(873),
+                            Email = "yektakala@admin.com",
                             Gender = 0,
                             IsAdmin = true,
                             IsDelete = false,
@@ -1697,6 +1697,70 @@ namespace DataLayer.Migrations
                             PhoneNumber = "12345678910",
                             Status = 0
                         });
+                });
+
+            modelBuilder.Entity("Domain.Models.Votes.CommentVote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CommentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Vote")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CommentVotes");
+                });
+
+            modelBuilder.Entity("Domain.Models.Votes.ProductVotes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Vote")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProductVotes");
                 });
 
             modelBuilder.Entity("Domain.Models.Common.DynamicPage", b =>
@@ -1821,7 +1885,7 @@ namespace DataLayer.Migrations
                         .HasForeignKey("ParentId");
 
                     b.HasOne("Domain.Models.Product.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductComments")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1995,6 +2059,44 @@ namespace DataLayer.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Models.Votes.CommentVote", b =>
+                {
+                    b.HasOne("Domain.Models.Product.ProductComment", "Comment")
+                        .WithMany("CommentVotes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.User", "User")
+                        .WithMany("CommentVotes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Models.Votes.ProductVotes", b =>
+                {
+                    b.HasOne("Domain.Models.Product.Product", "Product")
+                        .WithMany("ProductVotesList")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.User", "User")
+                        .WithMany("ProductVotesList")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Models.Common.DynamicLink", b =>
                 {
                     b.Navigation("DynamicPage");
@@ -2021,11 +2123,15 @@ namespace DataLayer.Migrations
                 {
                     b.Navigation("FavoriteProducts");
 
+                    b.Navigation("ProductComments");
+
                     b.Navigation("ProductGalleries");
 
                     b.Navigation("ProductSelectedCategories");
 
                     b.Navigation("ProductTags");
+
+                    b.Navigation("ProductVotesList");
 
                     b.Navigation("productPrices");
                 });
@@ -2035,6 +2141,11 @@ namespace DataLayer.Migrations
                     b.Navigation("ProductSelectedCategories");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Domain.Models.Product.ProductComment", b =>
+                {
+                    b.Navigation("CommentVotes");
                 });
 
             modelBuilder.Entity("Domain.Models.Product.ProductPrice", b =>
@@ -2063,11 +2174,15 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("Domain.Models.User", b =>
                 {
+                    b.Navigation("CommentVotes");
+
                     b.Navigation("FavoriteProducts");
 
                     b.Navigation("Logs");
 
                     b.Navigation("Orders");
+
+                    b.Navigation("ProductVotesList");
 
                     b.Navigation("TicketMassagesList");
 

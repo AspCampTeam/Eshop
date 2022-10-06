@@ -12,6 +12,9 @@
             </div>
         </div>
     </header>
+    @if(ViewBag.IsSuccess!= null && ViewBag.IsSuccess==true){
+        <partial name="_SuccessSweetAlert"/>
+    }
     <main class="page-content page-auth">
         <!-- start of auth-container -->
         <div class="auth-container">
@@ -80,9 +83,7 @@
                             کليه حقوق اين سايت متعلق به echo_designer
                             می‌باشد.
                         </div>
-                        <Authrize permission-id="2">
-                            <p>test authrize</p>
-                        </Authrize>
+                        
                     </div>
                     <div class="col-md-6">
                         <div class="text-muted text-md-end text-center">echo_designer - 2021 © Copyright</div>

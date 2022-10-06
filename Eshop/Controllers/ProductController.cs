@@ -13,11 +13,13 @@ namespace Eshop.Controllers
 
         private IProductService _productService;
         IUserService _userService;
+        private IVoteService _voteService;
 
-        public ProductController(IProductService productService, IUserService userService)
+        public ProductController(IProductService productService, IUserService userService, IVoteService voteService)
         {
             _productService = productService;
             _userService = userService;
+            _voteService = voteService;
         }
 
         #endregion
@@ -61,12 +63,11 @@ namespace Eshop.Controllers
             return Redirect("/Product/" + model.ProductId + "?comment=true");
         }
 
-        [Route("AddFavoriteProduct")]
-        public async Task<IActionResult> AddFavoriteProduct(long id)
+        [Route("AddFavoriteProduct/{id}")]
+        public async Task<IActionResult> AddFavoriteProduct(int id)
         {
-            int Id = Convert.ToInt32(id);
             int UserId = User.GetUserId();
-            var res = await _productService.AddFavoriteProduct(Id, UserId);
+            var res = await _productService.AddFavoriteProduct(id, UserId);
 
             return Json(res);
         }
@@ -76,6 +77,27 @@ namespace Eshop.Controllers
         {
             var res = await _productService.GetProductByCategorty(model, id);
             return View(res);
+        }
+
+        [Route("FilterProductByName")]
+        public async Task<IActionResult> ProductFilter(FilterProductByCategory model, string name)
+        {
+            var res = await _productService.GetProductByCategortyName(model, name);
+            return View(res);
+        }
+        [Route("AddVote/{productId}")]
+        public async Task<IActionResult> AddVote(int productId, bool vote)
+        {
+            var res = await _voteService.AddProductVote(productId, User.GetUserId(), vote);
+            return Redirect("/product/"+productId);
+        }
+
+        [Route("AddCommentVote/{commentId}")]
+        public async Task<IActionResult> AddCommentVote(int commentId, bool vote)
+        {
+            var res = await _voteService.AddCommentVote(commentId, User.GetUserId(), vote);
+            var product = _voteService.GetProductByCommentId(commentId);
+            return Redirect("/product/" + product.Id);
         }
     }
 }

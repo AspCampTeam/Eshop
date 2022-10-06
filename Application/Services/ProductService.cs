@@ -182,23 +182,29 @@ namespace Application.Services
                     return 0;
                 }
             }
-            int changePrice = await _productRepository.AddProductPrice(product.Prices, id);
-            foreach (var item in product.FeatureValues)
+            if (product.Prices == null)
+                product.Prices = 0;
+            int changePrice = await _productRepository.AddProductPrice((int)product.Prices, id);
+
+            if (product.FeatureValues!=null)
             {
-                var selectedFeature = new ProductSelectedFeature()
+                foreach (var item in product.FeatureValues)
                 {
-                    CreatDate = DateTime.Now,
-                    FeatureId = await _productRepository.GetFeatureIdByFeatureValueId(item),
-                    FeatureValueId = item,
-                    ProductPriceId = changePrice
+                    var selectedFeature = new ProductSelectedFeature()
+                    {
+                        CreatDate = DateTime.Now,
+                        FeatureId = await _productRepository.GetFeatureIdByFeatureValueId(item),
+                        FeatureValueId = item,
+                        ProductPriceId = changePrice
 
-                };
-                bool status = await _productRepository.AddProductSelectedFeature(selectedFeature);
-                if (status != true)
-                {
-                    return 0;
+                    };
+                    bool status = await _productRepository.AddProductSelectedFeature(selectedFeature);
+                    if (status != true)
+                    {
+                        return 0;
+                    }
+
                 }
-
             }
             var addImage = new ProductGallery();
             string imagepath = "";
@@ -738,6 +744,11 @@ namespace Application.Services
         public async Task<FilterProductByCategory> GetProductByCategorty(FilterProductByCategory filter, int categoryId)
         {
             return await _productRepository.GetProductByCategorty(filter, categoryId);
+        }
+
+        public async Task<FilterProductByCategory> GetProductByCategortyName(FilterProductByCategory filter, string productName)
+        {
+            return await _productRepository.GetProductByCategortyName(filter, productName);
         }
 
         public async Task<FeatureViewModel> GetAllFeatureForAdmin(FeatureViewModel model)

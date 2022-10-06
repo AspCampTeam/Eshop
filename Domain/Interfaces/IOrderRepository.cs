@@ -32,7 +32,7 @@ namespace Domain.Interfaces
 
         Task<Order> GetOrderById(int orderId);
 
-        Task<OrderDetail> GetOrderDetailByOrderId(int orderId,int productId, int productPriceId);
+        Task<OrderDetail> GetOrderDetailByOrderId(int orderId,int productId, int? productPriceId);
 
         Task<int> AddOrderDetialFromUser(OrderDetail orderDetail);
         Task<bool>EditOrderDetail(OrderDetail orderDetail);

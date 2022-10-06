@@ -17,18 +17,20 @@ namespace Eshop.ViewComponents
     {
         private IProductService _productService;
         IUserService _userService;
+        private IVoteService _voteService;
 
-        public ShowComment(IProductService productService, IUserService userService)
+        public ShowComment(IProductService productService, IUserService userService, IVoteService voteService)
         {
             _productService = productService;
             _userService = userService;
+            _voteService = voteService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
             var comments = await _productService.GetAllCommentsByProductId(id);
-
-            return await Task.FromResult((IViewComponentResult) View("_ShowComment", comments));
+            var votes = _voteService.GetCommentVote(id);
+            return await Task.FromResult((IViewComponentResult) View("_ShowComment", Tuple.Create(comments,votes)));
         }
     }
 }

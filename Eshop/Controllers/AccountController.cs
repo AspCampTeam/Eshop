@@ -111,7 +111,8 @@ namespace Eshop.Controllers
 
             await HttpContext.SignInAsync(principal, properties);
             await _loggerService.AddLog(user.Id, user.Id, "ورود به حساب کاربری", LogType.UserLogin);
-            return Redirect("/");
+            ViewBag.IsSuccess = true;
+            return View();
         }
 
 

@@ -9,6 +9,7 @@ using Domain.Models.Product;
 using Domain.Models.Tickets;
 using Domain.Models.Order;
 using Domain.Models.Common;
+using Domain.Models.Votes;
 
 namespace Domain.Models
 {
@@ -57,7 +58,8 @@ namespace Domain.Models
         public List<TicketMassages> TicketMassagesList { get; set; }
         public List<Order.Order> Orders { get; set; }
         public List<Log> Logs { get; set; }
-
+        public List<ProductVotes> ProductVotesList { get; set; }
+        public List<CommentVote> CommentVotes { get; set; }
         #endregion
 
     }

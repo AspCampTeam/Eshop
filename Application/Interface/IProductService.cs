@@ -446,6 +446,7 @@ namespace Application.Interface
         /// </returns>
         Task<FilterProductByCategory> GetProductByCategorty(FilterProductByCategory filter, int categoryId);
 
+        Task<FilterProductByCategory> GetProductByCategortyName(FilterProductByCategory filter, string productName);
         #endregion
 
         #region Feature

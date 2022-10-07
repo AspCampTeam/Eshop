@@ -9,10 +9,10 @@ using Eshop.Common;
 using Application.Services;
 using Application.StaticTools;
 
-namespace Eshop.Areas.Admin.Controllers.ContactUss
+namespace Eshop.Areas.Admin.Controllers.ContactUs
 {
 
-    
+
     public class ContactUsController : AdminBaseController
     {
         #region Injection
@@ -45,25 +45,25 @@ namespace Eshop.Areas.Admin.Controllers.ContactUss
 
         [CheckPermission(Permissions.AnswerContactUs)]
         [Route("AnswerContactUs/{id}")]
-       
+
         public IActionResult AnswerContactUs(int id)
         {
-          var info =  _ContactUssService.GetContactById(id);
-          if (info == null)
-              return RedirectToAction("GetContactUsss");
-          
+            var info = _ContactUssService.GetContactById(id);
+            if (info == null)
+                return RedirectToAction("GetContactUsss");
+
             return View(info);
         }
 
 
         [Route("AnswerContactUs/{id}")]
         [HttpPost]
-        public async Task<IActionResult>  AnswerContactUs(AnswerContactUsViewModel answer)
+        public async Task<IActionResult> AnswerContactUs(AnswerContactUsViewModel answer)
         {
 
             try
             {
-                SendEmail.Send(answer.Email,$"پاسخ به تماس شما در دسته {answer.Subject}", EmailTemplate.BuildView(answer.Body));
+                SendEmail.Send(answer.Email, $"پاسخ به تماس شما در دسته {answer.Subject}", answer.AnswerBody.BuildView());
 
             }
             catch
@@ -71,8 +71,8 @@ namespace Eshop.Areas.Admin.Controllers.ContactUss
                 return NotFound();
             }
 
-            _ContactUssService.AnswerContactUsTicket(answer.Id,answer.AnswerBody);
-            await _loggerService.AddLog((int)answer.Id, User.GetUserId(), " پاسخ به تماس با ما");
+            _ContactUssService.AnswerContactUsTicket(answer.Id, answer.AnswerBody);
+            await _loggerService.AddLog(answer.Id, User.GetUserId(), " پاسخ به تماس با ما");
 
             return RedirectToAction("GetContactUsss");
         }

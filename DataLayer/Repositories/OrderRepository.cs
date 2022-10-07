@@ -323,7 +323,7 @@ namespace DataLayer.Repositories
 
             #region Status
 
-            List<CustonizedDiscount> list = new List<CustonizedDiscount>();
+            var list = new List<CustonizedDiscount>();
             foreach (var discount in filter.Entities)
             {
                 var custome = new CustonizedDiscount()
@@ -347,11 +347,15 @@ namespace DataLayer.Repositories
             #endregion
 
 
-            list.AsQueryable();
-            await filter.Paging((IQueryable<CustonizedDiscount>)list);
+            var quueryable = list.AsQueryable();
+            await filter.Paging(quueryable);
             return filter;
         }
-    
+
+        public async Task<Discount> GetDiscountById(int discount)
+        {
+            return await _context.Discounts.SingleOrDefaultAsync(d => d.Id == discount);   
+        }
     }
 }
-}
+

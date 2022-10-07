@@ -41,6 +41,7 @@ namespace Application.Interface
         Task<bool> AddDiscount(AddDiscountViewModel discount);
         Task<bool> EditDiscount(EditDiscountViewModel editDiscount);
         Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter);
+        Task<EditDiscountViewModel> GetDiscountForAdmin(int discountId);
 
         #endregion
 

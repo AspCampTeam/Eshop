@@ -311,14 +311,37 @@ namespace Application.Services
             });
         }
 
-        public Task<bool> EditDiscount(EditDiscountViewModel editDiscount)
+        public async Task<bool> EditDiscount(EditDiscountViewModel editDiscount)
         {
-            throw new NotImplementedException();
+            var discount = await _repository.GetDiscountById(editDiscount.Id);
+            discount.StartDate = editDiscount.StartDate;
+            discount.EndDate = editDiscount.EndDate;
+            discount.Useable = editDiscount.Useable;
+            discount.DiscountCode = editDiscount.DiscountCode;
+            discount.DicountPercent = editDiscount.DicountPercent;
+
+            return await _repository.UpdateDiscount(discount);
         }
 
         public async Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter)
         {
             return await _repository.GetAllDiscountForAdmin(filter);
+        }
+
+        public async Task<EditDiscountViewModel> GetDiscountForAdmin(int discountId)
+        {
+            var discount = await _repository.GetDiscountById(discountId);
+            var res =  new EditDiscountViewModel()
+            {
+                DicountPercent = discount.DicountPercent,
+                Id = discount.Id,
+                DiscountCode = discount.DiscountCode,
+                EndDate = discount.EndDate ,
+                StartDate = discount.StartDate ,
+                Useable = discount.Useable, 
+            };
+
+            return res;
         }
     }
 }

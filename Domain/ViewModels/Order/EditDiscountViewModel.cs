@@ -14,6 +14,5 @@ namespace Domain.ViewModels.Order
         public int? Useable { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public DiscountStatus Status { get; set; }
     }
 }

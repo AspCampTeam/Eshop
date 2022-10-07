@@ -54,6 +54,7 @@ namespace Domain.Interfaces
         Task<bool> DeleteDiscount(int discountId);
         Task<bool> AddDiscount(Discount discount);
         Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter);
+        Task<Discount> GetDiscountById(int discount);
 
         #endregion
 

@@ -232,7 +232,7 @@
                                     </div>
                                 </div>
                             }
-                            <input type="hidden" name="price" value="@(ViewBag.DiscountPrice!=null?"@ViewBag.DiscountPrice":"@ViewBag.TotalPrice")" />
+                            <input type="hidden" id="buyPrice" value="@(ViewBag.DiscountPrice!=null?"@ViewBag.DiscountPrice":"@ViewBag.TotalPrice")" />
                             <div class="checkout-bill-row">
                                 <div class="checkout-bill-row-label"> جمع سبد خرید</div>
                                 <div class="checkout-bill-row-value">
@@ -244,7 +244,7 @@
                                 این مبلغ اضافه خواهد شد
                             </div>
                             <div class="checkout-bill-row checkout-bill-action">
-                                <button type="submit" class="btn btn-block btn-primary">ادامه فرایند خرید</button>
+                                <button type="submit" onclick="Buy()" class="btn btn-block btn-primary">ادامه فرایند خرید</button>
                             </div>
                             <div class="checkout-bill-row checkout-bill-footer">
                                 <div class="checkout-bill-row-label">
@@ -304,7 +304,26 @@
                 }
             });
         }
-
+           function Buy() {
+            $.ajax({
+                url: "/Profile/Orders/@Model.Id",
+                type: "post",
+                data: {
+                    price: $("#buyPrice").val()
+                },
+                beforeSend: function () {
+                    //open_waiting();
+                },
+                success: function (res) {
+                    //close_waiting();
+                    //$("#DateTimeModal").modal("show");
+                },
+                error: function () {
+                    //close_waiting();
+                    //ShowMessage("اعلان", "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .", "error");
+                }
+            });
+        }
 
         $('#notificationSweetAlert').fadeOut(5000)
     </script>

@@ -51,6 +51,9 @@ namespace Domain.Interfaces
         Task<Tuple<DiscountUseType,int>> UseDiscount(string code,int userId);
 
         Task<bool> UpdateDiscount(Discount discount);
+        Task<bool> DeleteDiscount(int discountId);
+        Task<bool> AddDiscount(Discount discount);
+        Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter);
 
         #endregion
 

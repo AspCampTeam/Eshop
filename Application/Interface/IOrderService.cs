@@ -37,6 +37,10 @@ namespace Application.Interface
         #region Discount
 
         Task<Tuple<DiscountUseType, int>> UseDiscount(int userId, int totalPrice, string code);
+        Task<bool> DeleteDiscount(int discountId);
+        Task<bool> AddDiscount(AddDiscountViewModel discount);
+        Task<bool> EditDiscount(EditDiscountViewModel editDiscount);
+        Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter);
 
         #endregion
 

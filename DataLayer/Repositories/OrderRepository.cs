@@ -99,7 +99,7 @@ namespace DataLayer.Repositories
         {
             var order = await GetOrderById(orderId);
 
-           // var price = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Price);
+            // var price = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Price);
 
             var count = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Count);
 
@@ -227,10 +227,10 @@ namespace DataLayer.Repositories
             var discount = await _context.Discounts.SingleOrDefaultAsync(d => d.DiscountCode == code);
 
             if (discount == null)
-                return Tuple.Create(DiscountUseType.NotFound,0 );
+                return Tuple.Create(DiscountUseType.NotFound, 0);
 
             if (discount.StartDate != null && discount.StartDate < DateTime.Now)
-                return Tuple.Create(DiscountUseType.NotStartedDate,0);
+                return Tuple.Create(DiscountUseType.NotStartedDate, 0);
 
             if (discount.EndDate != null && discount.EndDate >= DateTime.Now)
                 return Tuple.Create(DiscountUseType.ExpiredDate, 0);
@@ -256,7 +256,7 @@ namespace DataLayer.Repositories
 
             await _context.SaveChangesAsync();
 
-            return Tuple.Create(DiscountUseType.Success,discount.DicountPercent);
+            return Tuple.Create(DiscountUseType.Success, discount.DicountPercent);
 
 
         }
@@ -274,5 +274,84 @@ namespace DataLayer.Repositories
                 return false;
             }
         }
+
+        public async Task<bool> DeleteDiscount(int discountId)
+        {
+            var discountDB = await _context.Discounts.FirstOrDefaultAsync(d => d.Id == discountId);
+            if (discountDB == null)
+                throw new NullReferenceException();
+
+             discountDB.IsDelete = true;
+
+            return await UpdateDiscount(discountDB); 
+        }
+
+        public async Task<bool> AddDiscount(Discount discount)
+        {
+            await _context.AddAsync(discount);
+            try
+            {
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter)
+        {
+            var query = _context.Discounts.AsQueryable();
+
+            #region Filter
+
+            if (!string.IsNullOrEmpty(filter.Code))
+            {
+                query = query.Where(d => d.DiscountCode.Contains(filter.Code));
+            }
+            if (filter.StartDate != null)
+            {
+                query = query.Where(d => d.StartDate < filter.StartDate);
+            }
+            if (filter.EndDate != null)
+            {
+                query = query.Where(d => d.EndDate > filter.EndDate);
+            }
+
+            #endregion
+
+            #region Status
+
+            List<CustonizedDiscount> list = new List<CustonizedDiscount>();
+            foreach (var discount in filter.Entities)
+            {
+                var custome = new CustonizedDiscount()
+                {
+                    Id = discount.Id,
+                    CreatDate = discount.CreatDate,
+                    DicountPercent = discount.DicountPercent,
+                    DiscountCode = discount.DiscountCode,
+                    StartDate = discount.StartDate,
+                    EndDate = discount.EndDate,
+                    IsDelete = discount.IsDelete,
+                    Useable = discount.Useable,
+                    Status = (filter.StartDate != null && discount.StartDate < DateTime.Now) ? DiscountStatus.NotStartedDate
+                            : (discount.EndDate != null && discount.EndDate >= DateTime.Now) ? DiscountStatus.ExpiredDate
+                            : (discount.Useable != null && discount.Useable < 1) ? DiscountStatus.Finished : DiscountStatus.Active
+
+                };
+                list.Add(custome);
+            };
+
+            #endregion
+
+
+            list.AsQueryable();
+            await filter.Paging((IQueryable<CustonizedDiscount>)list);
+            return filter;
+        }
+    
     }
+}
 }

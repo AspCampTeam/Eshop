@@ -291,5 +291,34 @@ namespace Application.Services
             };
             return res;
         }
+
+        public async Task<bool> DeleteDiscount(int discountId)
+        {
+            return await _repository.DeleteDiscount(discountId);
+        }
+
+        public async Task<bool> AddDiscount(AddDiscountViewModel discount)
+        {
+            return await _repository.AddDiscount(new Discount()
+            {
+                CreatDate = DateTime.Now,
+                DicountPercent = discount.DicountPercent,
+                DiscountCode = discount.DiscountCode,
+                EndDate = discount.EndDate,
+                IsDelete =false,
+                StartDate = discount.StartDate,
+                Useable = discount.Useable
+            });
+        }
+
+        public Task<bool> EditDiscount(EditDiscountViewModel editDiscount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter)
+        {
+            return await _repository.GetAllDiscountForAdmin(filter);
+        }
     }
 }

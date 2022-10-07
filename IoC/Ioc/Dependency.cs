@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Interface;
+using Application.Sender;
 using Application.Services;
 using DataLayer.Repositories;
 using Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using TopLearn.Core.Convertor;
 
 namespace IoC.Ioc
 {

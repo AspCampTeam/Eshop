@@ -7,7 +7,6 @@ using Microsoft.Win32;
 using System.Security.Claims;
 using Application.Sender;
 using Domain.Models.Enums;
-using TopLearn.Core.Convertor;
 using Domain.ViewModels.User;
 using Eshop.Controllers.Shared;
 using Application.Security;

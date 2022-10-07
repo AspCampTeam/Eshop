@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 
-namespace TopLearn.Core.Convertor
+namespace Application.Sender
 {
     public interface IViewRenderService
     {
@@ -31,7 +31,7 @@ namespace TopLearn.Core.Convertor
             _serviceProvider = serviceProvider;
         }
 
-        public  string RenderToStringAsync(string viewName, object model)
+        public string RenderToStringAsync(string viewName, object model)
         {
             var httpContext = new DefaultHttpContext { RequestServices = _serviceProvider };
             var actionContext = new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
@@ -59,7 +59,7 @@ namespace TopLearn.Core.Convertor
                     new HtmlHelperOptions()
                 );
 
-                 viewResult.View.RenderAsync(viewContext);
+                viewResult.View.RenderAsync(viewContext);
                 return sw.ToString();
             }
         }

@@ -7,6 +7,7 @@ using NuGet.Protocol.Plugins;
 using Application.Security;
 using Eshop.Common;
 using Application.Services;
+using Application.StaticTools;
 
 namespace Eshop.Areas.Admin.Controllers.ContactUss
 {
@@ -62,7 +63,7 @@ namespace Eshop.Areas.Admin.Controllers.ContactUss
 
             try
             {
-                SendEmail.Send(answer.Email,$"پاسخ به تماس شما در دسته {answer.Subject}",answer.AnswerBody);
+                SendEmail.Send(answer.Email,$"پاسخ به تماس شما در دسته {answer.Subject}", EmailTemplate.BuildView(answer.Body));
 
             }
             catch

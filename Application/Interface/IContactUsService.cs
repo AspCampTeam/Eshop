@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Enums;
-using Domain.Models;
+using Domain.Models.ContactUss;
 using Domain.ViewModels.ContactUs;
 
 namespace Application.Interface

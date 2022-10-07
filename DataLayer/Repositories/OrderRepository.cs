@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataLayer.DbContext;
 using Domain.Interfaces;
 using Domain.Models.Order;
+using Domain.Models.UserAgg;
 using Domain.ViewModels.Order;
 using Microsoft.EntityFrameworkCore;
 
@@ -98,7 +99,7 @@ namespace DataLayer.Repositories
         {
             var order = await GetOrderById(orderId);
 
-            var price = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Price);
+           // var price = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Price);
 
             var count = order.OrderDetails.Where(c => c.OrderId == orderId).Sum(c => c.Count);
 
@@ -219,6 +220,59 @@ namespace DataLayer.Repositories
                 res[item] = itemData;
             }
             return res;
+        }
+
+        public async Task<Tuple<DiscountUseType, int>> UseDiscount(string code, int userId)
+        {
+            var discount = await _context.Discounts.SingleOrDefaultAsync(d => d.DiscountCode == code);
+
+            if (discount == null)
+                return Tuple.Create(DiscountUseType.NotFound,0 );
+
+            if (discount.StartDate != null && discount.StartDate < DateTime.Now)
+                return Tuple.Create(DiscountUseType.NotStartedDate,0);
+
+            if (discount.EndDate != null && discount.EndDate >= DateTime.Now)
+                return Tuple.Create(DiscountUseType.ExpiredDate, 0);
+
+            if (discount.Useable != null && discount.Useable < 1)
+                return Tuple.Create(DiscountUseType.Finished, 0);
+
+            if (await _context.UserDiscountCodes.AnyAsync(u => u.DiscountId == discount.Id && u.UserId == userId))
+                return Tuple.Create(DiscountUseType.UserUsed, 0);
+
+            if (discount.Useable != null)
+                discount.Useable -= 1;
+
+            await UpdateDiscount(discount);
+
+            await _context.AddAsync(new UserDiscountCode()
+            {
+                CreatDate = DateTime.Now,
+                DiscountId = discount.Id,
+                UserId = userId,
+                IsDelete = false
+            });
+
+            await _context.SaveChangesAsync();
+
+            return Tuple.Create(DiscountUseType.Success,discount.DicountPercent);
+
+
+        }
+
+        public async Task<bool> UpdateDiscount(Discount discount)
+        {
+            _context.Update(discount);
+            try
+            {
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

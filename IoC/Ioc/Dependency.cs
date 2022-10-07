@@ -7,7 +7,6 @@ using Application.Interface;
 using Application.Services;
 using DataLayer.Repositories;
 using Domain.Interfaces;
-using Domain.IRepositories;
 using Microsoft.Extensions.DependencyInjection;
 using TopLearn.Core.Convertor;
 

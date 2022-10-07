@@ -1,6 +1,5 @@
 ﻿using Application.Interface;
 using Application.Services;
-using Domain.IRepositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;

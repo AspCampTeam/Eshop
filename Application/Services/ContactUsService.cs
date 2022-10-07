@@ -8,13 +8,13 @@ using Application.Interface;
 using Application.Security;
 using Application.Sender;
 using Domain.Interfaces;
-using Domain.Models;
 using Domain.Models.Enums;
 using Domain.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Domain.ViewModels.ContactUs;
 using TopLearn.Core.Convertor;
+using Domain.Models.ContactUss;
 
 namespace Application.Services
 {

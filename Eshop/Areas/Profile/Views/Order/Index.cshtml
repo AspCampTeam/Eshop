@@ -81,11 +81,12 @@
 
 <main class="page-content">
     <div class="container">
-        @if (ViewBag.addproduct != null && ViewBag.addproduct==true)
+        @if (ViewBag.addproduct != null && ViewBag.addproduct == true)
         {
             <div id="notificationSweetAlert"> <partial name="_SuccessAlertToastr" /></div>
         }
         <form method="post" asp-controller="Order" asp-action="Index">
+            <input type="hidden" name="orderId" value="@Model.Id" />
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
                     <!-- start of nav-tabs -->
@@ -95,18 +96,17 @@
                                 سبد خرید
                                 <span class="counter fa-num">3</span>
                             </button>
-                          
+
                         </div>
                     </nav>
                     <!-- end of nav-tabs -->
                     <!-- start of tab-content -->
                     <div class="tab-content" id="nav-tabContent">
                         <!-- start of tab-pane -->
-                       
                         <!-- end of tab-pane -->
                         <!-- start of tab-pane -->
-                     
-                            <div class="tab-pane py-4 fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
+
+                        <div class="tab-pane py-4 fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
                             <div class="ui-box bg-white p-2">
                                 <div class="ui-box-content">
                                     <!-- start of cart-items -->
@@ -117,13 +117,13 @@
                                             <div class="cart-item">
                                                 <div class="cart-item--thumbnail">
                                                     <a href="#">
-                                                        <img src="/images/thumb/@item.Product.ProductGalleries.FirstOrDefault(c=>c.ProductId==item.ProductId).ImageName" alt="">
+                                                        <img src="/images/thumb/@item.Product.ProductGalleries.FirstOrDefault(c => c.ProductId == item.ProductId).ImageName" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="cart-item--detail">
                                                     <h2 class="cart-item--title mb-2">
                                                         <a href="#">
-                                                          @item.Product.Title
+                                                            @item.Product.Title
                                                         </a>
                                                     </h2>
                                                     <div class="cart-item--variant mb-2">
@@ -175,14 +175,14 @@
                                                                 </div>
                                                             </div>
                                                             <a href="/profile/DeleteOrderDetail/@item.Id" class="btn btn-link btn-sm text-secondary"><i class="ri-delete-bin-5-line me-1"></i>حذف</a>
-                                                           
+
                                                         </div>
                                                         <div class="cart-item--price fa-num">
-                                                            <div class="cart-item--discount">
-                                                                <span>تخفیف</span>
-                                                                <del>10,000</del>
-                                                                <span class="currency">تومان</span>
-                                                            </div>
+                                                            @* <div class="cart-item--discount">
+                                                        <span>تخفیف</span>
+                                                        <del>10,000</del>
+                                                        <span class="currency">تومان</span>
+                                                        </div>*@
                                                             <div class="cart-item--price-now">
                                                                 <span>@item.Price</span>
                                                                 <span class="currency">تومان</span>
@@ -193,10 +193,8 @@
                                             </div>
                                             <!-- end of cart-item -->
                                             <!-- start of cart-item -->
-
                                             <!-- end of cart-item -->
                                             <!-- start of cart-item -->
-
                                             <!-- end of cart-item -->
                                         </div>
                                         <!-- end of cart-items -->
@@ -204,7 +202,7 @@
                                 </div>
                             </div>
                         </div>
-                      
+
                         <!-- end of tab-pane -->
                     </div>
                     <!-- end of tab-content -->
@@ -212,17 +210,31 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="ui-sticky ui-sticky-top">
                         <!-- start of checkout-bill -->
+
                         <div class="checkout-bill ui-box bg-white mb-5">
-                           
-                            <div class="checkout-bill-row">
-                                <div class="checkout-bill-row-label">تخفیف کالاها</div>
-                                <div class="checkout-bill-row-value">
-                                    <span class="fs-6 text-danger">۵,۰۰۰</span>
-                                    <span class="currency text-danger">تومان</span>
-                                </div>
+
+                            <div class="checkout-bill-row checkout-bill-note">
+                               
+
+                                <label class="label">کد تخفیف</label>
+                                <input  id="discountCode" type="text" class="form-control" placeholder="کد تخفیف">
+                                <button type="button" id="DiscountBTN" onclick="Discount()" class="btn btn-primary px-2">ثبت </button>
+
+                            
                             </div>
+                            @if (ViewBag.DiscountPrice != null)
+                            {
+                                <div class="checkout-bill-row">
+                                    <div class="checkout-bill-row-label">قیمت کالا ها با تخفیف</div>
+                                    <div class="checkout-bill-row-value">
+                                        <span class="fs-6 text-danger">@ViewBag.DiscountPrice</span>
+                                        <span class="currency text-danger">تومان</span>
+                                    </div>
+                                </div>
+                            }
+                            <input type="hidden" name="price" value="@(ViewBag.DiscountPrice!=null?"@ViewBag.DiscountPrice":"@ViewBag.TotalPrice")" />
                             <div class="checkout-bill-row">
-                                <div class="checkout-bill-row-label">جمع سبد خرید</div>
+                                <div class="checkout-bill-row-label"> جمع سبد خرید</div>
                                 <div class="checkout-bill-row-value">
                                     <span class="fs-6"> @ViewBag.TotalPrice </span> <span class="currency">تومان</span>
                                 </div>
@@ -244,28 +256,56 @@
                                 <div class="checkout-bill-row-value">۱۵۰ <span class="fs-7 fw-bold text-muted">امتیاز</span></div>
                             </div>
                         </div>
-                        <!-- end of checkout-bill -->
-                        <!-- start of widget -->
-                        <div class="widget p-0">
-                            <div class="widget-content widget--free-shipping">
-                                <div class="free-shipping--detail">
-                                    <div class="title">ارسال رایگان سفارش</div>
-                                    <div class="subtitle">سفارش‌های بالای ۳۰۰ هزار تومان</div>
-                                </div>
-                                <div class="free-shipping--banner">
-                                    <img src="/site/theme-assets/images/theme/free-shipping--banner.png" alt="ارسال رایگان سفارش">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of widget -->
                     </div>
                 </div>
             </div>
         </form>
+        <!-- end of checkout-bill -->
+        <!-- start of widget -->
+        <div class="widget p-0">
+            <div class="widget-content widget--free-shipping">
+                <div class="free-shipping--detail">
+                    <div class="title">ارسال رایگان سفارش</div>
+                    <div class="subtitle">سفارش‌های بالای ۳۰۰ هزار تومان</div>
+                </div>
+                <div class="free-shipping--banner">
+                    <img src="/site/theme-assets/images/theme/free-shipping--banner.png" alt="ارسال رایگان سفارش">
+                </div>
+            </div>
+        </div>
+        <!-- end of widget -->
     </div>
+
+
+
 </main>
 @section Section{
     <script>
+
+       
+
+        function Discount() {
+            $.ajax({
+                url: "/Profile/UseDiscount/@Model.Id",
+                type: "get",
+                data: {
+                    code: $("#discountCode").val()
+                },
+                beforeSend: function () {
+                    //open_waiting();
+                },
+                success: function (res) {
+                    //close_waiting();
+                    //$("#DateTimeModal").modal("show");
+                },
+                error: function () {
+                    //close_waiting();
+                    //ShowMessage("اعلان", "عملیات با خطا مواجه شد لطفا مجدد تلاش کنید .", "error");
+                }
+            });
+        }
+
+
         $('#notificationSweetAlert').fadeOut(5000)
     </script>
 }

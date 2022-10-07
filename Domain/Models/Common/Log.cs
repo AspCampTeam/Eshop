@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Enums;
 using Domain.Models.Product;
+using Domain.Models.UserAgg;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

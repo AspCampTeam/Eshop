@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer.DbContext;
 using Domain.Interfaces;
-using Domain.Models;
 using Domain.Models.Role;
+using Domain.Models.UserAgg;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repositories

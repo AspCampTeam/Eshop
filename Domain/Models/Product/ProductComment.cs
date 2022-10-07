@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Enums;
+using Domain.Models.UserAgg;
 using Domain.Models.Votes;
 
 namespace Domain.Models.Product

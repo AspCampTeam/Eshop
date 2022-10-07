@@ -23,7 +23,7 @@ namespace Application.Interface
         #region site
         Task<int> GetTotalPrice(int orderId);
         Task<Order> GetOrderByUserId(int userId);
-        Task<int> AddOrderFromUser(int userId, int productId,int? productPriceId);
+        Task<int> AddOrderFromUser(int userId, int productId, int? productPriceId);
 
         Task<List<OrderDetail>> GetListOrderDetailsByOrderId(int orderId);
         Task<int> AddOrderDetailProductFeature(OrderDetailProductFeature model);
@@ -31,6 +31,12 @@ namespace Application.Interface
         Task<bool> UpdateOrderDetail(OrderDetail model);
 
         Task<OrderDetail> GetOrderDetailById(int orderDetailId);
+
+        #endregion
+
+        #region Discount
+
+        Task<Tuple<DiscountUseType, int>> UseDiscount(int userId, int totalPrice, string code);
 
         #endregion
 

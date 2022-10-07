@@ -238,6 +238,21 @@ namespace Application.Services
             return orderDetail;
         }
 
+        public async Task<Tuple<DiscountUseType, int>> UseDiscount(int userId, int totalPrice, string code)
+        {
+            var discount =  await _repository.UseDiscount(code, userId);
+
+            if (discount.Item1!=DiscountUseType.Success)
+            {
+                return Tuple.Create(discount.Item1, totalPrice);
+            }
+            int percent =(totalPrice * discount.Item2) / 100;
+
+            int newPrice = totalPrice - percent;
+
+            return Tuple.Create(discount.Item1, newPrice);
+        }
+
         public async Task<List<OrderDetail>> GetOrderDetailByOrderId(int orderId)
         {
             return await _repository.GetOrderDetailByOrderId(orderId);

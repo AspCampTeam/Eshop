@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer.DbContext;
 using Domain.Interfaces;
-using Domain.Models;
+using Domain.Models.ContactUss;
 using Domain.Models.Enums;
 using Domain.ViewModels.ContactUs;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,5 @@
 ﻿using Application.Interface;
 using Domain.Interfaces;
-using Domain.IRepositories;
 using Domain.ViewModels.Log;
 using Domain.ViewModels.Ticket;
 using Microsoft.AspNetCore.Mvc;

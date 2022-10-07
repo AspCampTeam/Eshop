@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Product;
+using Domain.Models.UserAgg;
 
 namespace Domain.Models.Votes
 {

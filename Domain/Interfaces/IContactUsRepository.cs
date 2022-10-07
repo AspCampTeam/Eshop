@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Models;
+using Domain.Models.ContactUss;
 using Domain.ViewModels.ContactUs;
 
 namespace Domain.Interfaces

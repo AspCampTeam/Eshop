@@ -1,18 +1,17 @@
 ﻿using Application.Interface;
 using Application.Services;
-using Domain.IRepositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
 using System.Security.Claims;
 using Application.Sender;
-using Domain.Models;
 using Domain.Models.Enums;
 using TopLearn.Core.Convertor;
 using Domain.ViewModels.User;
 using Eshop.Controllers.Shared;
 using Application.Security;
+using Domain.Models.UserAgg;
 
 namespace Eshop.Controllers
 {

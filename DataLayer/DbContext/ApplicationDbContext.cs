@@ -1,5 +1,4 @@
-﻿using Domain.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +13,9 @@ using Domain.Models.Enums;
 using Domain.Models.Role;
 using Domain.Models.FAQ;
 using Domain.Models.Votes;
+using Domain.ViewModels.Order;
+using Domain.Models.ContactUss;
+using Domain.Models.UserAgg;
 
 namespace DataLayer.DbContext
 {
@@ -45,7 +47,8 @@ namespace DataLayer.DbContext
         public DbSet<OrderDetailProductFeature> OrderDetailProductFeatures { get; set; }
         public DbSet<DynamicLink> DynamicLinks { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
-      
+        public DbSet<UserDiscountCode> UserDiscountCodes { get; set; }
+
         public DbSet<RolePermission> RolePermissions { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
@@ -130,8 +133,9 @@ namespace DataLayer.DbContext
             modelBuilder.Entity<RolePermission>()
                 .HasQueryFilter(c => !c.IsDelete);
 
-         
-           
+
+            modelBuilder.Entity<UserDiscountCode>()
+                .HasQueryFilter(c => !c.IsDelete);
 
             modelBuilder.Entity<UserRoles>()
                 .HasQueryFilter(c => !c.IsDelete);

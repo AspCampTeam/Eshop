@@ -1,7 +1,6 @@
 ﻿using Application.Interface;
 using Application.Security;
 using Domain.Interfaces;
-using Domain.Models;
 using Domain.Models.Role;
 using Domain.ViewModels.User;
 using Eshop.Common;
@@ -47,7 +46,7 @@ namespace Eshop.Areas.Admin.Controllers.User
                 return View(user);
             }
 
-            Domain.Models.User IsExist = _userService.GetUserByEmail(user.Email);
+            Domain.Models.UserAgg.User IsExist = _userService.GetUserByEmail(user.Email);
             if (IsExist != null)
             {
                 ViewBag.Error = true;

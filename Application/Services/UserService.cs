@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Interface;
 using DataLayer.Repositories;
-using Domain.IRepositories;
-using Domain.Models;
 using Domain.Models.Enums;
 using Domain.ViewModels.User;
 using TopLearn.Core.Convertor;
 using TopLearn.Core.Generator;
 using Application.Security;
+using Domain.Interfaces;
+using Domain.Models.UserAgg;
 
 namespace Application.Services
 {

@@ -1,7 +1,6 @@
 ﻿using DataLayer.DbContext;
 using Domain.Interfaces;
 using Domain.Models.FAQ;
-using Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.FAQ;
 using Microsoft.EntityFrameworkCore;
+using Domain.ViewModels.FAQ;
 
 namespace DataLayer.Repositories
 {

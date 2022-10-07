@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Domain.Models.ContactUss;
 
 namespace Domain.ViewModels.ContactUs
 {
-    public class FilterContactUssViewModel : BasePaging<Models.ContactUss>
+    public class FilterContactUssViewModel : BasePaging<ContactUss>
     {
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }

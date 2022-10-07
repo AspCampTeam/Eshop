@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Interface;
 using Domain.Interfaces;
-using Domain.Models;
 using Domain.Models.Role;
+using Domain.Models.UserAgg;
 using Domain.ViewModels.Permission;
 
 namespace Application.Services

@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Banner;
-using TopLearn.Core.Generator;
+using Application.Security;
 
 namespace Application.Services
 {

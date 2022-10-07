@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.Enums;
+using Domain.Models.UserAgg;
 
 namespace Domain.Models.Tickets
 {

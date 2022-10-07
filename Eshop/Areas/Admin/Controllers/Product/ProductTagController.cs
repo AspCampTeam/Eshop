@@ -4,7 +4,7 @@ using Domain.ViewModels.Product_Tags;
 using Eshop.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Eshop.Areas.Admin.Controllers
+namespace Eshop.Areas.Admin.Controllers.Product
 {
     [CheckPermission(Permissions.ProductTags)]
     public class ProductTagController : AdminBaseController
@@ -48,7 +48,7 @@ namespace Eshop.Areas.Admin.Controllers
             ViewBag.IsDeleteing = true;
             var dbTag = await _productService.GetTagById(id);
             await _productService.DeleteTag(id);
-            await _loggerService.AddLog((int) tag.TagId, User.GetUserId(), "حذف تگ");
+            await _loggerService.AddLog((int)tag.TagId, User.GetUserId(), "حذف تگ");
             return Redirect("/Admin/Tags/" + id);
         }
 

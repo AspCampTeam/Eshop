@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Security;
 using Eshop.Common;
 
-namespace Eshop.Areas.Admin.Controllers
+namespace Eshop.Areas.Admin.Controllers.Common
 {
     public class DynamicLinkController : AdminBaseController
     {
@@ -59,7 +59,7 @@ namespace Eshop.Areas.Admin.Controllers
         {
             var res = await _dynamicLinkService.GetViewModelLinkById(id);
             res.Id = id;
-            
+
             return View(res);
         }
 
@@ -73,10 +73,10 @@ namespace Eshop.Areas.Admin.Controllers
                 return View(model);
             }
 
-           
+
             var status = await _dynamicLinkService.Updatelink(model);
 
-            if (status!=true)
+            if (status != true)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace Eshop.Areas.Admin.Controllers
         {
             var res = await _dynamicLinkService.GetLinkById(id);
 
-            if (! await _dynamicLinkService.Deletelink(res.Id))
+            if (!await _dynamicLinkService.Deletelink(res.Id))
             {
                 return BadRequest();
             }

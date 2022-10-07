@@ -18,7 +18,6 @@ namespace Eshop.Areas.Profile.Controllers
         [Route("Orders/{id}")]
         public async Task<IActionResult> Index(int id)
         {
-
             var res = await _orderService.GetOrderByUserId(id);
             var TotPrice = await _orderService.GetTotalPrice(res.Id);
             ViewBag.TotalPrice = TotPrice;
@@ -26,10 +25,11 @@ namespace Eshop.Areas.Profile.Controllers
         }
         [Route("Orders/{id}")]
         [HttpPost]
-        public async Task<IActionResult> Index(Order model)
+        public async Task<IActionResult> Index(Order model,int price)
         {
-            var order = await _orderService.GetOrderById(model.Id);
-            var payment = new ZarinpalSandbox.Payment(await _orderService.GetTotalPrice(model.Id));
+           // var order = await _orderService.GetOrderById(model.Id);
+        //   price = Vi
+            var payment = new ZarinpalSandbox.Payment(price);
 
             var res = payment.PaymentRequest("پرداخت سفارش", "https://localhost:44348/OnlinePayment/" + model.Id);
 
@@ -51,7 +51,7 @@ namespace Eshop.Areas.Profile.Controllers
                 return BadRequest();
             }
 
-            return Redirect("/Profile/Orders/" + User.GetUserId()+"?addproduct=true");
+            return Redirect("/Profile/Orders/" + User.GetUserId() + "?addproduct=true");
         }
 
         [Route("OrderDetail/{id}")]
@@ -70,7 +70,7 @@ namespace Eshop.Areas.Profile.Controllers
         {
 
             var orderDetail = await _orderService.GetOrderDetailById(id);
-            if (orderDetail==null)
+            if (orderDetail == null)
             {
                 return NotFound();
             }
@@ -109,11 +109,22 @@ namespace Eshop.Areas.Profile.Controllers
                 return NotFound();
             }
 
-            orderDetail.IsDelete =true;
+            orderDetail.IsDelete = true;
 
             var res = await _orderService.UpdateOrderDetail(orderDetail);
 
             return Redirect("/Profile/Orders/" + User.GetUserId());
+        }
+
+        [Route("UseDiscount/{id}")]
+        public async Task<IActionResult> UseDiscount(int id, string code)
+        {
+            var discount = await _orderService.UseDiscount(User.GetUserId(),
+                await _orderService.GetTotalPrice(id), code);
+
+            ModelState.AddModelError("Discount", discount.Item1.GetEnumDisPlayName());
+            ViewBag.DiscountPrice = discount.Item2;
+            return Redirect("Orders/" + id);
         }
     }
 }

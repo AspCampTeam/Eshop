@@ -1,7 +1,6 @@
 ﻿using Application.Interface;
 using Application.Security;
 using Domain.ViewModels;
-using E.Application.Security;
 using Microsoft.AspNetCore.Mvc;
 using Domain.ViewModels.ContactUs;
 using Eshop.Controllers.Shared;

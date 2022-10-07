@@ -1,5 +1,4 @@
-﻿using Domain.IRepositories;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
@@ -8,7 +7,6 @@ using Application.Interface;
 using Application.Sender;
 using Domain.Models;
 using Domain.Models.Enums;
-using TopLearn.Core.Convertor;
 using Domain.ViewModels.User;
 
 

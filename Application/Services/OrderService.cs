@@ -238,6 +238,21 @@ namespace Application.Services
             return orderDetail;
         }
 
+        public async Task<Tuple<DiscountUseType, int>> UseDiscount(int userId, int totalPrice, string code)
+        {
+            var discount =  await _repository.UseDiscount(code, userId);
+
+            if (discount.Item1!=DiscountUseType.Success)
+            {
+                return Tuple.Create(discount.Item1, totalPrice);
+            }
+            int percent =(totalPrice * discount.Item2) / 100;
+
+            int newPrice = totalPrice - percent;
+
+            return Tuple.Create(discount.Item1, newPrice);
+        }
+
         public async Task<List<OrderDetail>> GetOrderDetailByOrderId(int orderId)
         {
             return await _repository.GetOrderDetailByOrderId(orderId);
@@ -274,6 +289,58 @@ namespace Application.Services
             {
                 ChartData = await _repository.GetWeeklySalesOrderForChart()
             };
+            return res;
+        }
+
+        public async Task<bool> DeleteDiscount(int discountId)
+        {
+            return await _repository.DeleteDiscount(discountId);
+        }
+
+        public async Task<bool> AddDiscount(AddDiscountViewModel discount)
+        {
+            return await _repository.AddDiscount(new Discount()
+            {
+                CreatDate = DateTime.Now,
+                DicountPercent = discount.DicountPercent,
+                DiscountCode = discount.DiscountCode,
+                EndDate = discount.EndDate,
+                IsDelete =false,
+                StartDate = discount.StartDate,
+                Useable = discount.Useable
+            });
+        }
+
+        public async Task<bool> EditDiscount(EditDiscountViewModel editDiscount)
+        {
+            var discount = await _repository.GetDiscountById(editDiscount.Id);
+            discount.StartDate = editDiscount.StartDate;
+            discount.EndDate = editDiscount.EndDate;
+            discount.Useable = editDiscount.Useable;
+            discount.DiscountCode = editDiscount.DiscountCode;
+            discount.DicountPercent = editDiscount.DicountPercent;
+
+            return await _repository.UpdateDiscount(discount);
+        }
+
+        public async Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter)
+        {
+            return await _repository.GetAllDiscountForAdmin(filter);
+        }
+
+        public async Task<EditDiscountViewModel> GetDiscountForAdmin(int discountId)
+        {
+            var discount = await _repository.GetDiscountById(discountId);
+            var res =  new EditDiscountViewModel()
+            {
+                DicountPercent = discount.DicountPercent,
+                Id = discount.Id,
+                DiscountCode = discount.DiscountCode,
+                EndDate = discount.EndDate ,
+                StartDate = discount.StartDate ,
+                Useable = discount.Useable, 
+            };
+
             return res;
         }
     }

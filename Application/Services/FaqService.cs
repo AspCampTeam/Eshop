@@ -1,13 +1,13 @@
 ﻿using Application.Interface;
 using Domain.Interfaces;
 using Domain.Models.FAQ;
-using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models.FAQ;
+using Domain.ViewModels.FAQ;
 
 namespace Application.Services
 {

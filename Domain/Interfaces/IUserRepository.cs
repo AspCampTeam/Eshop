@@ -1,9 +1,7 @@
-﻿
-using Domain.Models;
-using Domain.Models;
+﻿using Domain.Models.UserAgg;
 using Domain.ViewModels.User;
 
-namespace Domain.IRepositories
+namespace Domain.Interfaces
 {
     public interface IUserRepository
 
@@ -16,13 +14,13 @@ namespace Domain.IRepositories
         bool EmailIsExist(string email);
         User? GstUserByActiveCode(string activeCode);
         List<User> GetAllUsers();
-        List<GetUserForAdminViewMdoel> GetUsersForAdmin(string emailFilter,string phoneNumberFilter,int pageId);
+        List<GetUserForAdminViewMdoel> GetUsersForAdmin(string emailFilter, string phoneNumberFilter, int pageId);
         User GetUserByEmail(string email);
         void Save();
-        User GetUserByEmailAndPassword(string email,string password);
+        User GetUserByEmailAndPassword(string email, string password);
         bool ComparePassWord(string email, string passWord);
 
-        
+
 
     }
 }

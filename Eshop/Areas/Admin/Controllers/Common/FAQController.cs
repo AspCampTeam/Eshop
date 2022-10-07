@@ -1,6 +1,6 @@
 ﻿using Application.Interface;
 using Application.Security;
-using Domain.ViewModels;
+using Domain.ViewModels.FAQ;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Operations;
 

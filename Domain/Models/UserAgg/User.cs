@@ -11,9 +11,9 @@ using Domain.Models.Order;
 using Domain.Models.Common;
 using Domain.Models.Votes;
 
-namespace Domain.Models
+namespace Domain.Models.UserAgg
 {
-    public class User:BaseEntity<int>
+    public class User : BaseEntity<int>
     {
         [Display(Name = "نام")]
         [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
@@ -38,7 +38,7 @@ namespace Domain.Models
         [Display(Name = "کد فعالسازی")]
         [MaxLength(50, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
         [Required]
-        public string ActiveCode {  get; set; }
+        public string ActiveCode { get; set; }
         [Display(Name = "وضعیت")]
         [Required]
         public Status Status { get; set; }
@@ -60,6 +60,8 @@ namespace Domain.Models
         public List<Log> Logs { get; set; }
         public List<ProductVotes> ProductVotesList { get; set; }
         public List<CommentVote> CommentVotes { get; set; }
+        public List<UserDiscountCode> DiscountCodes { get; set; }
+
         #endregion
 
     }

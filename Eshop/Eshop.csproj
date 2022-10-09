@@ -57,6 +57,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\ErrorHandler\NotFound.cshtml" />
+    <None Include="Views\ErrorHandler\ServerError.cshtml" />
+    <None Include="wwwroot\css\404style.css" />
     <None Include="wwwroot\js\extensions\vendors\extensions\sweetalert2.all.min.js" />
     <None Include="wwwroot\js\extensions\vendors\extensions\toastr.min.js" />
     <None Include="wwwroot\js\extensions\sweet-alerts.js" />

@@ -46,6 +46,18 @@ namespace Domain.Interfaces
 
         #endregion
 
+        #region Discount
+
+        Task<Tuple<DiscountUseType,int>> UseDiscount(string code,int userId);
+
+        Task<bool> UpdateDiscount(Discount discount);
+        Task<bool> DeleteDiscount(int discountId);
+        Task<bool> AddDiscount(Discount discount);
+        Task<FilterDiscountViewModel> GetAllDiscountForAdmin(FilterDiscountViewModel filter);
+        Task<Discount> GetDiscountById(int discount);
+
+        #endregion
+
         #region Shared
 
         Task<List<OrderDetail>> GetOrderDetailByOrderId(int orderId);

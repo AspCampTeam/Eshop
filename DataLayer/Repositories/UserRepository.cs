@@ -1,6 +1,4 @@
 ﻿using DataLayer.DbContext;
-using Domain.IRepositories;
-using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +8,8 @@ using Domain.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 using IQueryable = System.Linq.IQueryable;
 using Domain.ViewModels.User;
+using Domain.Interfaces;
+using Domain.Models.UserAgg;
 
 namespace DataLayer.Repositories
 {

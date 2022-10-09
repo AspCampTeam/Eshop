@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace E.Application.Security
+namespace Application.Security
 {
     public static class HttpContextManger
     {

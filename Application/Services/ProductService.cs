@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Convertor;
 using Application.Interface;
+using Application.Security;
 using Domain.Interfaces;
 using Domain.Models;
 using Domain.Models.Product;
@@ -13,7 +14,6 @@ using Domain.ViewModels.Product_Comment;
 using Domain.ViewModels.Product_Tags;
 using Domain.ViewModels.ProductCategory;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using TopLearn.Core.Generator;
 
 namespace Application.Services
 {

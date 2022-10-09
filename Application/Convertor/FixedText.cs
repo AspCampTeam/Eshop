@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopLearn.Core.Convertor
+namespace Application.Convertor
 {
-   public class FixedText
+    public class FixedText
     {
         public static string FixEmail(string email)
         {

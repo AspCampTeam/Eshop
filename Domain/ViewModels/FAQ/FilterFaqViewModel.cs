@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.ViewModels
+namespace Domain.ViewModels.FAQ
 {
-    public class FilterFaqViewModel : BasePaging<FAQ>
+    public class FilterFaqViewModel : BasePaging<Models.FAQ.FAQ>
     {
         public string Question { get; set; }
         public string Answer { get; set; }

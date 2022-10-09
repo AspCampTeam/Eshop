@@ -6,7 +6,7 @@ using Eshop.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Eshop.Areas.Admin.Controllers
+namespace Eshop.Areas.Admin.Controllers.Product
 {
     public class ProductController : AdminBaseController
     {
@@ -21,7 +21,7 @@ namespace Eshop.Areas.Admin.Controllers
 
         [Route("Product")]
         [CheckPermission(Permissions.ProductManagement)]
-        public async Task<IActionResult> Index(FilterProductViewModel filter,int startPrice=0,int endPrice=0)
+        public async Task<IActionResult> Index(FilterProductViewModel filter, int startPrice = 0, int endPrice = 0)
         {
             var result = await _productService.GetProductForAdmin(filter, startPrice, endPrice);
 
@@ -38,8 +38,8 @@ namespace Eshop.Areas.Admin.Controllers
             ViewData["Categories"] = new SelectList(cat, "Value", "Text");
             var subcat = await _productService.GetSubCategoriesForAddProductAdmin(int.Parse(cat.First().Value));
             ViewData["SubCategories"] = new SelectList(subcat, "Value", "Text");
-            
-            ViewData["Features"] = await _productService.GetFeaturesForAddProduct(); 
+
+            ViewData["Features"] = await _productService.GetFeaturesForAddProduct();
             ViewData["FeaturesValues"] = await _productService.GetAllFeatureValues();
 
             return View();
@@ -47,7 +47,7 @@ namespace Eshop.Areas.Admin.Controllers
 
         [Route("AddProduct")]
         [HttpPost]
-        public async Task<IActionResult> AddProduct(CreatProductViewModel model,List<int> selctedcategor,List<int> feacherValues)
+        public async Task<IActionResult> AddProduct(CreatProductViewModel model, List<int> selctedcategor, List<int> feacherValues)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace Eshop.Areas.Admin.Controllers
 
         [Route("EditProduct/{id}")]
         [HttpPost]
-        public async Task<IActionResult> EditProduct(EditProductViewModel model,List<int> selctedcategor, List<int> feacherValues)
+        public async Task<IActionResult> EditProduct(EditProductViewModel model, List<int> selctedcategor, List<int> feacherValues)
         {
             if (!ModelState.IsValid)
             {
@@ -97,11 +97,11 @@ namespace Eshop.Areas.Admin.Controllers
             model.SubGroupId = selctedcategor;
             model.FeatureValues = feacherValues;
 
-            if (! await _productService.UpdateProductFromAdmin(model))
+            if (!await _productService.UpdateProductFromAdmin(model))
             {
                 return NotFound();
             }
-            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "ویرایش محصول");
+            await _loggerService.AddLog(model.Id, User.GetUserId(), "ویرایش محصول");
             return Redirect("/Admin/Product");
         }
         #endregion
@@ -112,7 +112,7 @@ namespace Eshop.Areas.Admin.Controllers
         [CheckPermission(Permissions.DeleteProduct)]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var product= await _productService.GetProductFromAdmin(id);
+            var product = await _productService.GetProductFromAdmin(id);
             return View(product);
         }
         [Route("DeleteProduct/{id}")]
@@ -120,11 +120,11 @@ namespace Eshop.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteProduct(EditProductViewModel model)
         {
             var res = await _productService.DeleteProductFromAdmin(model);
-            if (res==false)
+            if (res == false)
             {
                 return NotFound();
             }
-            await _loggerService.AddLog((int)model.Id, User.GetUserId(), "حذف محصول");
+            await _loggerService.AddLog(model.Id, User.GetUserId(), "حذف محصول");
             return Redirect("/Admin/Product");
         }
         #endregion
@@ -133,14 +133,14 @@ namespace Eshop.Areas.Admin.Controllers
         [Route("ReturnFeatureJson/{id}")]
         public async Task<IActionResult> FeaturePartial(int id)
         {
-               var res= await _productService.GetFeaturesForAddProduct();
-               ViewData["Features"] = res;
-               ViewData["productId"] = id;
-                var result= await _productService.GetAllFeaturesSelected(id);
-                ViewData["ProductFeature"] = result;
+            var res = await _productService.GetFeaturesForAddProduct();
+            ViewData["Features"] = res;
+            ViewData["productId"] = id;
+            var result = await _productService.GetAllFeaturesSelected(id);
+            ViewData["ProductFeature"] = result;
             ViewData["FeaturesValues"] = await _productService.GetAllFeatureValues();
             var editViewModel = await _productService.GetProductFromAdmin(id);
-            return PartialView("ProductFeaturePartial",editViewModel);
+            return PartialView("ProductFeaturePartial", editViewModel);
         }
 
 
@@ -148,9 +148,9 @@ namespace Eshop.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> AddFeature(List<int> featureValues, int plusPrice, int productId)
         {
-          var res=  await _productService.AddFeatureToProduct(featureValues, plusPrice, productId);
+            var res = await _productService.AddFeatureToProduct(featureValues, plusPrice, productId);
 
-          return RedirectToAction("FeaturePartial");
+            return RedirectToAction("FeaturePartial");
         }
 
 
@@ -158,7 +158,7 @@ namespace Eshop.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> RemoveFeatureResult(int priceId)
         {
-          var res=  await _productService.DeleteFeatureFromProduct(priceId);
+            var res = await _productService.DeleteFeatureFromProduct(priceId);
             return RedirectToAction("FeaturePartial");
 
         }

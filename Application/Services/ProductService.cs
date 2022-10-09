@@ -125,6 +125,11 @@ namespace Application.Services
             return res;
         }
 
+        public async Task<List<string>> GetProductTitleForSearch(string term)
+        {
+            return await _productRepository.GetProductTitleForSearch(term);
+        }
+
         public Task<FilterProductViewModel> GetProductForAdmin(FilterProductViewModel filter, int StartPrice = 0, int EndPrice = 0)
         {
             return _productRepository.GetProductForAdmin(filter, StartPrice, EndPrice);
@@ -320,6 +325,11 @@ namespace Application.Services
         {
             var getProduct = await _productRepository.GetProductById(product.Id);
             return await _productRepository.DeleteProductFromAdmin(getProduct);
+        }
+
+        public Task<List<Product>> GetSimilarProduct(int productId)
+        {
+            return _productRepository.GetSimilarProduct(productId);
         }
 
         public Task<List<ProductCartViewModel>> GetAllProductForIndex()

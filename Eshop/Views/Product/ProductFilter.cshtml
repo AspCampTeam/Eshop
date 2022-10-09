@@ -385,8 +385,8 @@
         <div class="widget-title widget-title--collapse-btn" data-bs-toggle="collapse" data-bs-target="#collapsePriceFilter" aria-expanded="false" aria-controls="collapsePriceFilter" role="button">محدوده قیمت</div>
         <div class="widget-content widget--search fa-num collapse" id="collapsePriceFilter">
 
-            <div style="margin: 20px; margin-left: 30px" id="searchable_filter" class="dataTables_filter small">
-                <div class="range-slider">
+            <div  id="searchable_filter" class="dataTables_filter small">
+                <div style="margin-bottom: 10px" class="range-slider ">
 
                     <input asp-for="StartPrice" value="" class="rangepriccce" min="0" max="10000000" step="500" type="range"/>
                     <input asp-for="EndPrice" value="" class="rangepriccce" min="0" max="10000000" step="500" type="range"/>

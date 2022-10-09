@@ -133,7 +133,7 @@ namespace Application.Interface
         #endregion
 
         #region Product Site
-
+        Task<List<Product>> GetSimilarProduct(int productId);
         /// <summary>
         ///     Get Product For Site Index
         /// </summary>
@@ -159,6 +159,8 @@ namespace Application.Interface
         /// <param name="productId"></param>
         /// <returns></returns>
         Task<ProductCartViewModel> GetProductByIdForCart(int productId);
+
+        Task<List<string>> GetProductTitleForSearch(string term);
 
         #endregion
 

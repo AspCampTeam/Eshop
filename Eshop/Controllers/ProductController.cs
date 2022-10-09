@@ -23,16 +23,19 @@ namespace Eshop.Controllers
         }
 
         #endregion
-
+        
         [Route("Product/{id}")]
         public async Task<IActionResult> Index(int id, bool comment = false)
         {
             var product = await _productService.GetProductByIdForDetail(id);
+            var r = 
              ViewData["Features"]  =await _productService.GetAllFeaturesSelected(id);
              var res = await _productService.GetAllPricesOfProduct(id);
              ViewData["productPrice"] = res;
              ViewData["FeaturevValues"] = await _productService.GetAllFeatureValues();
              ViewData["Prices"] =await _productService.GetAllPricesOfProduct(id);
+                var similar= await _productService.GetSimilarProduct(id);
+                ViewData["Similar"] = similar;
             if (comment == true)
             {
                 ViewBag.Comment = true;

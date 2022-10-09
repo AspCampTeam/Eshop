@@ -208,6 +208,32 @@ namespace DataLayer.Repositories
 
         }
 
+        public async Task<List<Product>> GetSimilarProduct(int productId)
+
+        {
+            var product = await GetProductById(productId);
+            var tt = _context.ProductSelectedCategories.FirstOrDefault(c=>c.ProductId==product.Id).CategoryId;
+            var catId = _context.ProductSelectedCategories.Include(c=>c.Product).ThenInclude(c=>c.ProductGalleries).Where(c => c.CategoryId == tt).Select(c => c.Product).ToList();
+           // var cat = _context.ProductSelectedCategories.Where(c => c.CategoryId == tt).ToList();
+            //List<Product> res = new List<Product>(); 
+
+            //foreach (var item in catId)
+            //{
+            //    if (item != null)
+            //    {
+
+            //        res.Add(item);
+            //    }
+            //}
+
+            return catId;
+        }
+
+        public async Task<List<string>> GetProductTitleForSearch(string term)
+        {
+            return await _context.Products.Where(c => c.Title.Contains(term)).Select(c => c.Title).ToListAsync();
+        }
+
         public async Task<FilterProductViewModel> GetProductForAdmin(FilterProductViewModel filter, int StartPrice = 0, int EndPrice = 0)
         {
             var query = _context.Products.AsQueryable();
@@ -572,27 +598,27 @@ namespace DataLayer.Repositories
                 case "all":
                     break;
                 case "expensive":
-                {
-                    query = query.OrderByDescending(c => c.Product.Price);
+                    {
+                        query = query.OrderByDescending(c => c.Product.Price);
 
-                }
+                    }
                     break;
                 case "cheep":
-                {
-                    query = query.OrderBy(c => c.Product.Price);
+                    {
+                        query = query.OrderBy(c => c.Product.Price);
 
-                }
+                    }
                     break;
                 case "newest":
-                {
-                    query = query.OrderByDescending(c => c.Product.CreatDate);
+                    {
+                        query = query.OrderByDescending(c => c.Product.CreatDate);
 
-                }
+                    }
                     break;
                 case "popular":
-                {
-                    query = query.OrderByDescending(c => c.Product.FavoriteProducts.Count);
-                }
+                    {
+                        query = query.OrderByDescending(c => c.Product.FavoriteProducts.Count);
+                    }
                     break;
             }
 
@@ -655,13 +681,13 @@ namespace DataLayer.Repositories
             var res = await GetFeatureById(feature.Id);
 
             res.productSelectedFeatures = feature.productSelectedFeatures;
-            res.FeatureValues=feature.FeatureValues;
-            res.Title=feature.Title;
-            res.Type=feature.Type;
+            res.FeatureValues = feature.FeatureValues;
+            res.Title = feature.Title;
+            res.Type = feature.Type;
 
             _context.Features.Update(res);
-          await  _context.SaveChangesAsync();
-          return true;
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> DeleteFeature(int id)
@@ -692,7 +718,7 @@ namespace DataLayer.Repositories
             }
             gallery.IsDelete = true;
             _context.ProductGalleries.Update(gallery);
-          await  _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return true;
         }
 
@@ -742,7 +768,7 @@ namespace DataLayer.Repositories
                 .ThenInclude(p => p.ProductCategory)
                 .Include(p => p.ProductGalleries)
                 .Include(p => p.productPrices)
-                .ThenInclude(p => p.productSelectedFeatures).ThenInclude(c=>c.Feature).ThenInclude(c=>c.FeatureValues)
+                .ThenInclude(p => p.productSelectedFeatures).ThenInclude(c => c.Feature).ThenInclude(c => c.FeatureValues)
                 .FirstOrDefaultAsync(p => p.Id == productId);
         }
 
@@ -818,7 +844,7 @@ namespace DataLayer.Repositories
         public async Task<List<Feature>> GetAllFetures()
         {
             var res = await _context.Features.Include(v => v.FeatureValues)
-                .Include(v => v.productSelectedFeatures).ThenInclude(c=>c.productPrice).ToListAsync();
+                .Include(v => v.productSelectedFeatures).ThenInclude(c => c.productPrice).ToListAsync();
             return res;
         }
 
@@ -934,13 +960,13 @@ namespace DataLayer.Repositories
 
         public async Task<List<ProductSelectedFeature>> GetFeaturesByProductId(int productId)
         {
-            var qurey =await _context.ProductPrices.Where(p => p.ProductId == productId)
+            var qurey = await _context.ProductPrices.Where(p => p.ProductId == productId)
                .ToListAsync();
-            var res = qurey.Select(c=>c.Id);
+            var res = qurey.Select(c => c.Id);
             var res2 = _context.ProductSelectedFeatures
-                .Include(p=>p.Feature)
-                .Where(p => res.Any(a=>a==p.ProductPriceId));
-            
+                .Include(p => p.Feature)
+                .Where(p => res.Any(a => a == p.ProductPriceId));
+
             return await res2.ToListAsync();
 
 
@@ -948,11 +974,11 @@ namespace DataLayer.Repositories
 
         public async Task<bool> RemoveProductPrice(int priceId)
         {
-            var price =await _context.ProductPrices.FirstOrDefaultAsync(p => p.Id == priceId);
+            var price = await _context.ProductPrices.FirstOrDefaultAsync(p => p.Id == priceId);
             price.IsDelete = true;
             try
             {
-                 _context.Update(price);
+                _context.Update(price);
                 await _context.SaveChangesAsync();
             }
             catch
@@ -964,12 +990,12 @@ namespace DataLayer.Repositories
 
         public async Task<bool> RemoveFeatureFromProduct(int priceId)
         {
-            var productFeatures =await GetAllFeaturesByProductPriceId(priceId);
+            var productFeatures = await GetAllFeaturesByProductPriceId(priceId);
             foreach (var item in productFeatures)
             {
                 item.IsDelete = false;
             }
-            
+
             try
             {
                 _context.Update(productFeatures);

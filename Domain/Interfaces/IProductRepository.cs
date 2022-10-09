@@ -36,7 +36,8 @@ namespace Domain.Interfaces
         Task<List<ProductCartViewModel>> GetAllProductForIndex();
         Task<Product> GetProductById(int productId);
         Task<List<Feature>> GetFeatureByPriceId(int priceId);
-
+        Task<List<Product>> GetSimilarProduct(int productId);
+        Task<List<string>> GetProductTitleForSearch(string term);
         #endregion
 
         #region Product Admin
@@ -106,7 +107,7 @@ namespace Domain.Interfaces
 
         Task<FilterProductByCategory> GetProductByCategorty(FilterProductByCategory filter, int categoryId);
         Task<FilterProductByCategory> GetProductByCategortyName(FilterProductByCategory filter, string productName);
-
+        
         #endregion
 
         #region Feature

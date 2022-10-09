@@ -102,5 +102,13 @@ namespace Eshop.Controllers
             var product = _voteService.GetProductByCommentId(commentId);
             return Redirect("/product/" + product.Id);
         }
+
+
+        [Route("AllProducts")]
+        public async Task<IActionResult> AllProducts(FilterProductByCategory filter)
+        {
+            var products =await _productService.GetAllProductsCategoryAsync(filter);
+            return View("ProductFilter");
+        }
     }
 }

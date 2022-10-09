@@ -187,7 +187,7 @@ namespace DataLayer.Repositories
 
         public async Task<List<ProductCartViewModel>> GetAllProductForIndex()
         {
-            return await _context.Products.Include(c => c.ProductGalleries).Select(c => new ProductCartViewModel()
+            return await _context.Products.Include(c => c.ProductGalleries).OrderByDescending(p=>p.CreatDate).Take(9).Select(c => new ProductCartViewModel()
             {
                 ImageName = c.ProductGalleries.FirstOrDefault(c => c.IsDefault).ImageName,
                 Price = c.Price,

@@ -107,7 +107,7 @@ namespace Eshop.Controllers
         [Route("AllProducts")]
         public async Task<IActionResult> AllProducts(FilterProductByCategory filter)
         {
-            var products =await _productService.GetAllProductsCategoryAsync(filter);
+            var products =await _productService.GetAllProductsCategoryAsync();
             return View("ProductFilter");
         }
     }

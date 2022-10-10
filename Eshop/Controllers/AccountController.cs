@@ -71,6 +71,9 @@ namespace Eshop.Controllers
         [Route("/Login")]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect("/Profile");
+
             return View();
         }
 

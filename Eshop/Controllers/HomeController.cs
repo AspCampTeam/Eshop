@@ -12,7 +12,7 @@ namespace Eshop.Controllers
     public class HomeController : BaseSiteController
     {
         private readonly ILogger<HomeController> _logger;
-        IProductService _productService;
+        private readonly IProductService _productService;
         private IOrderService _orderService;
         private IDynamicLinkService _dynamicLinkService;
         private IFaqService _faqService;

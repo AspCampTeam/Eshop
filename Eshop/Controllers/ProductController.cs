@@ -114,10 +114,10 @@ namespace Eshop.Controllers
             return View("ProductFilter");
         }
         [Route("Products")]
-        public async Task<IActionResult> Products(FilterProduct filter)
+        public async Task<IActionResult> Products(FilterProductByCategory filter)
         {
             var products = await _productService.GetAllProducts(filter);
-            return View("ProductNonFilter",products);
+            return View("ProductFilter", products);
         }
     }
 }

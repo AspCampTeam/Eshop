@@ -641,29 +641,29 @@ namespace DataLayer.Repositories
             return filter;
         }
 
-        public async Task<FilterProduct> GetAllProducts(FilterProduct filter)
+        public async Task<FilterProductByCategory> GetAllProducts(FilterProductByCategory filter)
         {
-            var query = _context.Products
-                .Include(p=>p.ProductSelectedCategories)
-                .Include(p=>p.ProductVotesList)
-                .Include(p=>p.ProductGalleries)
-                .AsQueryable();
+            var query = _context.ProductSelectedCategories.Include(c => c.Product)
+                 .ThenInclude(c => c.ProductGalleries)
+                 .Include(c => c.Product)
+                 .ThenInclude(c => c.FavoriteProducts)
+                 .AsQueryable();
 
             #region Filter
 
             if (!string.IsNullOrEmpty(filter.Title))
             {
-                query = query.Where(c => c.Title.Contains(filter.Title));
+                query = query.Where(c => c.Product.Title.Contains(filter.Title));
             }
 
             if (filter.StartPrice != 0)
             {
-                query = query.Where(c => c.Price > filter.StartPrice);
+                query = query.Where(c => c.Product.Price > filter.StartPrice);
             }
 
             if (filter.EndPrice != 0)
             {
-                query = query.Where(c => c.Price < filter.EndPrice);
+                query = query.Where(c => c.Product.Price < filter.EndPrice);
             }
 
             switch (filter.OrderBy)
@@ -671,27 +671,27 @@ namespace DataLayer.Repositories
                 case "all":
                     break;
                 case "expensive":
-                {
-                    query = query.OrderByDescending(c => c.Price);
+                    {
+                        query = query.OrderByDescending(c => c.Product.Price);
 
-                }
+                    }
                     break;
                 case "cheep":
-                {
-                    query = query.OrderBy(c => c.Price);
+                    {
+                        query = query.OrderBy(c => c.Product.Price);
 
-                }
+                    }
                     break;
                 case "newest":
-                {
-                    query = query.OrderByDescending(c => c.CreatDate);
+                    {
+                        query = query.OrderByDescending(c => c.Product.CreatDate);
 
-                }
+                    }
                     break;
                 case "popular":
-                {
-                    query = query.OrderByDescending(c => c.FavoriteProducts.Count);
-                }
+                    {
+                        query = query.OrderByDescending(c => c.Product.FavoriteProducts.Count);
+                    }
                     break;
             }
 

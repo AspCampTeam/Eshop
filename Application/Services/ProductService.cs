@@ -130,7 +130,7 @@ namespace Application.Services
             return await _productRepository.GetProductTitleForSearch(term);
         }
 
-        public Task<FilterProduct> GetAllProducts(FilterProduct filter)
+        public Task<FilterProductByCategory> GetAllProducts(FilterProductByCategory filter)
         {
             return _productRepository.GetAllProducts(filter);
         }

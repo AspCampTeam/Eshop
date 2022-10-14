@@ -26,19 +26,21 @@ namespace Eshop.Areas.Profile.Controllers
         }
         [Route("Orders/{id}")]
         [HttpPost]
-        public async Task<IActionResult> Index(Order model,int price)
+        public  IActionResult Index(Order model,int price)
         {
-           // var order = await _orderService.GetOrderById(model.Id);
-        //   price = Vi
+        
             var payment = new ZarinpalSandbox.Payment(price);
 
             var res = payment.PaymentRequest("پرداخت سفارش", "https://localhost:44348/OnlinePayment/" + model.Id);
+            
+            ViewBag.OrderId = model.Id;
 
             if (res.Result.Status == 100)
             {
                 return Redirect("https://sandbox.zarinpal.com/pg/StartPay/" + res.Result.Authority);
             }
-            return Content("salam");
+
+            return View("~/Views/Home/onlinePayment.cshtml");
         }
         [Authorize]
         [Route("BuyProduct/{id}/{productPriceId?}")]

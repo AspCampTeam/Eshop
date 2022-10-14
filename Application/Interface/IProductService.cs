@@ -162,6 +162,8 @@ namespace Application.Interface
 
         Task<List<string>> GetProductTitleForSearch(string term);
 
+        Task<FilterProduct> GetAllProducts(FilterProduct filter);
+
         #endregion
 
         #region Product Admin

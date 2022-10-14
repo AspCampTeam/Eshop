@@ -174,6 +174,13 @@ namespace Domain.ViewModels.Product
         public string OrderBy { get; set; }
     }
 
+    public class FilterProduct : BasePaging<Models.Product.Product>
+    {
+        public string? Title { get; set; }
+        public int StartPrice { get; set; }
+        public int EndPrice { get; set; }
+        public string OrderBy { get; set; }
+    }
     public class FeatureViewModel:BasePaging<Feature>
     {
         public string? Title { get; set; }

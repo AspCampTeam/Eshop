@@ -566,6 +566,16 @@ namespace DataLayer.Repositories
 
             #endregion
 
+            var product = _context.ProductSelectedCategories.Include(c => c.Product)
+                .FirstOrDefault(c => c.CategoryId == categoryId).Product;
+
+
+
+            var subcategories = _context.ProductSelectedCategories.Include(c => c.ProductCategory)
+                .FirstOrDefault(c => c.CategoryId == categoryId && c.ProductCategory.ParnetId != null);
+           
+            filter.SubCategoryName = subcategories.ProductCategory.Title;
+            filter.Id = product.Id;
             await filter.Paging(query);
             return filter;
         }

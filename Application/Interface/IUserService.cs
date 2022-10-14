@@ -110,6 +110,8 @@ namespace Application.Interface
         /// <returns>Id Of Newly Add User</returns>
         int AddUserFromAdmin(UserFroAdmin user);
 
+        User GetUserByActiveCode(string code);
 
+        bool ResetPassword(string password,int userId);
     }
 }

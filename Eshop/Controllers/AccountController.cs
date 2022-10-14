@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
 using System.Security.Claims;
+using Application.Convertor;
 using Application.Sender;
 using Domain.Models.Enums;
 using Domain.ViewModels.User;
@@ -61,7 +62,7 @@ namespace Eshop.Controllers
             SendEmail.Send(GetUser.Email, "فعالسازی حساب", body);
 
 
-            
+
             return View("SuccessRegister");
         }
 
@@ -84,7 +85,7 @@ namespace Eshop.Controllers
             }
 
             var user = _userService.LoginUser(login);
-            if (user == null||user.Status==Status.NotActive)
+            if (user == null || user.Status == Status.NotActive)
             {
                 ViewBag.Error = true;
                 ModelState.AddModelError("Email", "کابری با مشخصات وارد شده یافت نشد .");
@@ -137,5 +138,71 @@ namespace Eshop.Controllers
 
         #endregion
 
+        #region ForgotPassword
+        [Route("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
+        [Route("ForgotPassword")]
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return View();
+            }
+
+
+            string fixeEmail = FixedText.FixEmail(model.Email);
+            var user = _userService.GetUserByEmail(fixeEmail);
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", "کاربری یافت نشد");
+                return View(model);
+            }
+
+            string bodyEmail = _viewRenderService.RenderToStringAsync("_ForgotPassword", user);
+
+            SendEmail.Send(user.Email, "بازیابی کلمه عبور", bodyEmail);
+            ViewBag.IsSuccess = true;
+            return View();
+        }
+        #endregion
+
+        #region ResetPassword
+        [Route("ResetPassword/{id}")]
+        public async Task<IActionResult> ResetPassword(string id)
+        {
+            return View(new ResetPasswordViewModel
+            {
+                ActiveCode = id,
+            });
+        }
+
+        [Route("ResetPassword/{id}")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return View();
+            }
+
+            var user = _userService.GetUserByActiveCode(model.ActiveCode);
+            if (user==null)
+            {
+                ModelState.AddModelError("Password","کاربری با مشخصات وارد شده یافت نشد");
+            }
+            var res = _userService.ResetPassword(model.Password, user.Id);
+            if (res!=true)
+            {
+                return BadRequest();
+            }
+            return Redirect("/Login");
+        }
+        #endregion
     }
 }

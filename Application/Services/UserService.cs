@@ -162,6 +162,23 @@ namespace Application.Services
             return addUser.Id;
         }
 
+        public User GetUserByActiveCode(string code)
+        {
+            return _userRepository.GetUserByActiveCode(code);
+        }
+
+        public bool ResetPassword(string password,int userId)
+        {
+            var user = GetUserById(userId);
+            if (user==null)
+            {
+                return false;
+            }
+            user.Password = PasswordHelper.EncodePasswordMd5(password);
+            _userRepository.EditUser(user);
+            return true;
+        }
+
         public bool ActiveAccount(string id)
         {
             var user= _userRepository.GstUserByActiveCode(id);

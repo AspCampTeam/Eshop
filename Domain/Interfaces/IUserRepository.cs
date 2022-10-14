@@ -19,7 +19,7 @@ namespace Domain.Interfaces
         void Save();
         User GetUserByEmailAndPassword(string email, string password);
         bool ComparePassWord(string email, string passWord);
-
+        User GetUserByActiveCode(string code);
 
 
     }

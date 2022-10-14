@@ -3,6 +3,7 @@ using Application.Security;
 using Domain.Models.Product;
 using Domain.ViewModels.Product;
 using Eshop.Controllers.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eshop.Controllers
@@ -42,13 +43,14 @@ namespace Eshop.Controllers
             }
             return View(product);
         }
-
+        [Authorize]
         [Route("AddComment/{id}")]
         public async Task<IActionResult> AddComment(int id, int? parentId)
         {
             string img = await _productService.GetDefaultImageById(id);
             ViewBag.DefaultImage = img;
-
+            var product = await _productService.GetProductByIdForDetail(id);
+            ViewData["product"] = product;
             return View(new AddCommentViewModel { ProductId = id, ParentId = parentId });
         }
 
@@ -65,7 +67,7 @@ namespace Eshop.Controllers
             int id = await _productService.AddCommentFromUser(model);
             return Redirect("/Product/" + model.ProductId + "?comment=true");
         }
-
+        [Authorize]
         [Route("AddFavoriteProduct/{id}")]
         public async Task<IActionResult> AddFavoriteProduct(int id)
         {
@@ -88,13 +90,14 @@ namespace Eshop.Controllers
             var res = await _productService.GetProductByCategortyName(model, name);
             return View(res);
         }
+        [Authorize]
         [Route("AddVote/{productId}")]
         public async Task<IActionResult> AddVote(int productId, bool vote)
         {
             var res = await _voteService.AddProductVote(productId, User.GetUserId(), vote);
             return Redirect("/product/"+productId);
         }
-
+        [Authorize]
         [Route("AddCommentVote/{commentId}")]
         public async Task<IActionResult> AddCommentVote(int commentId, bool vote)
         {

@@ -137,6 +137,7 @@ namespace Domain.ViewModels.Product
     public class AddCommentViewModel
     {
         public int SenderId { get; set; }
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Comment { get; set; }
         public int? ParentId { get; set; }
         public int ProductId { get; set; }
@@ -164,6 +165,9 @@ namespace Domain.ViewModels.Product
 
     public class FilterProductByCategory:BasePaging<ProductSelectedCategory>
     {
+        public int Id { get; set; }
+        
+        public string? SubCategoryName { get; set; }
         public string? Title { get; set; }
         public int StartPrice { get; set; }
         public int EndPrice { get; set; }

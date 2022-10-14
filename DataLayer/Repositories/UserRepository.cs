@@ -120,6 +120,11 @@ namespace DataLayer.Repositories
             return user.Password == passWord;
         }
 
+        public User GetUserByActiveCode(string code)
+        {
+            return _context.Users.FirstOrDefault(c => c.ActiveCode == code);
+        }
+
         public User? GstUserByActiveCode(string activeCode)
         {
             return _context.Users.SingleOrDefault(u => u.ActiveCode == activeCode);

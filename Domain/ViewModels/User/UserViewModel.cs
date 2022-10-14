@@ -189,4 +189,28 @@ namespace Domain.ViewModels.User
         [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
         public string Email { get; set; }
     }
+
+    public class ForgotPasswordViewModel
+    {
+        [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
+        public string Email { get; set; }
+    }
+
+    public class ResetPasswordViewModel
+    {
+        public string ActiveCode { get; set; }
+
+        [Display(Name = "رمز عبور")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        public string Password { get; set; }
+        [Display(Name = " تکرار رمز عبور")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0} نمی تواند بیشتر از {1} کاراکتر باشد .")]
+        [Compare("Password", ErrorMessage = "کلمه های عبور یکسان نمیباشند")]
+        public string Repassword { get; set; }
+    }
 }

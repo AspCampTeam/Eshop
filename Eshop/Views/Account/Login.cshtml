@@ -5,13 +5,7 @@
     ViewData["Title"] = "ورود به سایت";
 }
 <div class="page-wrapper">
-    <header class="page-mini-header py-4">
-        <div class="d-flex justify-content-center">
-            <div class="logo-container">
-                <a href="#" class="logo"><img src="./theme-assets/images/logo-dark.svg" width="120" alt=""></a>
-            </div>
-        </div>
-    </header>
+   
     @if(ViewBag.IsSuccess!= null && ViewBag.IsSuccess==true){
         <partial name="_SuccessSweetAlert"/>
     }
@@ -43,6 +37,13 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="form-element-row mb-5">
+                            <div class="checkbox">
+                                <label>
+                                    <a href="/ForgotPassword">رمز عبور خود را فراموش کردم</a>
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-element-row mb-3">
 
                             <input type="submit" class="btn btn-primary" value="ورود" />
@@ -70,11 +71,7 @@
         <!-- start of auth-container -->
     </main>
     <footer class="page-mini-footer">
-        <div class="d-flex justify-content-center py-5">
-            <div class="logo-container">
-                <a href="#" class="logo"><img src="./theme-assets/images/logo-dark.svg" width="120" alt=""></a>
-            </div>
-        </div>
+       
         <div class="copy-right bg-light py-3">
             <div class="container">
                 <div class="row">

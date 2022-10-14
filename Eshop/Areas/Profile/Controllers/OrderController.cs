@@ -1,6 +1,7 @@
 ﻿using Application.Interface;
 using Application.Security;
 using Domain.Models.Order;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eshop.Areas.Profile.Controllers
@@ -39,7 +40,7 @@ namespace Eshop.Areas.Profile.Controllers
             }
             return Content("salam");
         }
-
+        [Authorize]
         [Route("BuyProduct/{id}/{productPriceId?}")]
         public async Task<IActionResult> BuyProduct(int id, int? productPriceId)
         {
@@ -64,7 +65,7 @@ namespace Eshop.Areas.Profile.Controllers
             }
             return View(orderDetails);
         }
-
+        [Authorize]
         [Route("IncraeseCount/{id}")]
         public async Task<IActionResult> IncraeseCount(int id)
         {
@@ -81,7 +82,7 @@ namespace Eshop.Areas.Profile.Controllers
 
             return Redirect("/Profile/Orders/" + User.GetUserId());
         }
-
+        [Authorize]
         [Route("DecreaseCount/{id}")]
         public async Task<IActionResult> DecreaseCount(int id)
         {
@@ -98,7 +99,7 @@ namespace Eshop.Areas.Profile.Controllers
 
             return Redirect("/Profile/Orders/" + User.GetUserId());
         }
-
+        [Authorize]
         [Route("DeleteOrderDetail/{id}")]
         public async Task<IActionResult> DeleteOrderDetail(int id)
         {
@@ -115,7 +116,7 @@ namespace Eshop.Areas.Profile.Controllers
 
             return Redirect("/Profile/Orders/" + User.GetUserId());
         }
-
+        [Authorize]
         [Route("UseDiscount/{id}")]
         public async Task<IActionResult> UseDiscount(int id, string code)
         {

@@ -23,7 +23,7 @@ namespace Application.Sender
             // mail.Attachments.Add(attachment);
            
             SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("mohammad.h.spour@gmail.com", "zfxpwxypbnyzhcae");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("mohammad.h.spour@gmail.com", "");
             SmtpServer.EnableSsl = true;
            
             SmtpServer.Send(mail);
